@@ -31,6 +31,14 @@ const NavBar: React.FC = () => {
             content='Inserir Marca'
           />
         </Menu.Item>
+        <Menu.Item>
+          <Button
+            as={NavLink}
+            to='/marcas'
+            positive
+            content='List de Marcas'
+          />
+        </Menu.Item>
         {user && (
           <Menu.Item position='right'>
             <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
