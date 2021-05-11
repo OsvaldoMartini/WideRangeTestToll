@@ -92,9 +92,13 @@ namespace API
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("IsActivityHost", policy =>
-                {
-                    policy.Requirements.Add(new IsHostRequirement());
-                });
+               {
+                   policy.Requirements.Add(new IsHostRequirement());
+               });
+                opt.AddPolicy("IsMarcaHost", policy =>
+               {
+                   policy.Requirements.Add(new IsHostRequirement());
+               });
             });
             services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
 

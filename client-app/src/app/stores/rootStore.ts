@@ -5,11 +5,13 @@ import { configure } from 'mobx';
 import CommonStore from './commonStore';
 import ModalStore from './modalStore';
 import ProfileStore from './profileStore';
+import MarcaStore from './marcaStore';
 
 configure({enforceActions: 'always'});
 
 export class RootStore {
     activityStore: ActivityStore;
+    marcaStore: MarcaStore;
     userStore: UserStore;
     commonStore: CommonStore;
     modalStore: ModalStore;
@@ -17,6 +19,7 @@ export class RootStore {
 
     constructor() {
         this.activityStore = new ActivityStore(this);
+        this.marcaStore = new MarcaStore(this);
         this.userStore = new UserStore(this);
         this.commonStore = new CommonStore(this);
         this.modalStore = new ModalStore(this);

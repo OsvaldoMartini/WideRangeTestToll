@@ -1,4 +1,6 @@
-import { IActivity, IAttendee } from "../../models/activity";
+import { IActivity } from "../../models/activity";
+import { IMarca } from "../../models/marca";
+import { IAttendee } from "../../models/attendee";
 import { IUser } from "../../models/user";
 
 export const combineDateAndTime = (date: Date, time: Date) => {
@@ -24,6 +26,17 @@ export const setActivityProps = (activity: IActivity, user: IUser) => {
       a => a.username === user.username && a.isHost
     )
     return activity;
+}
+
+export const setMarcaProps = (marca: IMarca, user: IUser) => {
+  marca.date = new Date(marca.date);
+  marca.isGoing = marca.attendees.some(
+    a => a.username === user.username
+  )
+  marca.isHost = marca.attendees.some(
+    a => a.username === user.username && a.isHost
+  )
+  return marca;
 }
 
 export const createAttendee = (user: IUser): IAttendee => {

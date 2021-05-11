@@ -135,7 +135,7 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("ProcessoNumber");
+                    b.Property<string>("ProcessoNumber");
 
                     b.Property<string>("Procurador");
 

@@ -36,7 +36,8 @@ namespace Persistence
                         DisplayName = "Tom",
                         UserName = "tom",
                         Email = "tom@test.com"
-                    },
+                    }
+
                 };
 
                 foreach (var user in users)
@@ -44,7 +45,6 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
             }
-
             if (!context.Activities.Any())
             {
                 var activities = new List<Activity>
@@ -282,6 +282,61 @@ namespace Persistence
                 await context.Activities.AddRangeAsync(activities);
                 await context.SaveChangesAsync();
             }
+
+            if (!context.Marcas.Any())
+            {
+                var marcas = new List<Marca>
+                {
+                    new Marca
+                    {
+                        Title = "Superbom",
+                        Date = DateTime.Now.AddMonths(-5).AddYears(-6),
+                        Description = "Marca Figuratica",
+                        Category = "food",
+                        City = "Sao Paulo",
+                        Venue = "Extra Supermercados",
+                        ProcessoNumber= "123.456.768.90",
+                        Procurador= "Martini Marcas e Patentes",
+                        Proprietario= "Superbom Ltda",
+                        UserMarcas = new List<UserMarca>
+                        {
+                            new UserMarca
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-5).AddYears(-6)
+                            }
+                        }
+                    },
+
+                    new Marca
+                    {
+                        Title = "Hitachi",
+                        Date = DateTime.Now.AddMonths(-15).AddYears(-8),
+                        Description = "Marca Figuratica",
+                        Category = "Eletronics",
+                        City = "Sao Paulo",
+                        Venue = "Sao Bernardo do Campo",
+                        ProcessoNumber= "9878.324.678.30",
+                        Procurador= "Martini Marcas e Patentes",
+                        Proprietario= "Hitachi Inc",
+                        UserMarcas = new List<UserMarca>
+                        {
+                            new UserMarca
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-15).AddYears(-8)
+                            }
+                        }
+                    }
+                };
+
+                await context.Marcas.AddRangeAsync(marcas);
+                await context.SaveChangesAsync();
+            }
+
+
         }
     }
 }

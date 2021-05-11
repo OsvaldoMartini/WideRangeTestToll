@@ -1,16 +1,15 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Interfaces;
-using Domain;
+using Application.Errors;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Marcas
 {
-    public class Create
+    public class Edit
     {
         public class Command : IRequest
         {
@@ -18,7 +17,7 @@ namespace Application.Marcas
             public string Title { get; set; }
             public string Description { get; set; }
             public string Category { get; set; }
-            public DateTime Date { get; set; }
+            public DateTime? Date { get; set; }
             public string City { get; set; }
             public string Venue { get; set; }
             public string ProcessoNumber { get; set; }
@@ -45,43 +44,27 @@ namespace Application.Marcas
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
-            private readonly IUserAccessor _userAccessor;
-            public Handler(DataContext context, IUserAccessor userAccessor)
+            public Handler(DataContext context)
             {
-                _userAccessor = userAccessor;
                 _context = context;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var marca = new Marca
-                {
-                    Id = request.Id,
-                    Title = request.Title,
-                    Description = request.Description,
-                    Category = request.Category,
-                    Date = request.Date,
-                    City = request.City,
-                    Venue = request.Venue,
-                    ProcessoNumber = request.ProcessoNumber,
-                    Procurador = request.Procurador,
-                    Proprietario = request.Proprietario
-                };
+                var marca = await _context.Marcas.FindAsync(request.Id);
 
-                _context.Marcas.Add(marca);
+                if (marca == null)
+                    throw new RestException(HttpStatusCode.NotFound, new { Marca = "Not found" });
 
-                var user = await _context.Users.SingleOrDefaultAsync(x =>
-                    x.UserName == _userAccessor.GetCurrentUsername());
-
-                var attendee = new UserMarca
-                {
-                    AppUser = user,
-                    Marca = marca,
-                    IsHost = true,
-                    DateJoined = DateTime.Now
-                };
-
-                _context.UserMarcas.Add(attendee);
+                marca.Title = request.Title ?? marca.Title;
+                marca.Description = request.Description ?? marca.Description;
+                marca.Category = request.Category ?? marca.Category;
+                marca.Date = request.Date ?? marca.Date;
+                marca.City = request.City ?? marca.City;
+                marca.Venue = request.Venue ?? marca.Venue;
+                marca.ProcessoNumber = request.ProcessoNumber ?? marca.ProcessoNumber;
+                marca.Procurador = request.Procurador ?? marca.Procurador;
+                marca.Proprietario = request.Proprietario ?? marca.Proprietario;
 
                 var success = await _context.SaveChangesAsync() > 0;
 

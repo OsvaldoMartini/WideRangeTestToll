@@ -7,14 +7,14 @@ import TextAreaInput from '../../../app/common/form/TextAreaInput';
 import { observer } from 'mobx-react-lite';
 import {formatDistance} from 'date-fns';
 
-const ActivityDetailedChat = () => {
+const MarcaDetailedChat = () => {
   const rootStore = useContext(RootStoreContext);
   const {
     createHubConnection,
     stopHubConnection,
     addComment,
-    activity
-  } = rootStore.activityStore;
+    marca
+  } = rootStore.marcaStore;
 
   useEffect(() => {
     createHubConnection();
@@ -36,7 +36,7 @@ const ActivityDetailedChat = () => {
       </Segment>
       <Segment attached>
         <Comment.Group>
-          {activity && activity.comments && activity.comments.map((comment) => (
+          {marca && marca.comments && marca.comments.map((comment) => (
           <Comment key={comment.id}>
           <Comment.Avatar src={comment.image || '/assets/user.png'} />
           <Comment.Content>
@@ -76,4 +76,4 @@ const ActivityDetailedChat = () => {
   );
 };
 
-export default observer(ActivityDetailedChat);
+export default observer(MarcaDetailedChat);

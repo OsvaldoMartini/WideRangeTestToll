@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { IActivity, IActivitiesEnvelope } from '../models/activity';
+import { IMarca, IMarcasEnvelope } from '../models/marca';
 import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
@@ -112,7 +113,20 @@ const Profiles = {
     requests.get(`/profiles/${username}/activities?predicate=${predicate}`)
 };
 
+const Marcas = {
+  list: (params: URLSearchParams): Promise<IMarcasEnvelope> =>
+    axios.get('/marcas', {params: params}).then(responseBody),
+  details: (id: string) => requests.get(`/marcas/${id}`),
+  create: (marca: IMarca) => requests.post('/marcas', marca),
+  update: (marca: IMarca) =>
+    requests.put(`/marcas/${marca.id}`, marca),
+  delete: (id: string) => requests.del(`/marcas/${id}`),
+  attend: (id: string) => requests.post(`/marcas/${id}/attend`, {}),
+  unattend: (id: string) => requests.del(`/marcas/${id}/attend`)
+};
+
 export default {
+  Marcas,
   Activities,
   User,
   Profiles

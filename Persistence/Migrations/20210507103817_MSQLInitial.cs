@@ -77,7 +77,7 @@ namespace Persistence.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Venue = table.Column<string>(nullable: true),
-                    ProcessoNumber = table.Column<int>(nullable: false),
+                    ProcessoNumber = table.Column<string>(nullable: true),
                     Procurador = table.Column<string>(nullable: true),
                     Proprietario = table.Column<string>(nullable: true)
                 },

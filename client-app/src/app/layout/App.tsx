@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
 import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
+import MarcaDashboard from '../../features/marcas/dashboard/MarcaDashboard';
 import { observer } from 'mobx-react-lite';
 import {
   Route,
@@ -12,6 +13,8 @@ import {
 import HomePage from '../../features/home/HomePage';
 import ActivityForm from '../../features/activities/form/ActivityForm';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
+import MarcaForm from '../../features/marcas/form/MarcaForm';
+import MarcaDetails from '../../features/marcas/details/MarcaDetails';
 import NotFound from './NotFound';
 import {ToastContainer} from 'react-toastify';
 import { RootStoreContext } from '../stores/rootStore';
@@ -47,6 +50,13 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '7em' }}>
               <Switch>
+                <PrivateRoute exact path='/marcas' component={MarcaDashboard} />
+                <PrivateRoute path='/marcas/:id' component={MarcaDetails} />
+                <PrivateRoute
+                  key={location.key}
+                  path={['/createMarca', '/manage/:id']}
+                  component={MarcaForm}
+                />
                 <PrivateRoute exact path='/activities' component={ActivityDashboard} />
                 <PrivateRoute path='/activities/:id' component={ActivityDetails} />
                 <PrivateRoute

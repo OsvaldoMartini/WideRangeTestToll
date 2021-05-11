@@ -1,3 +1,5 @@
+import { IAttendee } from "../models/attendee";
+
 export interface IActivitiesEnvelope {
   activities: IActivity[];
   activityCount: number;
@@ -48,10 +50,4 @@ export class ActivityFormValues implements IActivityFormValues {
   }
 }
 
-export interface IAttendee {
-  username: string;
-  displayName: string;
-  image: string;
-  isHost: boolean;
-  following?: boolean;
-}
+

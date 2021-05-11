@@ -15,7 +15,7 @@ namespace Application.Marcas
         public string City { get; set; }
         public string Venue { get; set; }
 
-        public int ProcessoNumber { get; set; }
+        public string ProcessoNumber { get; set; }
         public string Procurador { get; set; }
         public string Proprietario { get; set; }
 
