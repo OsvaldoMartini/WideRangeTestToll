@@ -1,38 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Grid, Loader } from 'semantic-ui-react';
-import ActivityList from './MarcaList';
+import MarcaList from './MarcaList';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import InfiniteScroll from 'react-infinite-scroller';
-import ActivityFilters from './MarcaFilters';
-import ActivityListItemPlaceholder from './MarcaListItemPlaceholder';
+import MarcaFilters from './MarcaFilters';
+import MarcaListItemPlaceholder from './MarcaListItemPlaceholder';
 
-const ActivityDashboard: React.FC = () => {
+const MarcaDashboard: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
   const {
-    loadActivities,
+    loadMarcas,
     loadingInitial,
     setPage,
     page,
     totalPages
-  } = rootStore.activityStore;
+  } = rootStore.marcaStore;
   const [loadingNext, setLoadingNext] = useState(false);
 
   const handleGetNext = () => {
     setLoadingNext(true);
     setPage(page + 1);
-    loadActivities().then(() => setLoadingNext(false));
+    loadMarcas().then(() => setLoadingNext(false));
   };
 
   useEffect(() => {
-    loadActivities();
-  }, [loadActivities]);
+    loadMarcas();
+  }, [loadMarcas]);
 
   return (
     <Grid>
       <Grid.Column width={10}>
         {loadingInitial && page === 0 ? (
-          <ActivityListItemPlaceholder />
+          <MarcaListItemPlaceholder />
         ) : (
           <InfiniteScroll
             pageStart={0}
@@ -40,12 +40,12 @@ const ActivityDashboard: React.FC = () => {
             hasMore={!loadingNext && page + 1 < totalPages}
             initialLoad={false}
           >
-            <ActivityList />
+            <MarcaList />
           </InfiniteScroll>
         )}
       </Grid.Column>
       <Grid.Column width={6}>
-        <ActivityFilters />
+        <MarcaFilters />
       </Grid.Column>
       <Grid.Column width={10}>
         <Loader active={loadingNext} />
@@ -54,4 +54,4 @@ const ActivityDashboard: React.FC = () => {
   );
 };
 
-export default observer(ActivityDashboard);
+export default observer(MarcaDashboard);

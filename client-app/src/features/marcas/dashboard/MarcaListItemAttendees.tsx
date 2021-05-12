@@ -11,7 +11,7 @@ const styles = {
   borderWidth: 2
 }
 
-const ActivityListItemAttendees: React.FC<IProps> = ({ attendees }) => {
+const MarcaListItemAttendees: React.FC<IProps> = ({ attendees }) => {
   return (
     <List horizontal>
       {attendees.map(attendee => (
@@ -34,4 +34,4 @@ const ActivityListItemAttendees: React.FC<IProps> = ({ attendees }) => {
   );
 };
 
-export default ActivityListItemAttendees;
+export default MarcaListItemAttendees;

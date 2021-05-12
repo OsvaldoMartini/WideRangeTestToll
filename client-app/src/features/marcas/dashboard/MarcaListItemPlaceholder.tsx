@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Segment, Button, Placeholder } from 'semantic-ui-react';
-const ActivityListItemPlaceholder = () => {
+const MarcaListItemPlaceholder = () => {
   return (
     <Fragment>
       <Placeholder fluid style={{ marginTop: 50 }}>
@@ -31,4 +31,4 @@ const ActivityListItemPlaceholder = () => {
     </Fragment>
   );
 };
-export default ActivityListItemPlaceholder;
+export default MarcaListItemPlaceholder;
