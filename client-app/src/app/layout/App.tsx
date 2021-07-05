@@ -50,19 +50,19 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '7em' }}>
               <Switch>
-                <PrivateRoute exact path='/marcas' component={MarcaDashboard} />
-                <PrivateRoute path='/marcas/:id' component={MarcaDetails} />
-                <PrivateRoute
-                  key={location.key}
-                  path={['/createMarca', '/manage/:id']}
-                  component={MarcaForm}
-                />
                 <PrivateRoute exact path='/activities' component={ActivityDashboard} />
                 <PrivateRoute path='/activities/:id' component={ActivityDetails} />
                 <PrivateRoute
                   key={location.key}
-                  path={['/createActivity', '/manage/:id']}
+                  path={['/createActivity', '/manageActivity/:id']}
                   component={ActivityForm}
+                />
+                <PrivateRoute exact path='/marcas' component={MarcaDashboard} />
+                <PrivateRoute path='/marcas/:id' component={MarcaDetails} />
+                <PrivateRoute
+                  key={location.key}
+                  path={['/createMarca', '/manageMarca/:id']}
+                  component={MarcaForm}
                 />
                 <PrivateRoute path='/profile/:username' component={ProfilePage} />
                 <Route component={NotFound} />

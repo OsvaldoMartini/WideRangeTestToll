@@ -76,6 +76,13 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
           content='View'
           color='blue'
         /> 
+        <Button
+          as={Link}
+          to={`/manageActivity/${activity.id}`}
+          floated='right'
+          content='Edit'
+          color='orange'
+      />
       <Button
         name={activity.id}
         onClick={(e) => {

@@ -35,7 +35,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
                 {marca.title}
               </Item.Header>
               <Item.Description>
-                Hosted by
+                Inserido por:
                 <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
               </Item.Description>
               {marca.isHost && (
@@ -43,7 +43,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
                   <Label
                     basic
                     color='orange'
-                    content='You are hosting this marca'
+                    content='Voce Inseriu esta Marca'
                   />
                 </Item.Description>
               )}
@@ -78,7 +78,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
         />
         <Button
         as={Link}
-        to={`/manage/${marca.id}`}
+        to={`/manageMarca/${marca.id}`}
         floated='right'
         content='Edit'
         color='orange'
@@ -89,10 +89,13 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
           deleteMarca(e, marca.id);
           setDeleteTarget(e.currentTarget.name)
         }}
+        disabled={!marca.isHost}
         loading={loading && deleteTarget === marca.id}
-        floated='left'
+        floated='right'
         content='Delete'
-        color='red'
+        basic
+        negative
+        icon='trash'
       />
       </Segment>
     </Segment.Group>

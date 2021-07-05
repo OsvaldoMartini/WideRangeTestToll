@@ -167,8 +167,8 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
                 <Button
                   onClick={
                     marca.id
-                      ? () => history.push(`/marcas/${marca.id}`)
-                      : () => history.push('/marcas')
+                      ? () => history.push('/marcas')
+                      :() => history.push(`/marcas/${marca.id}`)
                   }
                   disabled={loading}
                   floated='right'

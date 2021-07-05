@@ -58,7 +58,7 @@ const MarcaDetailedHeader: React.FC<{ marca: IMarca }> = ({
         {marca.isHost ? (
           <Button
             as={Link}
-            to={`/manage/${marca.id}`}
+            to={`/manageMarca/${marca.id}`}
             color='orange'
             floated='right'
           >
