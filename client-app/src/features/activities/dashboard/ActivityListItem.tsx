@@ -63,7 +63,14 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
           floated='right'
           content='View'
           color='blue'
-        />
+        /> 
+        <Button
+        as={Link}
+        to={`/activities/${activity.id}`}
+        floated='right'
+        content='Delete'
+        color='red'
+      />
       </Segment>
     </Segment.Group>
   );

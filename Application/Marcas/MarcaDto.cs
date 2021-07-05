@@ -20,7 +20,7 @@ namespace Application.Marcas
         public string Proprietario { get; set; }
 
         [JsonProperty("attendees")]
-        public ICollection<AttendeeDto> UserActivities { get; set; }
+        public ICollection<AttendeeDto> UserMarcas { get; set; }
         public ICollection<CommentDto> Comments { get; set; }
     }
 }

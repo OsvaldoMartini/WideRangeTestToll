@@ -29,15 +29,33 @@ namespace Infrastructure.Security
             {
                 var currentUserName = _httpContextAccessor.HttpContext.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 
-                var activityId = Guid.Parse(authContext.RouteData.Values["id"].ToString());
+                var guiId = Guid.Parse(authContext.RouteData.Values["id"].ToString());
 
-                var activity = _context.Activities.FindAsync(activityId).Result;
+                if (authContext.RouteData.Values["controller"].ToString().Equals("Marcas"))
+                {
 
-                var host = activity.UserActivities.FirstOrDefault(x => x.IsHost);
+                    var marca = _context.Marcas.FindAsync(guiId).Result;
 
-                if (host?.AppUser?.UserName == currentUserName)
-                    context.Succeed(requirement);
-            } else {
+                    var host = marca.UserMarcas.FirstOrDefault(x => x.IsHost);
+
+                    if (host?.AppUser?.UserName == currentUserName)
+                        context.Succeed(requirement);
+
+                }
+                else
+                {
+
+                    var activity = _context.Activities.FindAsync(guiId).Result;
+
+                    var host = activity.UserActivities.FirstOrDefault(x => x.IsHost);
+
+                    if (host?.AppUser?.UserName == currentUserName)
+                        context.Succeed(requirement);
+
+                }
+            }
+            else
+            {
                 context.Fail();
             }
 

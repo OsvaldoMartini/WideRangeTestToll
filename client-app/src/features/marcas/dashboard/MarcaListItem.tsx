@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Item, Button, Segment, Icon, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IMarca } from '../../../app/models/marca';
@@ -6,6 +7,16 @@ import { format } from 'date-fns';
 import MarcaListItemAttendees from './MarcaListItemAttendees';
 
 const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
+  const rootStore = useContext(RootStoreContext);
+  const {
+    deleteMarca,
+    loading
+  } = rootStore.marcaStore;
+
+  const [deleteTarget, setDeleteTarget] = useState<string | undefined>(
+    undefined
+  );
+
   const host = marca.attendees.filter(x => x.isHost)[0];
   return (
     <Segment.Group>
@@ -64,6 +75,24 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
           content='View'
           color='blue'
         />
+        <Button
+        as={Link}
+        to={`/manage/${marca.id}`}
+        floated='right'
+        content='Edit'
+        color='orange'
+      />
+       <Button
+        name={marca.id}
+        onClick={(e) => {
+          deleteMarca(e, marca.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        loading={loading && deleteTarget === marca.id}
+        floated='left'
+        content='Delete'
+        color='red'
+      />
       </Segment>
     </Segment.Group>
   );

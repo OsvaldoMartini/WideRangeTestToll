@@ -51,8 +51,8 @@ namespace Application.Marcas
             public async Task<MarcasEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
                 var queryable = _context.Marcas
-                    .Where(x => x.Date >= request.StartDate)
-                    .OrderBy(x => x.Date)
+                    // .Where(x => x.Date >= request.StartDate)
+                    // .OrderBy(x => x.Date)
                     .AsQueryable();
 
                 if (request.IsGoing && !request.IsHost)
