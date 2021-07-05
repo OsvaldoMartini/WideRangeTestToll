@@ -89,7 +89,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
           deleteMarca(e, marca.id);
           setDeleteTarget(e.currentTarget.name)
         }}
-        disabled={!marca.isHost}
+        // disabled={!marca.isHost}
         loading={loading && deleteTarget === marca.id}
         floated='right'
         content='Delete'
