@@ -25,7 +25,7 @@ namespace Application.Marcas
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var marca = await _context.Activities.FindAsync(request.Id);
+                var marca = await _context.Marcas.FindAsync(request.Id);
 
                 if (marca == null)
                     throw new RestException(HttpStatusCode.NotFound, new { Marca = "Not found" });
