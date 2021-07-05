@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Item, Button, Segment, Icon, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IActivity } from '../../../app/models/activity';
@@ -6,7 +7,18 @@ import { format } from 'date-fns';
 import ActivityListItemAttendees from './ActivityListItemAttendees';
 
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
+  const rootStore = useContext(RootStoreContext);
+  const {
+    deleteActivity,
+    loading
+  } = rootStore.activityStore;
+
+  const [deleteTarget, setDeleteTarget] = useState<string | undefined>(
+    undefined
+  );
+  
   const host = activity.attendees.filter(x => x.isHost)[0];
+
   return (
     <Segment.Group>
       <Segment>
@@ -64,12 +76,19 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
           content='View'
           color='blue'
         /> 
-        <Button
-        as={Link}
-        to={`/activities/${activity.id}`}
+      <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
         floated='right'
         content='Delete'
-        color='red'
+        basic
+        negative
+        icon='trash'
       />
       </Segment>
     </Segment.Group>

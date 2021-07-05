@@ -18,6 +18,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
   );
 
   const host = marca.attendees.filter(x => x.isHost)[0];
+
   return (
     <Segment.Group>
       <Segment>
