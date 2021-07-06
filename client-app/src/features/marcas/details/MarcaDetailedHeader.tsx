@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../../app/stores/rootStore';
+import { history } from '../../../';
 
 const marcaImageStyle = {
   filter: 'brightness(30%)'
@@ -73,6 +74,17 @@ const MarcaDetailedHeader: React.FC<{ marca: IMarca }> = ({
             Join Marca
           </Button>
         )}
+        <Button
+          onClick={
+            marca.id
+              ? () => history.push('/marcas')
+              :() => history.push(`/marcas/${marca.id}`)
+          }
+          disabled={loading}
+          floated='right'
+          type='button'
+          content='Retornar'
+        />
       </Segment>
     </Segment.Group>
   );

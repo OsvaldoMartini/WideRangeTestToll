@@ -8,7 +8,7 @@ import { RootStore } from './rootStore';
 import { setMarcaProps, createAttendee } from '../common/util/util';
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
 
-const LIMIT = 2;
+const LIMIT = 5;
 
 export default class MarcaStore {
   rootStore: RootStore;

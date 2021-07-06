@@ -7,6 +7,7 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.8.0"/>
   </ItemGroup>
   <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
