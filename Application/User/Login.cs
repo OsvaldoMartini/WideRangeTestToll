@@ -45,6 +45,9 @@ namespace Application.User
             {
                 var user = await _userManager.FindByEmailAsync(request.Email);
 
+                if (!user.EmailConfirmed)
+                    throw new RestException(HttpStatusCode.BadRequest, new { Email = "Email is not confirmed" });
+
                 if (user == null)
                     throw new RestException(HttpStatusCode.Unauthorized);
 
