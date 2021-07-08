@@ -12,9 +12,10 @@ const NavBar: React.FC = () => {
       <Container>
         <Menu.Item header as={NavLink} exact to='/'>
           <img src='/assets/logo.png' alt='logo' style={{ marginRight: 10 }} />
-          Reactivities
+          Marcas e Patentes
         </Menu.Item>
-        <Menu.Item name='Activities' as={NavLink} to='/activities' />
+        {user && (<Menu.Item name='Activities' as={NavLink} to='/activities' />)}
+        {user && (
         <Menu.Item>
           <Button
             as={NavLink}
@@ -23,6 +24,8 @@ const NavBar: React.FC = () => {
             content='Criar Novo Evento'
           />
         </Menu.Item>
+        )}
+        {user && (
         <Menu.Item>
           <Button
             as={NavLink}
@@ -31,7 +34,8 @@ const NavBar: React.FC = () => {
             content='Inserir Marca'
           />
         </Menu.Item>
-        <Menu.Item>
+        )}
+        {user && (<Menu.Item>
           <Button
             as={NavLink}
             to='/marcas'
@@ -39,6 +43,7 @@ const NavBar: React.FC = () => {
             content='List de Marcas'
           />
         </Menu.Item>
+        )}
         {user && (
           <Menu.Item position='right'>
             <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
