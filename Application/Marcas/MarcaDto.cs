@@ -12,9 +12,7 @@ namespace Application.Marcas
         public string Description { get; set; }
         public string Category { get; set; }
         public DateTime Date { get; set; }
-        public string City { get; set; }
-        public string Venue { get; set; }
-
+        public DateTime Expire { get; set; }
         public string ProcessoNumber { get; set; }
         public string Procurador { get; set; }
         public string Proprietario { get; set; }

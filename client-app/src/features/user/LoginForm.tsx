@@ -35,7 +35,7 @@ const LoginForm = () => {
         <Form onSubmit={handleSubmit} error>
           <Header
             as='h2'
-            content='Login to Reactivities'
+            content='Login para Martini Marcas'
             color='teal'
             textAlign='center'
           />

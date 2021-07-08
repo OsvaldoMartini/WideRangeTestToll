@@ -18,8 +18,7 @@ namespace Application.Marcas
             public string Description { get; set; }
             public string Category { get; set; }
             public DateTime? Date { get; set; }
-            public string City { get; set; }
-            public string Venue { get; set; }
+            public DateTime? Expire { get; set; }
             public string ProcessoNumber { get; set; }
             public string Procurador { get; set; }
             public string Proprietario { get; set; }
@@ -33,8 +32,7 @@ namespace Application.Marcas
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Category).NotEmpty();
                 RuleFor(x => x.Date).NotEmpty();
-                RuleFor(x => x.City).NotEmpty();
-                RuleFor(x => x.Venue).NotEmpty();
+                RuleFor(x => x.Expire).NotEmpty();
                 RuleFor(x => x.ProcessoNumber).NotEmpty();
                 RuleFor(x => x.Procurador).NotEmpty();
                 RuleFor(x => x.Proprietario).NotEmpty();
@@ -60,8 +58,7 @@ namespace Application.Marcas
                 marca.Description = request.Description ?? marca.Description;
                 marca.Category = request.Category ?? marca.Category;
                 marca.Date = request.Date ?? marca.Date;
-                marca.City = request.City ?? marca.City;
-                marca.Venue = request.Venue ?? marca.Venue;
+                marca.Expire = request.Expire ?? marca.Expire;
                 marca.ProcessoNumber = request.ProcessoNumber ?? marca.ProcessoNumber;
                 marca.Procurador = request.Procurador ?? marca.Procurador;
                 marca.Proprietario = request.Proprietario ?? marca.Proprietario;

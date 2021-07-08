@@ -20,7 +20,7 @@ const HomePage = () => {
             alt='logo'
             style={{ marginBottom: 12 }}
           />
-          Reactivities
+          Martini Marcas
         </Header>
         {isLoggedIn && user && token ? (
           <Fragment>
@@ -31,7 +31,7 @@ const HomePage = () => {
           </Fragment>
         ) : (
           <Fragment>
-          <Header as='h2' inverted content={`Welcome to Reactivitities`} />
+          <Header as='h2' inverted content={`Bem vindo a Martini Marcas`} />
           <Button onClick={() => openModal(<LoginForm />)} size='huge' inverted>
             Login
           </Button>
