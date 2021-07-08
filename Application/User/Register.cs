@@ -76,7 +76,7 @@ namespace Application.User
 
                 var verifyUrl = $"{request.Origin}/user/verifyEmail?token={token}&email={request.Email}";
 
-                var message = $"<p>Please click the link below to verify your email address:</p><p><a href='{verifyUrl}'>{verifyUrl}></a></p>";
+                var message = $"<p>Please click the link below to verify your email address:</p><p><a href='{verifyUrl}'>{verifyUrl}</a></p>";
 
                 await _emailSender.SendEmailAsync(request.Email, "Please verify email address", message);
 

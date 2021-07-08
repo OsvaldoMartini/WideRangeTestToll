@@ -24,7 +24,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(Register.Command command)
         {
-            var origin = Request.Headers["origin"];
+            command.Origin = Request.Headers["origin"];
             await Mediator.Send(command);
             return Ok("Registration successful - please check your email");
         }
@@ -59,7 +59,7 @@ namespace API.Controllers
         [HttpGet("resendEmailVerification")]
         public async Task<ActionResult> ResendEmailVerification([FromQuery] ResendEmailVerification.Query query)
         {
-            query.Origin = Request.Headers["origin"];
+            query.Origin = Request.Headers["host"];
             await Mediator.Send(query);
 
             return Ok("Email verification link sent - please check email");
