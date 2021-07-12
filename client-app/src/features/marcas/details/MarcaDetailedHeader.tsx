@@ -56,7 +56,6 @@ const MarcaDetailedHeader: React.FC<{ marca: IMarca }> = ({
         </Segment>
       </Segment>
       <Segment clearing attached='bottom'>
-        {marca.isHost ? (
           <Button
             as={Link}
             to={`/manageMarca/${marca.id}`}
@@ -65,7 +64,7 @@ const MarcaDetailedHeader: React.FC<{ marca: IMarca }> = ({
           >
             Manage Event
           </Button>
-        ) : marca.isGoing ? (
+         { !marca.isHost && marca.isGoing ? (
           <Button loading={loading} onClick={cancelAttendance}>
             Cancel attendance
           </Button>

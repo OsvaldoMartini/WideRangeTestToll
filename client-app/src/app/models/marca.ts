@@ -11,8 +11,7 @@ export interface IMarcasEnvelope {
     description: string;
     category: string;
     date: Date;
-    city: string;
-    venue: string;
+    expire: Date;
     processoNumber: string;
     procurador: string;
     proprietario: string;
@@ -41,9 +40,8 @@ export interface IMarcasEnvelope {
     category: string = '';
     description: string = '';
     date?: Date = undefined;
+    expire?: Date = undefined;
     time?: Date = undefined;
-    city: string = '';
-    venue: string = '';
     processoNumber: string = '';
     procurador: string = '';
     proprietario: string = '';

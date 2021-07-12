@@ -58,7 +58,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
         {activity.isHost ? (
           <Button
             as={Link}
-            to={`/manage/${activity.id}`}
+            to={`/manageActivity/${activity.id}`}
             color='orange'
             floated='right'
           >

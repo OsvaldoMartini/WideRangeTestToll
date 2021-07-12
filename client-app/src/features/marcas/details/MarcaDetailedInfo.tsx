@@ -33,7 +33,7 @@ const MarcaDetailedInfo: React.FC<{marca: IMarca}> = ({marca}) => {
           </Grid.Column>
           <Grid.Column width={11}>
             <span>
-              {marca.venue}, {marca.city}
+             Vencimento {format(marca.expire, 'h:mm a')}
             </span>
           </Grid.Column>
         </Grid>

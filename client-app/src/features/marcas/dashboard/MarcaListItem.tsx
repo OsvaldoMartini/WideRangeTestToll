@@ -62,7 +62,7 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
       </Segment>
       <Segment>
         <Icon name='clock' /> {format(marca.date, 'h:mm a')}
-        <Icon name='marker' /> {marca.venue}, {marca.city}
+        <Icon name='marker' /> {format(marca.expire, 'h:mm a')}
       </Segment>
       <Segment secondary>
         <MarcaListItemAttendees attendees={marca.attendees} />

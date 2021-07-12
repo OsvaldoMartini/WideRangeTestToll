@@ -28,10 +28,12 @@ const validate = combineValidators({
       message: 'Description needs to be at least 5 characters'
     })
   )(),
-  city: isRequired('City'),
-  venue: isRequired('Venue'),
   date: isRequired('Date'),
-  time: isRequired('Time')
+  expire: isRequired('Expire'),
+  procurador: isRequired('Procurador'),
+  processoNumber:isRequired('processoNumber'),
+  proprietario:isRequired('Proprietario')
+  
 });
 
 interface DetailParams {
@@ -65,9 +67,17 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
   }, [loadMarca, match.params.id]);
 
   const handleFinalFormSubmit = (values: any) => {
+    //It sets midnight
+    values.time = new Date();
+    values.time.setHours(24,0,0,0); // next midnight
+    
     const dateAndTime = combineDateAndTime(values.date, values.time);
-    const { date, time, ...marca } = values;
+    const dateAndTimeExpire = combineDateAndTime(values.expire, values.time);
+    
+    const { date, expire, time, ...marca } = values;
     marca.date = dateAndTime;
+    marca.expire = dateAndTimeExpire;
+    
     if (!marca.id) {
       let newMarca = {
         ...marca,
@@ -117,27 +127,14 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
                     placeholder='Date'
                     value={marca.date}
                   />
-                  <Field
+                      <Field
                     component={DateInput}
-                    name='time'
-                    time={true}
-                    placeholder='Time'
-                    value={marca.time}
+                    name='expire'
+                    date={true}
+                    placeholder='Vencimento'
+                    value={marca.expire}
                   />
                 </Form.Group>
-
-                <Field
-                  component={TextInput}
-                  name='city'
-                  placeholder='City'
-                  value={marca.city}
-                />
-                <Field
-                  component={TextInput}
-                  name='venue'
-                  placeholder='Venue'
-                  value={marca.venue}
-                />
                 <Field
                   component={TextInput}
                   name='processoNumber'
