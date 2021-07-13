@@ -36,7 +36,7 @@ namespace Application.User
 
             public async Task<User> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await _userManager.FindByEmailAsync(_userAcessor.GetCurrentUsername());
+                var user = await _userManager.FindByNameAsync(_userAcessor.GetCurrentUsername());
                 var oldToken = user.RefreshTokens.SingleOrDefault(x => x.Token == request.RefreshToken);
 
                 if (oldToken != null && !oldToken.IsActive) throw new RestException(HttpStatusCode.Unauthorized);
