@@ -22,18 +22,18 @@ const MarcaDetailedInfo: React.FC<{marca: IMarca}> = ({marca}) => {
             <Icon name='calendar' size='large' color='teal' />
           </Grid.Column>
           <Grid.Column width={15}>
-            <span>{format(marca.date, 'eeee do MMMM')} at {format(marca.date!, 'h:mm a')}</span>
+            Data do Pedido: <span>{format(marca.date, 'dd/MM/yyyy')}</span>
           </Grid.Column>
         </Grid>
       </Segment>
       <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
-            <Icon name='marker' size='large' color='teal' />
+              <Icon name='calendar' size='large' color='red' />
           </Grid.Column>
           <Grid.Column width={11}>
             <span>
-             Vencimento {format(marca.expire, 'h:mm a')}
+             Validade: <span>{format(marca.expire, 'dd/MM/yyyy')}</span>
             </span>
           </Grid.Column>
         </Grid>

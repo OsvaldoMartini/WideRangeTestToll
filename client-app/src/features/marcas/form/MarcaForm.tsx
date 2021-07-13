@@ -29,7 +29,6 @@ const validate = combineValidators({
     })
   )(),
   date: isRequired('Date'),
-  expire: isRequired('Expire'),
   procurador: isRequired('Procurador'),
   processoNumber:isRequired('processoNumber'),
   proprietario:isRequired('Proprietario')
@@ -69,11 +68,17 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
   const handleFinalFormSubmit = (values: any) => {
     //It sets midnight
     values.time = new Date();
-    values.time.setHours(24,0,0,0); // next midnight
+    values.time.setHours(0,0,0,0); // next midnight
     
+
+
     const dateAndTime = combineDateAndTime(values.date, values.time);
     const dateAndTimeExpire = combineDateAndTime(values.expire, values.time);
     
+    console.log("Data: ",dateAndTime);
+    console.log("Validade: ",dateAndTimeExpire);
+
+
     const { date, expire, time, ...marca } = values;
     marca.date = dateAndTime;
     marca.expire = dateAndTimeExpire;
@@ -91,7 +96,7 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
 
   return (
     <Grid>
-      <Grid.Column width={10}>
+      <Grid.Column width={12}>
         <Segment clearing>
           <FinalForm
             validate={validate}
@@ -99,54 +104,67 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
             onSubmit={handleFinalFormSubmit}
             render={({ handleSubmit, invalid, pristine }) => (
               <Form onSubmit={handleSubmit} loading={loading}>
+              <label>Nome Fantasia</label>
                 <Field
                   name='title'
-                  placeholder='Title'
+                  placeholder='Nome Fantasia'
                   value={marca.title}
                   component={TextInput}
                 />
+                <label>Marca</label>
                 <Field
                   name='description'
-                  placeholder='Description'
-                  rows={3}
+                  placeholder='Marca'
                   value={marca.description}
-                  component={TextAreaInput}
+                  component={TextInput}
                 />
+                <label>Tipo de Processo</label>
                 <Field
                   component={SelectInput}
                   options={marcasOptions}
                   name='category'
-                  placeholder='Category'
+                  placeholder='Tipo de Processo'
                   value={marca.category}
                 />
-                <Form.Group widths='equal'>
-                  <Field
-                    component={DateInput}
-                    name='date'
-                    date={true}
-                    placeholder='Date'
-                    value={marca.date}
-                  />
+                <Grid columns={2} divided>
+                  <Grid.Row>
+                    <Grid.Column>
+                      <label>Data do Pedido</label>
                       <Field
-                    component={DateInput}
-                    name='expire'
-                    date={true}
-                    placeholder='Vencimento'
-                    value={marca.expire}
-                  />
-                </Form.Group>
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <label>Validade</label>
+                    <Field
+                      component={DateInput}
+                      name='expire'
+                      date={true}
+                      placeholder='Validade'
+                      value={marca.expire}
+                    />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                <label>Numero do Processo</label>
                 <Field
                   component={TextInput}
                   name='processoNumber'
                   placeholder='Numero do Processo'
                   value={marca.processoNumber}
                 />
+                <label>Procurador</label>
                 <Field
                   component={TextInput}
                   name='procurador'
                   placeholder='Procurador'
                   value={marca.procurador}
                 />
+                <label>Proprietario</label>
                 <Field
                   component={TextInput}
                   name='proprietario'

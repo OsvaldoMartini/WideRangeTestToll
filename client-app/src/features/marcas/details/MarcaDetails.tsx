@@ -5,7 +5,6 @@ import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import MarcaDetailedHeader from './MarcaDetailedHeader';
 import MarcaDetailedInfo from './MarcaDetailedInfo';
-import MarcaDetailedChat from './MarcaDetailedChat';
 import MarcaDetailedSidebar from './MarcaDetailedSidebar';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 
@@ -33,7 +32,6 @@ const MarcaDetails: React.FC<RouteComponentProps<DetailParams>> = ({
       <Grid.Column width={10}>
         <MarcaDetailedHeader marca={marca} />
         <MarcaDetailedInfo marca={marca} />
-        <MarcaDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
         <MarcaDetailedSidebar attendees={marca.attendees} />

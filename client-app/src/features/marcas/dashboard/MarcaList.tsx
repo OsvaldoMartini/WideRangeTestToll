@@ -12,7 +12,7 @@ const MarcaList: React.FC = () => {
     <Fragment>
       {marcasByDate.map(([group, marcas]) => (
         <Fragment key={group}>
-          <Label size='large' color='blue'>
+          <Label size='large' color='red'>
             {format(new Date(group), 'eeee do MMMM')}
           </Label>
           <Item.Group divided>

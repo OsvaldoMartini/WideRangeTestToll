@@ -30,7 +30,7 @@ const MarcaFilters = () => {
           onClick={() => setPredicate('isHost', 'true')}
           color={'blue'}
           name={'host'}
-          content={"I'm hosting"}
+          content={"Eu inseri"}
         />
       </Menu>
       <Header

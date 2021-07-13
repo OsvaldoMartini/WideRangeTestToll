@@ -4,7 +4,6 @@ import { Item, Button, Segment, Icon, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IMarca } from '../../../app/models/marca';
 import { format } from 'date-fns';
-import MarcaListItemAttendees from './MarcaListItemAttendees';
 
 const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
   const rootStore = useContext(RootStoreContext);
@@ -61,12 +60,14 @@ const MarcaListItem: React.FC<{ marca: IMarca }> = ({ marca }) => {
         </Item.Group>
       </Segment>
       <Segment>
-        <Icon name='clock' /> {format(marca.date, 'h:mm a')}
-        <Icon name='marker' /> {format(marca.expire, 'h:mm a')}
+        <Icon name='clock' /> Data ({marca.category}): {format(marca.date, 'd/mm/yyyy')}
       </Segment>
-      <Segment secondary>
+      <Segment>
+        <Icon name='marker' /> Vencimento: {format(marca.expire, 'd/mm/yyyy')}
+      </Segment>
+      {/* <Segment secondary>
         <MarcaListItemAttendees attendees={marca.attendees} />
-      </Segment>
+      </Segment> */}
       <Segment clearing>
         <span>{marca.description}</span>
         <Button
