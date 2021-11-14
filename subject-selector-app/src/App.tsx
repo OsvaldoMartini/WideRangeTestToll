@@ -1,5 +1,5 @@
 import React from "react";
-// import { Button } from "tappui";
+// import { Button } from "subject-selector-design";
 // import classNames from "classnames";
 import { useWindowWidth } from "@react-hook/window-size";
 import useDarkMode from "./hooks/useDarkMode";

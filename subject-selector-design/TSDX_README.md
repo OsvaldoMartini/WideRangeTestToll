@@ -1,26 +1,5 @@
 # TSDX React w/ Storybook User Guide
 
-
-## NODE Environment Setup
-Execute this command to be able to define the environment inside our *package.json*
-``
-   (Windows)
-	npm install -g win-node-env
-``
-
-## LINK Package creation
-Execute this command to create a *Link*, the *name*  of the link it wil be displayed per creation 
-``
-   yarn link
-   
-   Output:
-   yarn link v1.22.17
-	success Registered "subject-selector-design".
-	info You can now run `yarn link "subject-selector-design"` in the projects where you want to use this package and it will be used instead.
-	Done in 0.09s.
-``
-
-
 Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
 
 > This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.

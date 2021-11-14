@@ -1,9 +1,8 @@
 {
   "name": "subject-selector-design",
-  "author": "Osvaldo Martini",
+  "author": "Fullhdpixel",
   "version": "0.1.1",
-  "license": "NHS Digital",
-  "private":true,
+  "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
