@@ -13,6 +13,7 @@ const meta: Meta = {
       type: "figma",
       url: Figma.Button,
     },
+    zeplinLink: "https://zpl.io/bzz7Y4G",
   },
 };
 

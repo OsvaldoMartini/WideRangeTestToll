@@ -33,7 +33,9 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build:css": "postcss ./src/styles/tailwind.css build -o css/tailwind.dist.css --minify"
+    "build:css": "postcss ./src/styles/tailwind.css build -o css/tailwind.dist.css --minify",
+    "zeplin-connect": "zeplin connect",
+    "zeplin-connect-dev-mode": "zeplin connect --dev"
   },
   "peerDependencies": {
     "react": "17.0.1",
@@ -41,8 +43,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
-    "@headlessui/react": "1.4.1",
     "@fontsource/inter": "4.5.0",
+    "@headlessui/react": "1.4.1",
     "@size-limit/preset-small-lib": "4.9.2",
     "@storybook/addon-a11y": "6.3.12",
     "@storybook/addon-essentials": "6.3.12",
@@ -57,6 +59,9 @@
     "@testing-library/react-hooks": "7.0.2",
     "@types/react": "17.0.1",
     "@types/react-dom": "17.0.0",
+    "@zeplin/cli": "1.1.12",
+    "@zeplin/cli-connect-react-plugin": "1.1.1",
+    "@zeplin/cli-connect-storybook-plugin": "0.5.4",
     "autoprefixer": "9",
     "babel-jest": "27.3.1",
     "babel-loader": "8.2.2",
@@ -68,6 +73,7 @@
     "react-is": "17.0.1",
     "size-limit": "4.9.2",
     "storybook-addon-designs": "6.2.0",
+    "storybook-zeplin": "^1.6.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "tailwindcss-breakpoints-inscpector": "1.0.0",
     "tsdx": "0.14.1",
