@@ -3,7 +3,7 @@ import { CardMain} from "../../components/cards/CardMain";
 import { Navbar } from "./Navbar";
 import { cardMains } from "../../data";
 import { ICardMain } from "../../@interfaces";
-import { Grid, } from 'semantic-ui-react';
+// import { Grid, } from 'semantic-ui-react';
 //import { Field } from 'react-final-form';
 
 export const HomePage =() => {

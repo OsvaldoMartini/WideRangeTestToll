@@ -1,1 +1,0 @@
-import "storybook-zeplin/register";
