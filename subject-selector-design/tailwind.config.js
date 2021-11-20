@@ -2,7 +2,12 @@ module.exports = {
   mode: "jit",
   purge: {
     enabled: true,
-    content: ["./src/**/*.tsx", "./stories/**/*.tsx"],
+    content: [
+      "./src/**/*.tsx", 
+    "./stories/**/*.tsx",      
+    './src/**/*.html',
+    './src/**/*.js',
+],
   },
   darkMode: "class",
   theme: {

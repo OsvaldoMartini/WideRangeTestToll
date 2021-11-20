@@ -3,5 +3,8 @@ export interface ICardMain {
   title?: string;
   subtitle?: string;
   badge?: string;
-   onClick: React.MouseEventHandler<HTMLLIElement>;  
+  addClassNames?: string;
+  addLeftPos?: string;
+  left?: number;
+  onClick: React.MouseEventHandler<HTMLLIElement>;
 }

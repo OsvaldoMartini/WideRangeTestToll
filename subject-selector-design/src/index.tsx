@@ -1,3 +1,5 @@
+import "tailwindcss/tailwind.css"
+
 export * from "./components/cards/CardMain";
 export * from "./components//badge/Badge";
 export * from "./components/buttons/Button";
