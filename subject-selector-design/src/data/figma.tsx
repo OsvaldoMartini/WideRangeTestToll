@@ -8,7 +8,8 @@ type Component =
   | "Button"
   | "Select"
   | "TextInput"
-  | "Navbar"
+  | "Header"
+  | "SubHeader"
   | "RentalCard";
 
 export const Figma: Record<Component, string> = {
@@ -29,7 +30,9 @@ export const Figma: Record<Component, string> = {
     "https://www.figma.com/file/0t0pK5luEdxTorOcg92K49/?node-id=11%3A15146",
   TextInput:
     "https://www.figma.com/file/0t0pK5luEdxTorOcg92K49/?node-id=12%3A21913",
-  Navbar:
+  Header:
+    "https://www.figma.com/file/0t0pK5luEdxTorOcg92K49/?node-id=14%3A22794",
+  SubHeader:
     "https://www.figma.com/file/0t0pK5luEdxTorOcg92K49/?node-id=14%3A22794",
   RentalCard:
     "https://www.figma.com/file/0t0pK5luEdxTorOcg92K49/?node-id=257%3A19734",

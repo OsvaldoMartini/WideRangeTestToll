@@ -1,8 +1,10 @@
 import React from "react";
 import { CardMain } from "../../components/cards/CardMain";
-import { Navbar } from "./Navbar";
+import { Header } from "./Header";
+import { SubHeader } from "./SubHeader";
 import { cardMains } from "../../data";
 import { ICardMain } from "../../@interfaces";
+import classNames from "classnames";
 // import { Grid, } from 'semantic-ui-react';
 //import { Field } from 'react-final-form';
 
@@ -40,22 +42,9 @@ export const HomePage = () => {
 
   return (
     <div className="Desktop-HD-1440-Landing-Page">
-      <div className="f-row center">
-        <div className="f-row right">
-          <div className="box blue"></div>
-          <div className="box red"></div>
-          <div className="box yellow"></div>
-        </div>
-        <div className="f-row no-flex">
-          <h1>LOGO</h1>
-        </div>
-        <div className="f-row">
-          <div className="box pink"></div>
-          <div className="box purple"></div>
-        </div>
-      </div>
-
-      <Navbar open={true} toggleOpen={() => {}} />
+      <Header open={true} toggleOpen={() => {}} />
+      <hr className="divider-line" />
+      <SubHeader open={true} toggleOpen={() => {}} />
       <div className="Desktop-Bar-Space" />
       {/* <div className="grid grid-cols-10"> */}
       {/* <div className="col-span-2"/> */}

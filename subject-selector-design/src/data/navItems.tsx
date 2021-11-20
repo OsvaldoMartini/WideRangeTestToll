@@ -93,7 +93,7 @@ export const navItemsBottom: INavItem[] = [
   },
   {
     order: 1,
-    label: "Close Navbar",
+    label: "Close Header",
     icon: <FiArrowLeft />,
     toggleSidebar: true,
   },

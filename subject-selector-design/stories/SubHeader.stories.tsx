@@ -2,29 +2,25 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
-import { Navbar, NavbarProps, SideNav } from "../src";
+import { SubHeader, SubHeaderProps } from "../src";
 import { navItemsTop, navItemsBottom, Figma } from "../src/data";
 import { FiX } from "react-icons/fi";
 
 const meta: Meta = {
-  title: "BCSS-Design/Navigation/NavBar",
-  component: Navbar,
+  title: "BCSS-Design/Navigation/SubHeader",
+  component: SubHeader,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Navbar,
-    },
   },
 };
 
 export default meta;
 
-interface Props extends NavbarProps {
+interface Props extends SubHeaderProps {
   darkMode: boolean;
 }
 
-const StoryNavbar: Story<Props> = (args) => {
+const StorySubHeader: Story<Props> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleToggle = () => {
@@ -33,12 +29,12 @@ const StoryNavbar: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args} noPadding>
-       <Navbar open={open} toggleOpen={handleToggle} />
+      <SubHeader open={open} toggleOpen={handleToggle} />
     </StoryLayout>
   );
 };
 
-export const Default = StoryNavbar.bind({});
+export const Default = StorySubHeader.bind({});
 
 Default.args = {
   darkMode: false,

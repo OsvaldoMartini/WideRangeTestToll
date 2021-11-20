@@ -11,10 +11,6 @@ const meta: Meta = {
   component: MobileNavbar,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Navbar,
-    },
   },
 };
 

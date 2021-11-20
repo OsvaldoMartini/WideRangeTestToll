@@ -3,22 +3,21 @@ import React, { FC } from "react";
 import { Typography } from "../typography/Typography";
 import { images } from "../../data/images";
 
-export interface NavbarProps {
+export interface HeaderProps {
   open: boolean;
   toggleOpen: () => void;
 }
 
-export const Navbar: FC<NavbarProps> = () => (
-  <div className="z-40 flex items-center justify-center h-20 py-6 shadow-md bg-blue_core_005_eb_8 dark:bg-gray-900 px-9">
-    <div className="nav-bar">
-      {/* <div className="flex justify-center pt-2"> */}
+export const Header: FC<HeaderProps> = () => (
+  <div className="header-bar-box bg-blue_core_005_eb_8">
+    <div className="header-bar-logo">
       <img
         src={images.nhsLogo}
         alt="avatar"
         className="z-50 text-gray-500 transition-all duration-100 ease-out cursor-pointer stroke-current hover:text-gray-900 dark:text-white dark:hover:text-gray-200"
       />
     </div>
-    <div className="nav-bar-title">
+    <div className="header-bar-title ">
       <Typography
         variant="h6"
         customWeight="medium"
