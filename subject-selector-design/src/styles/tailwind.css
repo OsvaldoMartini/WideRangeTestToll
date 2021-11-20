@@ -503,7 +503,7 @@
   }
 
   .btn-primary-hover {
-    @apply hover:bg-primary-700 dark:hover:bg-gray-700;
+    @apply hover:bg-grey_mid_768692 dark:hover:bg-gray-700;
   }
 
   .btn-primary-focus {
