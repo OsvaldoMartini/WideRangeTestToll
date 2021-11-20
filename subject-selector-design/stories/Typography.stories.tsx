@@ -6,7 +6,7 @@ import { Figma } from "../src/data";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "Typography",
+  title: "BCSS-Design/Typographys/Typography",
   component: Typography,
   parameters: {
     controls: { expanded: true },

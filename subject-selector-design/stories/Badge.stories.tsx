@@ -5,7 +5,7 @@ import { Badge, BadgeProps, Figma, images } from "../src";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "Badge",
+  title: "BCSS-Design/Badges/Badge",
   component: Badge,
   parameters: {
     controls: { expanded: true },

@@ -5,7 +5,7 @@ import { Button, ButtonProps, Figma } from "../src";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "Button",
+  title: "BCSS-Design/Buttons/Button",
   component: Button,
   parameters: {
     controls: { expanded: true },
@@ -13,7 +13,6 @@ const meta: Meta = {
       type: "figma",
       url: Figma.Button,
     },
-    zeplinLink: "https://zpl.io/bzz7Y4G",
   },
 };
 

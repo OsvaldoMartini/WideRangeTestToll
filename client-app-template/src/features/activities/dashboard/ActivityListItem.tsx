@@ -17,8 +17,9 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
     undefined
   );
   
-  const host = activity.attendees.filter(x => x.isHost)[0];
-
+//  const host = activity.attendees.filter(x => x.isHost)[0];
+  const host = {username:"Osv", displayName: "Mart"};
+  
   return (
     <Segment.Group>
       <Segment>
@@ -27,7 +28,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
             <Item.Image
               size='tiny'
               circular
-              src={host.image || '/assets/user.png'}
+              // src={host.image || '/assets/user.png'}
               style={{ marginBottom: 3 }}
             />
             <Item.Content>
@@ -38,15 +39,6 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
                 Hosted by
                 <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
               </Item.Description>
-              {activity.isHost && (
-                <Item.Description>
-                  <Label
-                    basic
-                    color='orange'
-                    content='You are hosting this activity'
-                  />
-                </Item.Description>
-              )}
               {activity.isGoing && !activity.isHost && (
                 <Item.Description>
                   <Label
@@ -61,8 +53,104 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
         </Item.Group>
       </Segment>
       <Segment>
-        <Icon name='clock' /> {format(activity.date, 'h:mm a')}
-        <Icon name='marker' /> {activity.venue}, {activity.city}
+        <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
+          <Button
+        name={activity.id}
+        onClick={(e) => {
+          deleteActivity(e, activity.id);
+          setDeleteTarget(e.currentTarget.name)
+        }}
+        disabled={!activity.isHost}
+        loading={loading && deleteTarget === activity.id}
+        floated='right'
+        content='Delete'
+        basic
+        negative
+        icon='trash'
+      />
       </Segment>
       <Segment secondary>
         <ActivityListItemAttendees attendees={activity.attendees} />

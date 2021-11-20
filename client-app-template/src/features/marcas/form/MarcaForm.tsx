@@ -1,15 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Segment, Form, Button, Grid } from 'semantic-ui-react';
 import { MarcaFormValues } from '../../../app/models/marca';
 import { v4 as uuid } from 'uuid';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
-import { Form as FinalForm, Field } from 'react-final-form';
-import TextInput from '../../../app/common/form/TextInput';
-import TextAreaInput from '../../../app/common/form/TextAreaInput';
-import SelectInput from '../../../app/common/form/SelectInput';
-import DateInput from '../../../app/common/form/DateInput';
-import { marcasOptions } from '../../../app/common/options/marcasOptions';
 import { combineDateAndTime } from '../../../app/common/util/util';
 import {
   combineValidators,
@@ -95,39 +88,68 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
   };
 
   return (
-    <Grid>
-      <Grid.Column width={12}>
+    <div className=""><div className="Desktop-HD-1440-Landing-Page"> 
+
+
+    {/* <Grid>
+      <Grid.Column style={{width:"1444px"}}>
         <Segment clearing>
           <FinalForm
             validate={validate}
             initialValues={marca}
             onSubmit={handleFinalFormSubmit}
             render={({ handleSubmit, invalid, pristine }) => (
-              <Form onSubmit={handleSubmit} loading={loading}>
-              <label>Nome Fantasia</label>
-                <Field
-                  name='title'
-                  placeholder='Nome Fantasia'
-                  value={marca.title}
-                  component={TextInput}
-                />
-                <label>Marca</label>
-                <Field
-                  name='description'
-                  placeholder='Marca'
-                  value={marca.description}
-                  component={TextInput}
-                />
-                <label>Tipo de Processo</label>
-                <Field
-                  component={SelectInput}
-                  options={marcasOptions}
-                  name='category'
-                  placeholder='Tipo de Processo'
-                  value={marca.category}
-                />
-                <Grid columns={2} divided>
+              <Form onSubmit={handleSubmit} loading={loading}>s
+                <div className="ui center aligned grid">
+                  <div className="row ">
+                      <div className="two wide column">ABC</div>
+                      <div className="two wide column">DEF</div>
+                      <div className="two wide column">GHI</div>
+                      <div className="two wide column">JKL</div>
+                      <div className="two wide column">MNO</div>
+                      <div className="four wide column">PQR</div>
+                      </div>
+                  </div>
+               
+               <Grid columns={6} divided>
                   <Grid.Row>
+                  <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>    
+                    <Grid.Column className="five wide column">
+                      <label>BCSS Select Finder Searche</label>
+                    </Grid.Column>
+                   </Grid.Row>
+                </Grid>
+                <Grid columns={6} divided>
+                  <Grid.Row>
+                  <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>    
+                  <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>
                     <Grid.Column>
                       <label>Data do Pedido</label>
                       <Field
@@ -139,16 +161,46 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
                         />
                     </Grid.Column>
                     <Grid.Column>
-                      <label>Validade</label>
-                    <Field
-                      component={DateInput}
-                      name='expire'
-                      date={true}
-                      placeholder='Validade'
-                      value={marca.expire}
-                    />
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
                     </Grid.Column>
-                  </Grid.Row>
+                    <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <label>Data do Pedido</label>
+                      <Field
+                          component={DateInput}
+                          name='date'
+                          date={true}
+                          placeholder='Data-Pedido'
+                          value={marca.date}
+                        />
+                    </Grid.Column>
+                   </Grid.Row>
                 </Grid>
                 <label>Numero do Processo</label>
                 <Field
@@ -195,7 +247,9 @@ const MarcaForm: React.FC<RouteComponentProps<DetailParams>> = ({
           />
         </Segment>
       </Grid.Column>
-    </Grid>
+    </Grid> */}
+</div>
+</div>
   );
 };
 

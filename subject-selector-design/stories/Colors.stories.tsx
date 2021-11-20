@@ -6,7 +6,7 @@ import { ColorBox } from "../src";
 import { colors, Figma } from "../src/data";
 
 const meta: Meta = {
-  title: "Colors",
+  title: "BCSS-Design/Colors/Colors",
   parameters: {
     controls: { expanded: true },
     design: {

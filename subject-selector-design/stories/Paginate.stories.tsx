@@ -5,7 +5,7 @@ import { Figma, Paginate, PaginationProps } from "../src";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "Paginate",
+  title: "BCSS-Design/Paginations/Paginate",
   component: Paginate,
   parameters: {
     controls: { expanded: true },

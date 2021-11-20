@@ -1,6 +1,6 @@
 import React from "react";
 import { IColor } from "./@interfaces";
-import { Typography } from "./Typography";
+import { Typography } from "./components/typography/Typography";
 
 export const ColorBox = ({ color }: { color: IColor }) => (
   <div

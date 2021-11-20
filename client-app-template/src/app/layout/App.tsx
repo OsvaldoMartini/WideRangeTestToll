@@ -1,5 +1,5 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { Container } from 'semantic-ui-react';
+import React, { useContext, useEffect } from 'react';
+import { Segment } from 'semantic-ui-react';
 import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import MarcaDashboard from '../../features/marcas/dashboard/MarcaDashboard';
@@ -24,6 +24,7 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import RegisterSuccess from '../../features/user/RegisterSuccess';
 import VerifyEmail from '../../features/user/VerifyEmail';
+import BodyPage from '../../features/nav/BodyPage';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -41,27 +42,27 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   if (!appLoaded) return <LoadingComponent content='Loading app...' />
 
   return (
-    <Fragment>
+    <div>
       <ModalContainer />
       <ToastContainer position='bottom-right' />
       <Route exact path='/' component={HomePage} />
       <Route
         path={'/(.+)'}
         render={() => (
-          <Fragment>
+          <div>
             <NavBar />
-            <Container style={{ marginTop: '7em' }}>
+            <Segment style={{ marginTop: '7em' }}>
               <Switch>
-                <PrivateRoute exact path='/activities' component={ActivityDashboard} />
+                <Route exact path='/activities' component={ActivityDashboard} />
                 <PrivateRoute path='/activities/:id' component={ActivityDetails} />
-                <PrivateRoute
+                <Route
                   key={location.key}
                   path={['/createActivity', '/manageActivity/:id']}
                   component={ActivityForm}
                 />
-                <PrivateRoute exact path='/marcas' component={MarcaDashboard} />
+                <Route exact path='/marcas' component={MarcaDashboard} />
                 <PrivateRoute path='/marcas/:id' component={MarcaDetails} />
-                <PrivateRoute
+                <Route
                   key={location.key}
                   path={['/createMarca', '/manageMarca/:id']}
                   component={MarcaForm}
@@ -71,11 +72,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route path='/user/verifyEmail' component={VerifyEmail} />
                 <Route component={NotFound} />
               </Switch>
-            </Container>
-          </Fragment>
+            </Segment>
+          </div>
         )}
       />
-    </Fragment>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import { navItemsTop, navItemsBottom, Figma } from "../src/data";
 import { FiX } from "react-icons/fi";
 
 const meta: Meta = {
-  title: "MobileNavbar",
+  title: "BCSS-Design/Navigation/MobileNavBar",
   component: MobileNavbar,
   parameters: {
     controls: { expanded: true },

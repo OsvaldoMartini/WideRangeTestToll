@@ -1,3 +1,52 @@
 body {
-  font-family: "Inter";
+  font-family: "Frutiger";
+}
+
+.bg {
+  width: 1440px;
+  height: 82px;
+  padding: 21px 587px 21px 240px;
+  background-color: var(--blueCore005Eb8);
+}
+
+.Desktop-HD-1440-Landing-Page {
+  width: 1440px;
+  height: 1024px;
+  background-color: #e8edee;
+  /* position: absolute; */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  /* margintop: "3.375em"; */
+}
+
+.Desktop-Bar-Space {
+  width: 1440px;
+  height: 82px;
+  background-color: #e8edee;
+}
+
+.grid-column-176 {
+  gridcolumn: "176px";
+}
+
+.grid-column-240 {
+  gridcolumn: "240px";
+}
+
+.spacer-col-176 {
+  right: 0px;
+  padding: 0px;
+  width: 176px;
+}
+.spacer-col-64x64 {
+  width: 64px;
+  height: 64px;
+}
+.spacer-col-8x11 {
+  width: 8px;
+  height: 11px;
 }

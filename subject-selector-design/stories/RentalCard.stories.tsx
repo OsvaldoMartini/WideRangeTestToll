@@ -5,7 +5,7 @@ import StoryLayout from "./StoryLayout";
 import { rentals, Figma } from "../src/data";
 
 const meta: Meta = {
-  title: "RentalCard",
+  title: "BCSS-Design/Templates/RentalCard",
   component: RentalCard,
   argTypes: {
     rentalAddress: {

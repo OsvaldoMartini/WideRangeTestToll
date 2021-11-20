@@ -12,7 +12,7 @@ import {
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "ButtonGroup",
+  title: "BCSS-Design/Buttons/ButtonGroup",
   component: ButtonGroup,
   parameters: {
     controls: { expanded: true },

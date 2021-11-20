@@ -125,8 +125,86 @@ export default class ActivityStore {
   @action loadActivities = async () => {
     this.loadingInitial = true;
     try {
-      const activitiesEnvelope = await agent.Activities.list(this.axiosParams);
-      const {activities, activityCount} = activitiesEnvelope;
+     // const activitiesEnvelope = await agent.Activities.list(this.axiosParams);
+      //const {activities, activityCount} = activitiesEnvelope;
+
+      const activityCount = 1;
+const activities = 
+   [{ id: "1",
+    title: "string",
+    description: "string",
+    category: "string",
+    date: new Date(),
+    city: "string",
+    venue: "string",
+    isGoing: false,
+    isHost: false,
+    attendees: [],
+    comments: [],
+  },
+  { id: "2",
+    title: "string",
+    description: "string",
+    category: "string",
+    date: new Date(),
+    city: "string",
+    venue: "string",
+    isGoing: false,
+    isHost: false,
+    attendees: [],
+    comments: [],
+  },
+  { id: "3",
+  title: "string",
+  description: "string",
+  category: "string",
+  date: new Date(),
+  city: "string",
+  venue: "string",
+  isGoing: false,
+  isHost: false,
+  attendees: [],
+  comments: [],
+},
+{ id: "4",
+title: "string",
+description: "string",
+category: "string",
+date: new Date(),
+city: "string",
+venue: "string",
+isGoing: false,
+isHost: false,
+attendees: [],
+comments: [],
+},
+{ id: "5",
+title: "string",
+description: "string",
+category: "string",
+date: new Date(),
+city: "string",
+venue: "string",
+isGoing: false,
+isHost: false,
+attendees: [],
+comments: [],
+},
+{ id: "6",
+title: "string",
+description: "string",
+category: "string",
+date: new Date(),
+city: "string",
+venue: "string",
+isGoing: false,
+isHost: false,
+attendees: [],
+comments: [],
+},
+
+  ]
+
       runInAction('loading activities', () => {
         activities.forEach(activity => {
           setActivityProps(activity, this.rootStore.userStore.user!);
@@ -196,7 +274,6 @@ export default class ActivityStore {
         this.submitting = false;
       });
       toast.error('Problem submitting data');
-      console.log(error.response);
     }
   };
 

@@ -6,7 +6,7 @@ import { Figma } from "../src/data";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "TextInput",
+  title: "BCSS-Design/Text Input/TextInput",
   component: TextInput,
   parameters: {
     controls: { expanded: true },

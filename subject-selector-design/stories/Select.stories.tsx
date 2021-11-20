@@ -7,7 +7,7 @@ import StoryLayout from "./StoryLayout";
 import { countries, dates, Figma, prices } from "../src/data";
 
 const meta: Meta = {
-  title: "Select",
+  title: "BCSS-Design/DropBoxes/Select",
   component: Select,
   parameters: {
     controls: { expanded: true },

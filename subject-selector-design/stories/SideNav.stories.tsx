@@ -6,14 +6,10 @@ import { SideNav, ISideNavProps } from "../src";
 import { navItemsTop, navItemsBottom, Figma } from "../src/data";
 
 const meta: Meta = {
-  title: "SideNav",
+  title: "BCSS-Design/Navigation/SideNav",
   component: SideNav,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Navbar,
-    },
   },
 };
 
