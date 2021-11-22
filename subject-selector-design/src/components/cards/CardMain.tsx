@@ -32,7 +32,6 @@ export interface CardMainProps extends HTMLAttributes<HTMLElement> {
   title?: string;
   addClassNames?: string;
   addLeftPos?: string;
-  svgHoverFill: string;
   onClick: React.MouseEventHandler<HTMLLIElement>;
 }
 
@@ -44,7 +43,6 @@ export const CardMain: FC<CardMainProps> = ({
   title,
   addClassNames,
   addLeftPos,
-  svgHoverFill,
   onClick,
   ...cardMainProps
 }) => {

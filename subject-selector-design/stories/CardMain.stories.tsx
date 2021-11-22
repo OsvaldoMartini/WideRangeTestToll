@@ -9,10 +9,17 @@ const meta: Meta = {
   component: CardMain,
   argTypes: {
     cardMainTitle: {
-      options: [cardMains[0].title, cardMains[1].title, cardMains[2].title, cardMains[3].title, cardMains[4].title, cardMains[5].title],
+      options: [
+        cardMains[0].title,
+        cardMains[1].title,
+        cardMains[2].title,
+        cardMains[3].title,
+        cardMains[4].title,
+        cardMains[5].title,
+      ],
       control: { type: "radio" },
     },
-    onClick: {action: 'clicked'},
+    onClick: { action: "clicked" },
   },
   parameters: {
     controls: { expanded: true },
@@ -26,7 +33,6 @@ interface Props {
   cardMainTitle: string;
   open: boolean;
   toggleOpen: () => void;
-
 }
 
 const StoryCardMain: Story<Props> = (args) => {
@@ -41,7 +47,13 @@ const StoryCardMain: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <CardMain title={cardMain.title} onClick={() => {"I was clicked"}}/>
+      <CardMain
+        title={cardMain.title}
+        onClick={() => {
+          "I was clicked";
+        }}
+        variant={"primary"}
+      />
     </StoryLayout>
   );
 };
