@@ -3,14 +3,22 @@ module.exports = {
   purge: {
     enabled: true,
     content: [
-      "./src/**/*.tsx", 
-    "./stories/**/*.tsx",      
-    './src/**/*.html',
-    './src/**/*.js',
-],
+      "./src/**/*.tsx",
+      "./stories/**/*.tsx",
+      "./src/**/*.html",
+      "./src/**/*.js",
+    ],
   },
   darkMode: "class",
   theme: {
+    fill: {
+      current: "currentColor",
+    },
+    fill: (theme) => ({
+      red: theme("colors.red.500"),
+      green: theme("colors.green.500"),
+      blue: theme("colors.blue.500"),
+    }),
     colors: {
       transparent: "transparent",
       blue_core_005_eb_8: "#005eb8",
@@ -168,7 +176,17 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        "FrutigerLTW01": ["FrutigerLTW01-45Light", "FrutigerLTW01-46LightItalic","FrutigerLTW01-55Roman", "FrutigerLTW01-56Italic","FrutigerLTW01-65Bold","FrutigerLTW01-66BoldItalic","FrutigerLTW01-75Black","FrutigerLTW01-76BlackItalic","FrutigerLTW01-95UltraBlack"]
+        FrutigerLTW01: [
+          "FrutigerLTW01-45Light",
+          "FrutigerLTW01-46LightItalic",
+          "FrutigerLTW01-55Roman",
+          "FrutigerLTW01-56Italic",
+          "FrutigerLTW01-65Bold",
+          "FrutigerLTW01-66BoldItalic",
+          "FrutigerLTW01-75Black",
+          "FrutigerLTW01-76BlackItalic",
+          "FrutigerLTW01-95UltraBlack",
+        ],
       },
       screens: {
         xs: "420px",
@@ -193,6 +211,7 @@ module.exports = {
   },
   variants: {
     extend: {},
+    fill: ["hover", "focus"],
   },
   plugins: [
     require("@tailwindcss/forms"),

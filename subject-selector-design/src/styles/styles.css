@@ -45,6 +45,21 @@ hr.divider-line {
   left: 588px;
 }
 
+.subject-criteria-label {
+  width: 122px;
+  height: 32px;
+  margin: 0 0 6px;
+  font-family: FrutigerLTStd;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: center;
+  color: #231f20;
+}
+
 .choose-criteria-label {
   width: 510px;
   height: 32px;
@@ -111,6 +126,30 @@ hr.divider-line {
   letter-spacing: normal;
   text-align: center;
   /* color: var(--white-core-ffffff); */
+}
+
+/* Button */
+.card-base {
+  width: 154px;
+  height: 120px;
+  /* margin: 60px 0px 120px 0; */
+  /* padding: 0 0.4px 0 0; */
+  border-radius: 4px;
+  background-color: #c7daec;
+}
+
+.card-base-hover .div .svg {
+  width: 154px;
+  height: 120px;
+  /* margin: 60px 0px 120px 0; */
+  /* padding: 0 0.4px 0 0; */
+  border-radius: 4px;
+  background-color: #c7daec;
+  fill: #111;
+}
+
+.div:hover .image {
+  opacity: 0.3;
 }
 
 .box-set,

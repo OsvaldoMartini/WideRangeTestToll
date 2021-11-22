@@ -496,7 +496,7 @@
 
   /* Primary */
   .btn-primary {
-    @apply bg-primary-600 dark:bg-gray-800 text-white dark:text-white;
+    @apply bg-primary-600 dark:bg-gray-800 dark:text-white;
   }
 
   .btn-primary-xl {
