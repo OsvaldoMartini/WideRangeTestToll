@@ -1,7 +1,7 @@
-import React, {HTMLAttributes} from "react";
+import React from "react";
 import { Meta, Story } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
-import { HomePage, } from "../src";
+import { HomePage } from "../src";
 
 const meta: Meta = {
   title: "BCSS-Design/Navigation/HomePage",
@@ -13,13 +13,11 @@ const meta: Meta = {
 
 export default meta;
 
-
 interface Props {
   darkMode: boolean;
 }
 
 const StoryHomePage: Story<Props> = (args) => {
- 
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleToggle = () => {
@@ -28,7 +26,7 @@ const StoryHomePage: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args} noPadding>
-      <HomePage/>
+      <HomePage />
     </StoryLayout>
   );
 };

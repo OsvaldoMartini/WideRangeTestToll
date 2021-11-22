@@ -1,9 +1,8 @@
 import React from "react";
-import { CardMain } from "../../components/cards/CardMain";
+import { CardMain, CardMainProps } from "../../components/cards/CardMain";
 import { Header } from "./Header";
 import { SubHeader } from "./SubHeader";
 import { cardMains } from "../../data";
-import { ICardMain } from "../../@interfaces";
 import { ChooseCriteriaTittle } from "../labels/ChooseCriteriaTittle";
 import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
 import { ButtonSearch } from "../..";
@@ -47,7 +46,7 @@ export const HomePage = () => {
       <SubHeader open={true} toggleOpen={() => {}} />
       <div className="Desktop-Bar-Space" />
       {drawSpacerD10(0)}
-      {cardMains.map((card: ICardMain, index: number) => {
+      {cardMains.map((card: CardMainProps, index: number) => {
         if (index === 0) {
           sum += spacerD10[index] + spacerWidths[0];
           console.log(sum, "initial");
@@ -64,6 +63,7 @@ export const HomePage = () => {
                 key={card.id}
                 title={card.title}
                 onClick={card.onClick}
+                variant={"primary"}
               />
             </div>
             {middleSpacers((sum += spacerWidths[1]), index, cardMains.length)}
