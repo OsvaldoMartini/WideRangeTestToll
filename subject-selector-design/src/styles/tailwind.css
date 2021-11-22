@@ -498,7 +498,8 @@
   .btn-primary {
     @apply bg-primary-600 dark:bg-gray-800 text-white dark:text-white;
   }
-  e .btn-primary-xl {
+
+  .btn-primary-xl {
     @apply bg-blue_core_tint_20_c_7_daec text-white dark:text-white;
   }
 
