@@ -2,12 +2,7 @@ import React, { FC, HTMLAttributes, useState } from "react";
 import { Typography } from "../typography/Typography";
 import classNames from "classnames";
 
-type CardMainVariant =
-  | "primary"
-  | "secondary"
-  | "secondaryGray"
-  | "tertiary"
-  | "tertiaryGray";
+type CardMainVariant = "primary" | "secondary";
 
 type CardMainState = "default" | "hover" | "focus" | "disabled";
 
@@ -26,24 +21,6 @@ const CardMainVariantClasses: Record<
     hover: "btn-secondary-hover",
     focus: "btn-secondary-focus shadow-grayDark",
     disabled: "btn-secondary-disabled",
-  },
-  secondaryGray: {
-    default: "btn-secondaryGray",
-    hover: "btn-secondaryGray-hover",
-    focus: "btn-secondaryGray-focus",
-    disabled: "btn-secondaryGray-disabled",
-  },
-  tertiary: {
-    default: "btn-tertiary",
-    hover: "btn-tertiary-hover",
-    focus: "",
-    disabled: "btn-tertiary-disabled",
-  },
-  tertiaryGray: {
-    default: "btn-tertiaryGray",
-    hover: "btn-tertiaryGray-hover",
-    focus: "",
-    disabled: "btn-tertiaryGray-disabled",
   },
 };
 

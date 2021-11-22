@@ -138,18 +138,13 @@ hr.divider-line {
   background-color: #c7daec;
 }
 
-.card-base-hover .div .svg {
+.card-base-hover {
   width: 154px;
   height: 120px;
   /* margin: 60px 0px 120px 0; */
   /* padding: 0 0.4px 0 0; */
   border-radius: 4px;
   background-color: #c7daec;
-  fill: #111;
-}
-
-.div:hover .image {
-  opacity: 0.3;
 }
 
 .box-set,
