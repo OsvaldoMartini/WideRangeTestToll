@@ -11,7 +11,7 @@ export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = () => (
     <Typography
       variant="h6"
       customWeight="medium"
-      className="select-none text-black_231_f_20  text-center font-FrutigerLTW01"
+      className="Animation-Place-Hold"
     >
       Animation
       <br />
