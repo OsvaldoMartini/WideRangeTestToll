@@ -9,9 +9,9 @@ export type CountryISO =
   | "nhsPlus"
   | "nhsLogo";
 
-type rentalImg = "rental0" | "rental1" | "rental2";
+type placeImg = "place0" | "place1" | "place2";
 
-type image = "logo" | "demoAvatar" | CountryISO | rentalImg;
+type image = "logo" | "demoAvatar" | CountryISO | placeImg;
 
 // Development images
 const devImages: Record<image, string> = {
@@ -30,9 +30,9 @@ const devImages: Record<image, string> = {
   RU: require("./ru.svg"),
   US: require("./us.svg"),
 
-  rental0: require("./rental0.png"),
-  rental1: require("./rental1.png"),
-  rental2: require("./rental2.png"),
+  place0: require("./place0.png"),
+  place1: require("./place1.png"),
+  place2: require("./place2.png"),
 };
 
 //Production images (CDN)
@@ -52,11 +52,11 @@ const prodImages: Record<image, string> = {
   US: "https://res.cloudinary.com/tailwindcss/image/upload/v1635279279/us_bid855.svg",
  
 
-  rental0:
+  place0:
     "https://res.cloudinary.com/tailwindcss/image/upload/v1634674297/image_1_egxeww.png",
-  rental1:
+  place1:
     "https://res.cloudinary.com/tailwindcss/image/upload/v1634674298/image_2_ngqift.png",
-  rental2:
+  place2:
     "https://res.cloudinary.com/tailwindcss/image/upload/v1634674297/image_3_c7xiit.png",
 };
 

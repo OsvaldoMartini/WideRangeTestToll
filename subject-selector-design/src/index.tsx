@@ -7,7 +7,6 @@ export * from "./components/buttons/ButtonSearch";
 export * from "./components/buttons/ButtonGroup";
 export * from "./ColorBox";
 export * from "./components/pagination/Paginate";
-export * from "./components/template/RentalCard";
 
 export * from "./components/dropbox/Select";
 export * from "./components/textinput/TextInput";
@@ -16,8 +15,6 @@ export * from "./components/typography/Typography";
 export * from "./components/navegation/HomePage";
 export * from "./components/navegation/Header";
 export * from "./components/navegation/SubHeader";
-export * from "./components/navegation/SideNav";
-export * from "./components/navegation/MobileNavbar";
 
 export * from "./components/labels/ChooseCriteriaTittle";
 export * from "./components/placeholders/AnimationPlaceHolder";
