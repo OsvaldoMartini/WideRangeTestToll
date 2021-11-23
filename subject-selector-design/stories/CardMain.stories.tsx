@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { CardMain } from "../src";
 import StoryLayout from "./StoryLayout";
-import { cardMains } from "../src/data";
+import { cardsData } from "../src/data";
 
 const meta: Meta = {
   title: "BCSS-Design/Cards/CardMain",
@@ -10,12 +10,12 @@ const meta: Meta = {
   argTypes: {
     cardMainTitle: {
       options: [
-        cardMains[0].title,
-        cardMains[1].title,
-        cardMains[2].title,
-        cardMains[3].title,
-        cardMains[4].title,
-        cardMains[5].title,
+        cardsData[0].title,
+        cardsData[1].title,
+        cardsData[2].title,
+        cardsData[3].title,
+        cardsData[4].title,
+        cardsData[5].title,
       ],
       control: { type: "radio" },
     },
@@ -36,12 +36,12 @@ interface Props {
 }
 
 const StoryCardMain: Story<Props> = (args) => {
-  const cardMainIndex = cardMains.findIndex(
+  const cardMainIndex = cardsData.findIndex(
     (cardMain) => cardMain.title === args.cardMainTitle,
   );
 
   const cardMain = {
-    ...cardMains[cardMainIndex],
+    ...cardsData[cardMainIndex],
     badge: args.open ? "+" : "",
   };
 
@@ -62,7 +62,7 @@ export const Default = StoryCardMain.bind({});
 
 Default.args = {
   darkMode: false,
-  cardMainTitle: cardMains[0].title,
+  cardMainTitle: cardsData[0].title,
 };
 
 Default.parameters = {
