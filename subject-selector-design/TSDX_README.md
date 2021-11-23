@@ -10,6 +10,12 @@ Congrats! You just saved yourself hours of work by bootstrapping this project wi
 
 TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
 
+### Case you face problems do donwload some Node dependencies
+*
+``
+	yarn config set "strict-ssl" false -g
+``
+
 The recommended workflow is to run TSDX in one terminal:
 
 ```bash
