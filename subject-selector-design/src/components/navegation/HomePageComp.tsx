@@ -1,12 +1,12 @@
 import React from "react";
-import { CardMain } from "../../components/cards/CardMain";
-import { Header } from "./Header";
+import { CardMain } from "../cards/CardMain";
+import { HeaderComp } from "./HeaderComp";
 import { SubHeader } from "./SubHeader";
 import { ChooseCriteriaTittle } from "../labels/ChooseCriteriaTittle";
 import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
 import { ButtonSearch, ICardMainData } from "../..";
 
-export const HomePage = () => {
+export const HomePageComp = () => {
   const spacerD10 = [176, 1204];
   const spacerWidths = [64, 154, 8];
 
@@ -107,7 +107,7 @@ export const HomePage = () => {
 
   return (
     <div className="Desktop-HD-1440-Landing-Page">
-      <Header open={true} toggleOpen={() => {}} />
+      <HeaderComp open={true} toggleOpen={() => {}} />
       <hr className="divider-line" />
       <SubHeader open={true} toggleOpen={() => {}} />
       <div className="Desktop-Bar-Space" />

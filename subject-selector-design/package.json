@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "NODE_ENV=production tsdx build",
+    "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
