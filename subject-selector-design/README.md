@@ -36,8 +36,8 @@
   npm install --save-dev node-sass
 ```
 
-### Install "Storybook-zeplin"
+### Install "ClassNames"
 
 ```
-  npm install --save-dev storybook-zeplin
+  npm install classnames
 ```
