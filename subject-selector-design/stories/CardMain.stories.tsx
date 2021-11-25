@@ -23,6 +23,8 @@ const meta: Meta = {
   },
   parameters: {
     controls: { expanded: true },
+    zeplinLink: "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a"
+
   },
 };
 
@@ -66,5 +68,6 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["hidden comp"] },
+  controls: { expanded: ["true"] },
+  zeplinLink: "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a"
 };
