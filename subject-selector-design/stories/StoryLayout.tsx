@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import "../src/components/styles/styles.css";
-import "@fontsource/inter";
 
 interface IStoryArgs {
   darkMode: boolean;
