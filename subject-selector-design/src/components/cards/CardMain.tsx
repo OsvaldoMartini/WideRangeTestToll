@@ -11,16 +11,16 @@ const CardMainVariantClasses: Record<
   Record<CardMainState, string>
 > = {
   primary: {
-    default: "btn-primary",
-    hover: "btn-primary",
-    focus: "btn-primary-focus shadow-grayDark",
-    disabled: "btn-primary-disabled",
+    default: "bg",
+    hover: "bg",
+    focus: "bg",
+    disabled: "bg",
   },
   secondary: {
-    default: "btn-secondary",
-    hover: "btn-secondary-hover",
-    focus: "btn-secondary-focus shadow-grayDark",
-    disabled: "btn-secondary-disabled",
+    default: "Place-Holder",
+    hover: "Place-Holder",
+    focus: "Place-Holder",
+    disabled: "Place-Holder",
   },
 };
 
@@ -58,8 +58,8 @@ export const CardMain: FC<CardMainProps> = ({
       <div
         onMouseEnter={() => setIsShown("1")}
         onMouseLeave={() => setIsShown(".3")}
-        //className={"card-base"}
-        className={classNames("card-base", {
+        //className={"Place-Holder"}
+        className={classNames("bg", {
           [classNames(
             CardMainVariantClassName.default,
             CardMainVariantClassName.hover,
@@ -71,7 +71,7 @@ export const CardMain: FC<CardMainProps> = ({
           )]: disabled,
         })}
       >
-        <div className={`pt-6 text-center `}>
+        <div className={`Place-Holder `}>
           <Typography
             variant="md"
             customWeight="bold"

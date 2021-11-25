@@ -2,8 +2,6 @@ import React, { FC, ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
 import { Typography } from "../typography/Typography";
 
-import "../styles/styles-test.css";
-
 type ButtonSearchVariant = "primary";
 type ButtonSearchSize = "sm" | "md" | "lg" | "xl" | "2xl";
 type ButtonSearchState = "default" | "hover" | "focus" | "disabled";
@@ -13,10 +11,10 @@ const ButtonSearchVariantClasses: Record<
   Record<ButtonSearchState, string>
 > = {
   primary: {
-    default: "btn-search-criteria",
-    hover: "btn-search-criteria-hover",
-    focus: "btn-search-criteria-focus shadow-grayDark",
-    disabled: "btn-search-criteria-disabled",
+    default: "button-search",
+    hover: "button-search",
+    focus: "button-search",
+    disabled: "button-search",
   },
 };
 

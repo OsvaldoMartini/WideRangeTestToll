@@ -3,8 +3,6 @@ import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
 import { ChooseCriteriaTittle, ChooseCriteriaTittleProps } from "../src";
-import { navItemsTop, navItemsBottom, } from "../src/data";
-import { FiX } from "react-icons/fi";
 
 const meta: Meta = {
   title: "BCSS-Design/Labels/ChooseCriteriaTittle",

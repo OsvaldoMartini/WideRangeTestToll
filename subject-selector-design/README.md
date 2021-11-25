@@ -21,5 +21,17 @@
 ### Install "TypeScritpt"
 
 ```
-npm install --save-dev typescript ts-loader
+  npm install --save-dev typescript ts-loader
+```
+
+### Install "css-loader", "sass-loader" and "style-loader"
+
+```
+  npm install --save-dev css-loader sass-loader style-loader
+```
+
+### Install "node-sass"
+
+```
+  npm install --save-dev node-sass
 ```
