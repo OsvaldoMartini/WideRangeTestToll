@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/styles/styles.css";
 
 export * from "./components/cards/CardMain";

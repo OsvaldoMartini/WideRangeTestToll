@@ -407,9 +407,9 @@
 }
 
 .Place-Holder {
-  position: absolute;
-  width: 122px;
-  height: 32px;
+  /* position: absolute; */
+  /* width: 122px;
+  height: 32px; */
   margin: 0 0 6px;
   font-family: FrutigerLTStd;
   font-size: 18px;

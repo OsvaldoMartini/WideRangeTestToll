@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 type CardMainVariant = "primary" | "secondary";
 
-type CardMainState = "default" | "hover" | "focus" | "disabled";
+type CardMainState = "default";
 
 const CardMainVariantClasses: Record<
   CardMainVariant,
@@ -12,15 +12,9 @@ const CardMainVariantClasses: Record<
 > = {
   primary: {
     default: "bg",
-    hover: "bg",
-    focus: "bg",
-    disabled: "bg",
   },
   secondary: {
     default: "Place-Holder",
-    hover: "Place-Holder",
-    focus: "Place-Holder",
-    disabled: "Place-Holder",
   },
 };
 
@@ -58,29 +52,19 @@ export const CardMain: FC<CardMainProps> = ({
       <div
         onMouseEnter={() => setIsShown("1")}
         onMouseLeave={() => setIsShown(".3")}
-        //className={"Place-Holder"}
         className={classNames("bg", {
-          [classNames(
-            CardMainVariantClassName.default,
-            CardMainVariantClassName.hover,
-            CardMainVariantClassName.focus,
-          )]: !disabled,
-          [classNames(
-            CardMainVariantClassName.disabled,
-            "cursor-not-allowed",
-          )]: disabled,
+          [classNames(CardMainVariantClassName.default)]: !disabled,
         })}
       >
-        <div className={`Place-Holder `}>
+        <div className={`text-center`}>
           <Typography
             variant="md"
             customWeight="bold"
-            // customColor="text-primary-600 dark:text-primary-300"
-            className={`leading-8 tracking-normal to-gray-700 text-2x1 font-FrutigerLTW01`}
+            className={`Place-Holder `}
           >
             {title}
           </Typography>
-          <div className="flex justify-center pt-2">
+          <div className="">
             <svg
               width="33"
               height="32"
