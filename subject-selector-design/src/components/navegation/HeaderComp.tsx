@@ -7,7 +7,7 @@ export interface HeaderCompProps {
 }
 
 export const HeaderComp: FC<HeaderCompProps> = () => (
-  <div className="header-bar-box" style={{ poposition: "relative" }}>
+  <div className="header-bar-box" style={{ position: "relative" }}>
     <div className="header-bar-logo">
       <div>
         <svg
