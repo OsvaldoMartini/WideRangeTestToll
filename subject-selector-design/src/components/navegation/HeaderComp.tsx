@@ -7,9 +7,9 @@ export interface HeaderCompProps {
 }
 
 export const HeaderComp: FC<HeaderCompProps> = () => (
-  <div className="header-bar-box">
+  <div className="header-bar-box" style={{ poposition: "relative" }}>
     <div className="header-bar-logo">
-      <div className="flex justify-center pt-2">
+      <div>
         <svg
           width="98"
           height="40"
@@ -26,8 +26,14 @@ export const HeaderComp: FC<HeaderCompProps> = () => (
         </svg>
       </div>
     </div>
-    <div className="header-bar-title ">
-      <Typography variant="h6">BCSS - Test Subject Finder</Typography>
+    <div>
+      <Typography
+        variant="md"
+        customWeight="bold"
+        className={`header-bar-title text-white`}
+      >
+        BCSS - Test Subject Finder
+      </Typography>
     </div>
   </div>
 );

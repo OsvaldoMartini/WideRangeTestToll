@@ -52,11 +52,11 @@ export const CardMain: FC<CardMainProps> = ({
       <div
         onMouseEnter={() => setIsShown("1")}
         onMouseLeave={() => setIsShown(".3")}
-        className={classNames("bg", {
+        className={classNames("bg ", {
           [classNames(CardMainVariantClassName.default)]: !disabled,
         })}
       >
-        <div className={`text-center`}>
+        <div style={{ position: "relative" }}>
           <Typography
             variant="md"
             customWeight="bold"
@@ -64,7 +64,7 @@ export const CardMain: FC<CardMainProps> = ({
           >
             {title}
           </Typography>
-          <div className="">
+          <div className="plus-postion">
             <svg
               width="33"
               height="32"

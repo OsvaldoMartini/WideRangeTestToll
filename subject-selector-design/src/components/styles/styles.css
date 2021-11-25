@@ -407,10 +407,12 @@
 }
 
 .Place-Holder {
-  /* position: absolute; */
-  /* width: 122px;
-  height: 32px; */
+  position: absolute;
+  width: 122px;
+  height: 32px;
   margin: 0 0 6px;
+  top: 26px;
+  left: 16px;
   font-family: FrutigerLTStd;
   font-size: 18px;
   font-weight: bold;
@@ -420,6 +422,12 @@
   letter-spacing: normal;
   text-align: center;
   color: var(--black231F20);
+}
+
+.plus-postion {
+  position: absolute;
+  top: 64px;
+  left: 55px;
 }
 
 .main-place-holder-position {
@@ -477,6 +485,7 @@ hr.divider-line {
   height: 52px;
   /* padding: 21px 587px 21px 240px; */
   /* background-color: var(--blueCore005Eb8); */
+  background-color: var(--blueCore005Eb8);
 }
 
 .header-bar-logo {
@@ -487,7 +496,7 @@ hr.divider-line {
 
 .header-bar-title {
   position: absolute;
-  top: 21px;
+  top: 25px;
   left: 588px;
   color: var(--whiteCoreFfffff);
 }

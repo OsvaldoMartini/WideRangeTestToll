@@ -6,5 +6,5 @@ export interface SubHeaderProps {
 }
 
 export const SubHeader: FC<SubHeaderProps> = () => (
-  <div className="subheader-bar-box bg-blue_core_005_eb_8"></div>
+  <div className="subheader-bar-box"></div>
 );
