@@ -4,8 +4,6 @@ import "./components/styles/styles.css";
 export * from "./components/cards/CardMain";
 export * from "./components/buttons/ButtonSearch";
 
-export * from "./components/dropbox/Select";
-
 export * from "./components/typography/Typography";
 
 export * from "./components/navegation/HomePageComp";
