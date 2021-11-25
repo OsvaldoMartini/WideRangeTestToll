@@ -2,7 +2,6 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { FiAlertCircle, FiHelpCircle, FiMail } from "react-icons/fi";
 import { TextInput, TextInputProps } from "../src";
-import { Figma } from "../src/data";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
@@ -10,10 +9,7 @@ const meta: Meta = {
   component: TextInput,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.TextInput,
-    },
+    
   },
 };
 

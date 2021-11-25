@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export * from "./components/cards/CardMain";
 export * from "./components//badge/Badge";

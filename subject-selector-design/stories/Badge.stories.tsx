@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { FiStar, FiArrowRight } from "react-icons/fi";
-import { Badge, BadgeProps, Figma, images } from "../src";
+import { Badge, BadgeProps, images } from "../src";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
@@ -9,10 +9,6 @@ const meta: Meta = {
   component: Badge,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Badge,
-    },
   },
 };
 

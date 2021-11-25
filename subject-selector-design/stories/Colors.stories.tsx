@@ -3,16 +3,13 @@ import { Meta, Story } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
 
 import { ColorBox } from "../src";
-import { colors, Figma } from "../src/data";
+import { colors } from "../src/data";
 
 const meta: Meta = {
   title: "BCSS-Design/Colors/Colors",
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Colors,
-    },
+    
   },
 };
 

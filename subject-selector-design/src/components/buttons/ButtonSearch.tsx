@@ -1,6 +1,8 @@
 import React, { FC, ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
-import { Typography } from "../..";
+import { Typography } from "../typography/Typography";
+
+import "../styles/styles-test.css";
 
 type ButtonSearchVariant = "primary";
 type ButtonSearchSize = "sm" | "md" | "lg" | "xl" | "2xl";

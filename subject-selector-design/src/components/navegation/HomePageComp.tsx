@@ -4,7 +4,8 @@ import { HeaderComp } from "./HeaderComp";
 import { SubHeader } from "./SubHeader";
 import { ChooseCriteriaTittle } from "../labels/ChooseCriteriaTittle";
 import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
-import { ButtonSearch, ICardMainData } from "../..";
+import { ICardMainData } from "../../@interfaces/CardMainData.d";
+import { ButtonSearch } from "../buttons/ButtonSearch";
 
 export const HomePageComp = () => {
   const spacerD10 = [176, 1204];

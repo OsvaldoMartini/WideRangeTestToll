@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { FiStar, FiArrowRight } from "react-icons/fi";
-import { Button, ButtonProps, Figma } from "../src";
+import { Button, ButtonProps } from "../src";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
@@ -9,10 +9,7 @@ const meta: Meta = {
   component: Button,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Button,
-    },
+    
   },
 };
 

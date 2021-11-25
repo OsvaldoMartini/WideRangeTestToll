@@ -11,10 +11,7 @@ const meta: Meta = {
   component: Select,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Select,
-    },
+
   },
 };
 

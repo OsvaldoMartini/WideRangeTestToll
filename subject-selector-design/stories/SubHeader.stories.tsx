@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
 import { SubHeader, SubHeaderProps } from "../src";
-import { navItemsTop, navItemsBottom, Figma } from "../src/data";
+import { navItemsTop, navItemsBottom } from "../src/data";
 import { FiX } from "react-icons/fi";
 
 const meta: Meta = {

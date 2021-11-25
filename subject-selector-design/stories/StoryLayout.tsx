@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "../src/styles/tailwind.css";
-import "../src/styles/styles.css";
+import "../src/components/styles/styles.css";
 import "@fontsource/inter";
 
 interface IStoryArgs {

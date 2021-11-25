@@ -5,7 +5,6 @@ import { FiGrid, FiList } from "react-icons/fi";
 import {
   ButtonGroup,
   ButtonGroupProps,
-  Figma,
   options1,
   options2,
 } from "../src";
@@ -16,10 +15,7 @@ const meta: Meta = {
   component: ButtonGroup,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.ButtonGroup,
-    },
+    
   },
 };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 
 import { Typography, TypographyProps } from "../src";
-import { Figma } from "../src/data";
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
@@ -10,10 +9,7 @@ const meta: Meta = {
   component: Typography,
   parameters: {
     controls: { expanded: true },
-    design: {
-      type: "figma",
-      url: Figma.Typography,
-    },
+    
   },
 };
 
