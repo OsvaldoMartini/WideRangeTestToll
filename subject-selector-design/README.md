@@ -1,4 +1,4 @@
-### Create "package.json" with no Dependencies
+### Create Initial "package.json" without any dependencies
 
 ### Install "WebPack"
 
