@@ -1,6 +1,7 @@
 module.exports = {
   stories: ["../stories/**/*.stories.@(ts|tsx|js|jsx)"],
   addons: [
+    "storybook-zeplin/register", 
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",

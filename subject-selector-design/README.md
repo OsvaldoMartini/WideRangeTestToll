@@ -35,3 +35,9 @@
 ```
   npm install --save-dev node-sass
 ```
+
+### Install "Storybook-zeplin"
+
+```
+  npm install --save-dev storybook-zeplin
+```
