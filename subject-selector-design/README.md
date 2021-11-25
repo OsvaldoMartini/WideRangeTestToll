@@ -36,8 +36,20 @@
   npm install --save-dev node-sass
 ```
 
+### Install "Bootstrap"
+
+```
+  npm install bootstrap
+```
+
 ### Install "ClassNames"
 
 ```
   npm install classnames
+```
+
+### Install "TSDX"
+
+```
+  npm install --save-dev tsdx
 ```
