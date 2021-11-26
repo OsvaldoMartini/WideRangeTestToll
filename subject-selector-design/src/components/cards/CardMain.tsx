@@ -1,4 +1,5 @@
-import React, { FC, HTMLAttributes, useState } from "react";
+import React, { FC, useState } from "react";
+import {} from "react";
 import { Typography } from "../typography/Typography";
 import classNames from "classnames";
 
@@ -18,7 +19,7 @@ const CardMainVariantClasses: Record<
   },
 };
 
-export interface CardMainProps extends HTMLAttributes<HTMLElement> {
+export interface CardMainProps {
   children?: string | React.ReactElement;
   className?: string;
   variant: CardMainVariant;
@@ -26,7 +27,6 @@ export interface CardMainProps extends HTMLAttributes<HTMLElement> {
   title?: string;
   addClassNames?: string;
   addLeftPos?: string;
-  onClick: React.MouseEventHandler<HTMLLIElement>;
 }
 
 export const CardMain: FC<CardMainProps> = ({
@@ -37,7 +37,6 @@ export const CardMain: FC<CardMainProps> = ({
   title,
   addClassNames,
   addLeftPos,
-  onClick,
   ...cardMainProps
 }) => {
   const CardMainVariantClassName = CardMainVariantClasses[variant];

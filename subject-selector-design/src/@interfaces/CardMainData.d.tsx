@@ -3,5 +3,4 @@ export interface ICardMainData {
   title?: string;
   subtitle?: string;
   badge?: string;
-  onClick: React.MouseEventHandler<HTMLLIElement>;
 }

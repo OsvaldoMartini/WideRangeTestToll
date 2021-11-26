@@ -44,9 +44,6 @@ export const HomePageComp = () => {
     title: "Demographic",
     subtitle: "Demo",
     badge: "Exclusive deal",
-    onClick: () => {
-      `I clicked Demographic`;
-    },
   };
 
   const cardMain1: ICardMainData = {
@@ -54,9 +51,6 @@ export const HomePageComp = () => {
     title: "Episode",
     subtitle: "Epi",
     badge: "",
-    onClick: () => {
-      `I clicked Episode`;
-    },
   };
 
   const cardMain2: ICardMainData = {
@@ -64,9 +58,6 @@ export const HomePageComp = () => {
     title: "Screening",
     subtitle: "Scre",
     badge: "",
-    onClick: () => {
-      `I clicked Screening`;
-    },
   };
 
   const cardMain3: ICardMainData = {
@@ -74,27 +65,18 @@ export const HomePageComp = () => {
     title: "Diagnostic",
     subtitle: "Diag",
     badge: "",
-    onClick: () => {
-      `I clicked Diagnostic`;
-    },
   };
   const cardMain4: ICardMainData = {
     id: 4,
     title: "Kit Status",
     subtitle: "Kit",
     badge: "",
-    onClick: () => {
-      `I clicked Kit Status`;
-    },
   };
   const cardMain5: ICardMainData = {
     id: 5,
     title: "Surveillance",
     subtitle: "Scre",
     badge: "",
-    onClick: () => {
-      `I clicked Surveillance`;
-    },
   };
 
   const cardsData: ICardMainData[] = [
@@ -130,7 +112,6 @@ export const HomePageComp = () => {
                   addLeftPos={`${sum}px`}
                   key={card.id}
                   title={card.title}
-                  onClick={card.onClick}
                   variant={"primary"}
                 />
               </div>
