@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from 'mobx-react-lite';
 
 import { AnimationPlaceHolder, ButtonSearch, CardMain, ChooseCriteriaTittle, HeaderComp, ICardMainData, SubHeader } from "subject-selector-design";
 
@@ -128,4 +129,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default observer(HomePage);
