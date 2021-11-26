@@ -1,0 +1,124 @@
+body {
+  background-color: rgb(234, 234, 234) !important;
+}
+
+.main {
+  height: 600px;
+  background: linear-gradient(to right, #16a085, #2c3e50);
+  position: absolute;
+  /*margin-top: 78px;*/
+}
+
+.container {
+  width: 1440px;
+  height: 82px;
+}
+
+.div.ui.container {
+  width: 1440px;
+  height: 82px;
+}
+
+.div.ui.container {
+  width: 1440px;
+  height: 82px;
+}
+
+.ui.inverted.top.fixed.menu {
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+  ) !important;
+}
+
+/*home page styles*/
+
+.masthead .ui.menu .ui.button,
+.ui.menu a.ui.inverted.button {
+  margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+  font-size: 4em;
+  font-weight: normal;
+}
+
+.masthead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+/* View rubrics */
+
+.ui.centered.button-header.header {
+  position: absolute;
+  width: 1444px;
+  z-index: 1;
+  right: 0;
+  left: 0;
+}
+
+.ui.button.floated.button-header {
+  position: relative;
+  z-index: 2;
+}
+
+.ui.labeled.icon.button > .dark.icon {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* Edit Rubric Input*/
+
+.edit.rubric.input {
+  display: inline-block;
+  margin: 0.2em;
+  width: 250px;
+}
+
+.edit.rubric.wide.input {
+  display: inline-block;
+  width: 300px;
+}
+
+.edit.rubric.narrow.input {
+  display: inline-block;
+  width: 200px;
+}
+
+.edit.rubric.input input {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #d4d4d5;
+}
+
+.edit.rubric.input input:focus {
+  outline: none;
+  border-color: transparent;
+  transition: 300ms ease all;
+}
+
+.bar:after {
+  content: "";
+  display: block;
+  transform: scaleX(0);
+  height: 2px;
+  background: #48afb9;
+  transition: 300ms ease all;
+}
+
+.edit.rubric.input input:focus ~ .bar:after {
+  transform: scaleX(1);
+}
+
+.centered .edit.rubric.input input {
+  text-align: center;
+}
+
+.Desktop-HD-1440-Landing-Page {
+  width: 1440px;
+  height: 1024px;
+  background-color: #e8edee;
+}
+
+/*end home page styles*/

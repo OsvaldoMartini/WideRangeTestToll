@@ -1,8 +1,8 @@
 {
     "trailingComma": "all",
-    "tabWidth": 2,
+    "tabWidth":2,
     "semi": true,
-    "singleQuote": false
-    
-
+    "singleQuote": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode" 
 }
