@@ -11,7 +11,7 @@ import * as serviceWorker from "./serviceWorker";
 import ScrollToTop from "./app/layout/ScrollToTop";
 import dateFnsLocalizer from "react-widgets-date-fns";
 
-import "./styles.css";
+import "subject-selector-design/src/components/styles/styles.css";
 
 dateFnsLocalizer();
 
