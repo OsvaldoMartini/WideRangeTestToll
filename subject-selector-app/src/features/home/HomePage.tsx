@@ -109,7 +109,7 @@ const HomePage: React.FC = () => {
                   addClassNames={`box-${index} `}
                   addLeftPos={`${sum}px`}
                   key={card.id}
-                  title={card.title} variant={"primary"}/>
+                  title={card.title} variant={"HoverActive"}/>
               </div>
               {middleSpacers((sum += spacerWidths[1]), index, cardsData.length)}
             </>

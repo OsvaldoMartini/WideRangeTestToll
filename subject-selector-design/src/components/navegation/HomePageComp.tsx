@@ -112,7 +112,7 @@ export const HomePageComp = () => {
                   addLeftPos={`${sum}px`}
                   key={card.id}
                   title={card.title}
-                  variant={"primary"}
+                  variant={"HoverActive"}
                 />
               </div>
               {middleSpacers((sum += spacerWidths[1]), index, cardsData.length)}

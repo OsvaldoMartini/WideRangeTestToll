@@ -1,60 +1,43 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import { CardMain } from "../src";
+import { CardMain, CardMainProps } from "../src";
 import StoryLayout from "./StoryLayout";
 import { cardsData } from "../src/data";
 
 const meta: Meta = {
   title: "BCSS-Design/Cards/CardMain",
   component: CardMain,
-  argTypes: {
-    cardMainTitle: {
-      options: [
-        cardsData[0].title,
-        cardsData[1].title,
-        cardsData[2].title,
-        cardsData[3].title,
-        cardsData[4].title,
-        cardsData[5].title,
-      ],
-      control: { type: "radio" },
-    },
-    onClick: { action: "clicked" },
-  },
   parameters: {
     controls: { expanded: true },
-    zeplinLink: "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a"
-
+    zeplinLink:
+      "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
   },
 };
 
 export default meta;
 
-interface Props {
-  darkMode: boolean;
-  cardMainTitle: string;
-  open: boolean;
-  toggleOpen: () => void;
-}
+// interface Props {
+//   darkMode: boolean;
+//   cardMainTitle: string;
+//   open: boolean;
+//   toggleOpen: () => void;
+// }
 
-const StoryCardMain: Story<Props> = (args) => {
+const StoryCardMain: Story<CardMainProps> = (args) => {
   const cardMainIndex = cardsData.findIndex(
-    (cardMain) => cardMain.title === args.cardMainTitle,
+    (cardMain) => cardMain.title === args.title,
   );
 
   const cardMain = {
     ...cardsData[cardMainIndex],
-    badge: args.open ? "+" : "",
   };
 
   return (
     <StoryLayout {...args}>
       <CardMain
         title={cardMain.title}
-        onClick={() => {
-          "I was clicked";
-        }}
-        variant={"primary"}
+        variant={args.variant}
+        className={args.className}
       />
     </StoryLayout>
   );
@@ -63,11 +46,29 @@ const StoryCardMain: Story<Props> = (args) => {
 export const Default = StoryCardMain.bind({});
 
 Default.args = {
-  darkMode: false,
-  cardMainTitle: cardsData[0].title,
+  title: cardsData[0].title,
+  variant: "Inactive",
+  className: "bg",
+  opacity: 1,
 };
 
 Default.parameters = {
   controls: { expanded: ["true"] },
-  zeplinLink: "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a"
+  zeplinLink:
+    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
+};
+
+export const Secondary = StoryCardMain.bind({});
+
+Secondary.args = {
+  title: cardsData[1].title,
+  variant: "HoverActive",
+  className: "bg",
+  opacity: 0.3,
+};
+
+Secondary.parameters = {
+  controls: { expanded: ["true"] },
+  zeplinLink:
+    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
 };
