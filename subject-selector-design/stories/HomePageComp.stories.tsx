@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
-import { HomePageComp } from "../src";
+import { HomePageComp, HomePageCompProps } from "../src";
 
 const meta: Meta = {
   title: "BCSS-Design/Navigation/HomePageComp",
@@ -13,11 +13,7 @@ const meta: Meta = {
 
 export default meta;
 
-interface Props {
-  darkMode: boolean;
-}
-
-const StoryHomePageComp: Story<Props> = (args) => {
+const StoryHomePageComp: Story<HomePageCompProps> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleToggle = () => {
@@ -25,8 +21,8 @@ const StoryHomePageComp: Story<Props> = (args) => {
   };
 
   return (
-    <StoryLayout {...args} noPadding>
-      <HomePageComp />
+    <StoryLayout {...args}>
+      <HomePageComp variant={args.variant} />
     </StoryLayout>
   );
 };
@@ -34,10 +30,15 @@ const StoryHomePageComp: Story<Props> = (args) => {
 export const Default = StoryHomePageComp.bind({});
 
 Default.args = {
+  variant: "HoverActive",
   darkMode: false,
   open: false,
 };
 
 Default.parameters = {
   controls: { exclude: [] },
+};
+
+Default.parameters = {
+  controls: { exclude: ["darkMode", "open", "className", "disabled"] },
 };

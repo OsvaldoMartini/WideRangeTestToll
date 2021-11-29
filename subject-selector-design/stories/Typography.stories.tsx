@@ -9,7 +9,6 @@ const meta: Meta = {
   component: Typography,
   parameters: {
     controls: { expanded: true },
-    
   },
 };
 
@@ -23,7 +22,7 @@ const TypographyDynamic: Story<Props> = (args) => {
   const isHeading = args.variant.startsWith("h");
 
   return (
-    <StoryLayout {...args} className="space-y-2">
+    <StoryLayout {...args}>
       <Typography {...args}>
         {isHeading ? "Display" : "Text"} {args.variant} <br />{" "}
         {args.customWeight}
@@ -34,7 +33,7 @@ const TypographyDynamic: Story<Props> = (args) => {
 
 const TypographyHeadings: Story<Props> = (args) => {
   return (
-    <StoryLayout {...args} className="space-y-2">
+    <StoryLayout {...args}>
       <Typography {...args} variant="h1">
         Display h1
       </Typography>
@@ -66,12 +65,12 @@ Heading.args = {
 };
 
 Heading.parameters = {
-  controls: { exclude: ["variant", "customColor", "className"] },
+  controls: { exclude: ["darkMode", "variant", "customColor", "className"] },
 };
 
 const TypographyText: Story<Props> = (args) => {
   return (
-    <StoryLayout {...args} className="space-y-2">
+    <StoryLayout {...args}>
       <Typography {...args} variant="xl">
         Text xl
       </Typography>
@@ -100,9 +99,10 @@ Text.args = {
 };
 
 Text.parameters = {
-  controls: { exclude: ["variant", "customColor", "className"] },
+  controls: {
+    exclude: ["darkMode", "className", "customWeight", "customColor"],
+  },
 };
-
 export const Dynamic = TypographyDynamic.bind({});
 
 Dynamic.args = {
@@ -111,4 +111,10 @@ Dynamic.args = {
   customWeight: "regular",
   className: "",
   darkMode: false,
+};
+
+Dynamic.parameters = {
+  controls: {
+    exclude: ["darkMode", "className", "customWeight", "customColor"],
+  },
 };

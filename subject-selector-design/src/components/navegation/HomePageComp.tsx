@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { CardMain } from "../cards/CardMain";
 import { HeaderComp } from "./HeaderComp";
 import { SubHeader } from "./SubHeader";
@@ -7,13 +7,28 @@ import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
 import { ICardMainData } from "../../@interfaces/CardMainData.d";
 import { ButtonSearch } from "../buttons/ButtonSearch";
 
-export const HomePageComp = () => {
+type HomePageCompVariant = "Inactive" | "HoverActive";
+
+export interface HomePageCompProps {
+  children?: string | React.ReactElement;
+  className?: string;
+  variant: HomePageCompVariant;
+  disabled?: boolean;
+}
+
+export const HomePageComp: FC<HomePageCompProps> = ({
+  children,
+  className,
+  variant = "Inactive",
+  disabled,
+  ...homePageCompProps
+}) => {
   const spacerD10 = [176, 1204];
   const spacerWidths = [64, 154, 8];
 
   const drawSpacerD10 = (idx: number) => {
     return (
-      <div className="box-set">
+      <div {...homePageCompProps} className="box-set">
         <figure
           className={"box-D10 D10-pos"}
           style={{ left: `${spacerD10[idx]}px` }}
@@ -112,7 +127,7 @@ export const HomePageComp = () => {
                   addLeftPos={`${sum}px`}
                   key={card.id}
                   title={card.title}
-                  variant={"HoverActive"}
+                  variant={variant}
                 />
               </div>
               {middleSpacers((sum += spacerWidths[1]), index, cardsData.length)}

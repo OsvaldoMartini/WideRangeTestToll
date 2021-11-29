@@ -18,7 +18,7 @@ interface Props extends ButtonSearchProps {
 }
 
 const StoryButtonSearch: Story<Props> = (args) => (
-  <StoryLayout {...args} className="space-y-2">
+  <StoryLayout {...args}>
     <ButtonSearch {...args}>Search</ButtonSearch>
   </StoryLayout>
 );
@@ -33,5 +33,14 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["LeadingIcon", "TrailingIcon", "IconOnly"] },
+  controls: {
+    exclude: [
+      "LeadingIcon",
+      "TrailingIcon",
+      "IconOnly",
+      "size",
+      "className",
+      "darkMode",
+    ],
+  },
 };

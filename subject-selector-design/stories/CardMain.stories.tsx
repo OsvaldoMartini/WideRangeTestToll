@@ -53,22 +53,17 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { expanded: ["true"] },
-  zeplinLink:
-    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
-};
-
-export const Secondary = StoryCardMain.bind({});
-
-Secondary.args = {
-  title: cardsData[1].title,
-  variant: "HoverActive",
-  className: "bg",
-  opacity: 0.3,
-};
-
-Secondary.parameters = {
-  controls: { expanded: ["true"] },
+  controls: {
+    expanded: ["true"],
+    exclude: [
+      "title",
+      "className",
+      "opacity",
+      "disabled",
+      "addClassNames",
+      "addLeftPos",
+    ],
+  },
   zeplinLink:
     "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
 };

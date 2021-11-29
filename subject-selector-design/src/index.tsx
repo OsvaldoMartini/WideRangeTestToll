@@ -13,5 +13,8 @@ export * from "./components/navegation/SubHeader";
 export * from "./components/labels/ChooseCriteriaTittle";
 export * from "./components/placeholders/AnimationPlaceHolder";
 
+export * from "./components/textinput/TextInput3DigActiveError";
+export * from "./components/textinput/TextInput3DigActive";
+
 export * from "./@interfaces";
 export * from "./data";

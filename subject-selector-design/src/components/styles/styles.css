@@ -708,3 +708,39 @@ hr.divider-line {
   width: 8px;
   height: 11px;
 }
+
+.ElementsText-input3-DigitActive-error {
+  width: 52px;
+  height: 36px;
+  margin: 19px 41px 8px 84px;
+  padding: 2px;
+}
+
+.ElementsText-input3-DigitActive-position {
+  top: 26px;
+  left: 209px;
+}
+
+.Rectangle_error {
+  width: 48px;
+  height: 32px;
+  padding: 2px 7px 2px 8px;
+  border-style: hidden;
+  box-shadow: 0 0 0 2px var(--highlightWarmYellowFfb81C),
+    inset 0 0 0 2px var(--highlightEmergencyServiceRedDa291C);
+  background-color: var(--whiteCoreFfffff);
+}
+
+.ElementsText-input3-DigitActive {
+  width: 52px;
+  height: 36px;
+  font-family: FrutigerLTStd-Roman;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black231F20);
+}

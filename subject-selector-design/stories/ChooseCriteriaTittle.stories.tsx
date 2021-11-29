@@ -26,7 +26,7 @@ const StoryChooseCriteriaTittle: Story<Props> = (args) => {
   };
 
   return (
-    <StoryLayout {...args} noPadding>
+    <StoryLayout {...args}>
       <ChooseCriteriaTittle open={open} toggleOpen={handleToggle} />
     </StoryLayout>
   );
@@ -40,5 +40,5 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["open", "toggleOpen"] },
+  controls: { exclude: ["darkMode", "open", "toggleOpen"] },
 };

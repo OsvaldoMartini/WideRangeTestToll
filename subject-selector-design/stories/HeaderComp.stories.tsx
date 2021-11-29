@@ -26,7 +26,7 @@ const StoryHeaderComp: Story<Props> = (args) => {
   };
 
   return (
-    <StoryLayout {...args} noPadding>
+    <StoryLayout {...args}>
       <HeaderComp open={open} toggleOpen={handleToggle} />
     </StoryLayout>
   );
@@ -40,5 +40,5 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["open", "toggleOpen"] },
+  controls: { exclude: ["darkMode", "open", "toggleOpen"] },
 };
