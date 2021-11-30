@@ -45,6 +45,8 @@ const StoryCardMain: Story<CardMainProps> = (args) => {
 
 export const Default = StoryCardMain.bind({});
 
+export const HoverActive = StoryCardMain.bind({});
+
 Default.args = {
   title: cardsData[0].title,
   variant: "Inactive",
@@ -62,8 +64,33 @@ Default.parameters = {
       "disabled",
       "addClassNames",
       "addLeftPos",
+      "variant",
     ],
   },
   zeplinLink:
     "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
+};
+
+HoverActive.args = {
+  title: cardsData[0].title,
+  variant: "HoverActive",
+  className: "bg",
+  opacity: 1,
+};
+
+HoverActive.parameters = {
+  controls: {
+    expanded: ["true"],
+    exclude: [
+      "title",
+      "className",
+      "opacity",
+      "disabled",
+      "addClassNames",
+      "addLeftPos",
+      "variant",
+    ],
+  },
+  zeplinLink:
+    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9???",
 };
