@@ -32,7 +32,7 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "build": "webpack --config webpack.cofig.js",
+    "build": "webpack --config webpack.config.js",
     "storybook": "start-storybook -p 6006 -c .storybook",
     "build-storybook": "build-storybook -c .storybook -o static-storybook"
   },

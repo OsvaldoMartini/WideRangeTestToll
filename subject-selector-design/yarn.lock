@@ -1875,6 +1875,17 @@
   "resolved" "https://registry.npmjs.org/@storybook/addon-measure/-/addon-measure-2.0.0.tgz"
   "version" "2.0.0"
 
+"@storybook/addon-postcss@^2.0.0":
+  "integrity" "sha512-Nt82A7e9zJH4+A+VzLKKswUfru+T6FJTakj4dccP0i8DSn7a0CkzRPrLuZBq8tg4voV6gD74bcDf3gViCVBGtA=="
+  "resolved" "https://registry.npmjs.org/@storybook/addon-postcss/-/addon-postcss-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "@storybook/node-logger" "^6.1.14"
+    "css-loader" "^3.6.0"
+    "postcss" "^7.0.35"
+    "postcss-loader" "^4.2.0"
+    "style-loader" "^1.3.0"
+
 "@storybook/addon-toolbars@6.3.12":
   "integrity" "sha512-8GvP6zmAfLPRnYRARSaIwLkQClLIRbflRh4HZoFk6IMjQLXZb4NL3JS5OLFKG+HRMMU2UQzfoSDqjI7k7ptyRw=="
   "resolved" "https://registry.npmjs.org/@storybook/addon-toolbars/-/addon-toolbars-6.3.12.tgz"
@@ -2395,7 +2406,7 @@
     "webpack-dev-middleware" "^3.7.3"
     "webpack-virtual-modules" "^0.2.2"
 
-"@storybook/node-logger@6.3.12":
+"@storybook/node-logger@^6.1.14", "@storybook/node-logger@6.3.12":
   "integrity" "sha512-iktOem/Ls2+dsZY9PhPeC6T1QhX/y7OInP88neLsqEPEbB2UXca3Ydv7OZBhBVbvN25W45b05MRzbtNUxYLNRw=="
   "resolved" "https://registry.npmjs.org/@storybook/node-logger/-/node-logger-6.3.12.tgz"
   "version" "6.3.12"
@@ -11003,13 +11014,14 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz"
   "version" "4.1.0"
 
-"postcss@^7.0.0 || ^8.0.1", "postcss@^7.0.32", "postcss@^7.0.36":
-  "integrity" "sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA=="
-  "resolved" "https://registry.npmjs.org/postcss/-/postcss-7.0.39.tgz"
-  "version" "7.0.39"
+"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.4.4", "postcss@8.x":
+  "integrity" "sha512-joU6fBsN6EIer28Lj6GDFoC/5yOZzLCfn0zHAn/MYXI7aPt4m4hK5KC5ovEZXy+lnCjmYIbQWngvju2ddyEr8Q=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.4.tgz"
+  "version" "8.4.4"
   dependencies:
-    "picocolors" "^0.2.1"
-    "source-map" "^0.6.1"
+    "nanoid" "^3.1.30"
+    "picocolors" "^1.0.0"
+    "source-map-js" "^1.0.1"
 
 "postcss@^7.0.14":
   "integrity" "sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA=="
@@ -11020,6 +11032,14 @@
     "source-map" "^0.6.1"
 
 "postcss@^7.0.26":
+  "integrity" "sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-7.0.39.tgz"
+  "version" "7.0.39"
+  dependencies:
+    "picocolors" "^0.2.1"
+    "source-map" "^0.6.1"
+
+"postcss@^7.0.32", "postcss@^7.0.35", "postcss@^7.0.36":
   "integrity" "sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-7.0.39.tgz"
   "version" "7.0.39"
@@ -11042,15 +11062,6 @@
   dependencies:
     "picocolors" "^0.2.1"
     "source-map" "^0.6.1"
-
-"postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@8.x":
-  "integrity" "sha512-WqLs/TTzXdG+/A4ZOOK9WDZiikrRaiA+eoEb/jz2DT9KUhMNHgP7yKPO8vwi62ZCsb703Gwb7BMZwDzI54Y2Ag=="
-  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.1.tgz"
-  "version" "8.4.1"
-  dependencies:
-    "nanoid" "^3.1.30"
-    "picocolors" "^1.0.0"
-    "source-map-js" "^1.0.1"
 
 "prelude-ls@~1.1.2":
   "integrity" "sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ="
@@ -14316,7 +14327,7 @@
   dependencies:
     "debug" "^3.0.0"
 
-"webpack@*", "webpack@^4.0.0", "webpack@^5.0.0", "webpack@^5.1.0", "webpack@^5.64.4", "webpack@>=2", "webpack@>=4.0.0 <6.0.0", "webpack@4.x.x || 5.x.x":
+"webpack@*", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^5.0.0", "webpack@^5.1.0", "webpack@^5.64.4", "webpack@>=2", "webpack@>=4.0.0 <6.0.0", "webpack@4.x.x || 5.x.x":
   "integrity" "sha512-LWhqfKjCLoYJLKJY8wk2C3h77i8VyHowG3qYNZiIqD6D0ZS40439S/KVuc/PY48jp2yQmy0mhMknq8cys4jFMw=="
   "resolved" "https://registry.npmjs.org/webpack/-/webpack-5.64.4.tgz"
   "version" "5.64.4"
@@ -14346,7 +14357,7 @@
     "watchpack" "^2.3.0"
     "webpack-sources" "^3.2.2"
 
-"webpack@^1 || ^2 || ^3 || ^4", "webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@>= 4", "webpack@>=4.43.0 <6.0.0", "webpack@4":
+"webpack@^1 || ^2 || ^3 || ^4", "webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@>= 4", "webpack@>=4.43.0 <6.0.0", "webpack@4":
   "integrity" "sha512-6jJuJjg8znb/xRItk7bkT0+Q7AHCYjjFnvKIWQPkNIOyRqoCGvkOs0ipeQzrqz4l5FtN5ZI/ukEHroeX/o1/5Q=="
   "resolved" "https://registry.npmjs.org/webpack/-/webpack-4.46.0.tgz"
   "version" "4.46.0"
