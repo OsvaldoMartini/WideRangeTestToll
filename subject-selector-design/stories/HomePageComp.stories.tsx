@@ -1,11 +1,11 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import StoryLayout from "./StoryLayout";
-import { HomePageComp, HomePageCompProps } from "../src";
+import { HomePage, HomePageProps } from "../src";
 
 const meta: Meta = {
-  title: "BCSS-Design/Navigation/HomePageComp",
-  component: HomePageComp,
+  title: "Web App/Pages/HomePage",
+  component: HomePage,
   parameters: {
     controls: { expanded: true },
   },
@@ -13,7 +13,7 @@ const meta: Meta = {
 
 export default meta;
 
-const StoryHomePageComp: Story<HomePageCompProps> = (args) => {
+const StoryHomePage: Story<HomePageProps> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleToggle = () => {
@@ -22,12 +22,12 @@ const StoryHomePageComp: Story<HomePageCompProps> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <HomePageComp variant={args.variant} />
+      <HomePage variant={args.variant} />
     </StoryLayout>
   );
 };
 
-export const Default = StoryHomePageComp.bind({});
+export const Default = StoryHomePage.bind({});
 
 Default.args = {
   variant: "HoverActive",

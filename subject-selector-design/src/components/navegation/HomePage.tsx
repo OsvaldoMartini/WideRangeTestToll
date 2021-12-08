@@ -7,28 +7,28 @@ import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
 import { ICardMainData } from "../../@interfaces/CardMainData.d";
 import { ButtonSearch } from "../buttons/ButtonSearch";
 
-type HomePageCompVariant = "Inactive" | "HoverActive";
+type HomePageVariant = "Inactive" | "HoverActive";
 
-export interface HomePageCompProps {
+export interface HomePageProps {
   children?: string | React.ReactElement;
   className?: string;
-  variant: HomePageCompVariant;
+  variant: HomePageVariant;
   disabled?: boolean;
 }
 
-export const HomePageComp: FC<HomePageCompProps> = ({
+export const HomePage: FC<HomePageProps> = ({
   children,
   className,
   variant = "Inactive",
   disabled,
-  ...homePageCompProps
+  ...homePageProps
 }) => {
   const spacerD10 = [176, 1204];
   const spacerWidths = [64, 154, 8];
 
   const drawSpacerD10 = (idx: number) => {
     return (
-      <div {...homePageCompProps} className="box-set">
+      <div {...homePageProps} className="box-set">
         <figure
           className={"box-D10 D10-pos"}
           style={{ left: `${spacerD10[idx]}px` }}

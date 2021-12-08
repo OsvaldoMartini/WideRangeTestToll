@@ -53,7 +53,7 @@ export const CardMain: FC<CardMainProps> = ({
       <div
         onMouseEnter={() => setIsShown("1")}
         onMouseLeave={() => setIsShown(".3")}
-        className={classNames("bg ", {
+        className={classNames("", {
           [classNames(CardMainVariantClassName.default)]: !disabled,
         })}
       >

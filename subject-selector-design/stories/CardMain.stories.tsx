@@ -16,13 +16,6 @@ const meta: Meta = {
 
 export default meta;
 
-// interface Props {
-//   darkMode: boolean;
-//   cardMainTitle: string;
-//   open: boolean;
-//   toggleOpen: () => void;
-// }
-
 const StoryCardMain: Story<CardMainProps> = (args) => {
   const cardMainIndex = cardsData.findIndex(
     (cardMain) => cardMain.title === args.title,
