@@ -73,6 +73,7 @@
     "classnames": "^2.3.1",
     "i": "^0.3.7",
     "install-custom-font": "^1.1.1",
+    "react-draggable": "^4.4.4",
     "rollup-plugin-postcss": "^4.0.2"
   }
 }

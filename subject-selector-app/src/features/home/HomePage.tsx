@@ -97,10 +97,8 @@ const HomePage: React.FC = () => {
         cardsData.map((card: ICardMainData, index: number) => {
           if (index === 0) {
             sum += spacerD10[index] + spacerWidths[0];
-            console.log(sum, "initial");
           } else {
             sum += spacerWidths[2];
-            console.log(sum, "Blocks");
           }
           return (
             <>
@@ -120,7 +118,7 @@ const HomePage: React.FC = () => {
         <ChooseCriteriaTittle open={true} toggleOpen={() => {}} />
       </div>
       <div className="main-place-holder-position">
-        <AnimationPlaceHolder open={true} toggleOpen={() => {}} />
+        <AnimationPlaceHolder />
       </div>
       <div className="button-search-position">
         <ButtonSearch variant={"primary"} />

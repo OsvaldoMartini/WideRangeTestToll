@@ -27,7 +27,7 @@ const StoryAnimationPlaceHolder: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <AnimationPlaceHolder open={open} toggleOpen={handleToggle} />
+      <AnimationPlaceHolder  />
     </StoryLayout>
   );
 };

@@ -16,8 +16,11 @@ export * from "./components/placeholders/AnimationPlaceHolder";
 export * from "./components/textinput/TextInput3DigActiveError";
 export * from "./components/textinput/TextInput3DigActive";
 
+export * from "./components/draggable/Draggable";
+
 export * from "./components/slider/SliderAnimated";
-// export * from "./components/slider/CircleProgBar";
+export * from "./components/slider/SliderProgress";
+export * from "./components/slider/CircleCanvas";
 export * from "./components/options//OptionSelector";
 export * from "./components/options/OvalOption";
 export * from  "./components/options/optionsBtnGroup";

@@ -16,7 +16,6 @@ const OptionSelectorVariantClasses: Record<
   "Focus": {
     default: "eclipse-yellow-black",
   },
-  
 };
 
 export interface OptionSelectorProps {

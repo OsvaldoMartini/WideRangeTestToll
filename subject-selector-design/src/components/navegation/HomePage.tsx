@@ -139,7 +139,7 @@ export const HomePage: FC<HomePageProps> = ({
         <ChooseCriteriaTittle open={true} toggleOpen={() => {}} />
       </div>
       <div className="main-place-holder-position">
-        <AnimationPlaceHolder open={true} toggleOpen={() => {}} />
+        <AnimationPlaceHolder />
       </div>
       <div className="button-search-position">
         <ButtonSearch variant={"primary"} />

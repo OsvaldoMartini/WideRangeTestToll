@@ -1,21 +1,30 @@
-import React, { FC } from "react";
-import { Typography } from "../typography/Typography";
+import React , {FC} from 'react';
+import Lottie from 'react-lottie';
+
+/* tslint:disable-next-line:max-line-length */
+import animationData from "./Lines.json";
 
 export interface AnimationPlaceHolderProps {
-  open: boolean;
-  toggleOpen: () => void;
+  error?: boolean;
+  disabled?: boolean;
 }
 
-export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = () => (
-  <div className="main-place-holder">
-    <Typography
-      variant="h6"
-      customWeight="medium"
-      className="Animation-Place-Hold"
-    >
-      Animation
-      <br />
-      Place Holder
-    </Typography>
-  </div>
-);
+
+export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = ({}) => {
+ 
+ const  stStopped = false;
+ 
+  return (
+    <div className="main-pa-place-holder">
+      <Lottie 
+        options={{
+          animationData,
+          autoplay:true
+        }}
+        width={220}
+        height={220}
+        style={{margin: '0 0 0'}}
+        isStopped={stStopped} />
+    </div>
+  );
+};

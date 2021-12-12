@@ -558,7 +558,7 @@ hr.divider-line {
 .button-search-position {
   position: absolute;
   top: 858px;
-  left: 544px;
+  left: 524px;
 }
 
 .button-search-text {
@@ -779,6 +779,15 @@ hr.divider-line {
   padding-right: 30px;
 }
 
+.circle {
+  width: 50px;
+  height: 50px;
+  left: 300px;
+  background: #005eb8;
+  border-radius: 50%;
+  position: absolute;
+}
+
 .eclipse-black {
   width: 40px;
   height: 40px;
@@ -817,10 +826,4 @@ hr.divider-line {
   line-height: 1.5;
   letter-spacing: normal;
   color: #212b32;
-}
-
-.Line-fill {
-  width: 271px;
-  height: 2px;
-  border: solid 4px var(--blueCore005Eb8);
 }
