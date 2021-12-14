@@ -774,20 +774,6 @@ hr.divider-line {
   color: var(--black231F20);
 }
 
-.CircleProgress-position {
-  width: 150px;
-  padding-right: 30px;
-}
-
-.circle {
-  width: 50px;
-  height: 50px;
-  left: 300px;
-  background: #005eb8;
-  border-radius: 50%;
-  position: absolute;
-}
-
 .eclipse-black {
   width: 40px;
   height: 40px;

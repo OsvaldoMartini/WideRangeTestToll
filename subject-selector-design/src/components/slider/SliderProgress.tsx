@@ -1,5 +1,4 @@
 import React, {FC, useRef, useEffect, useState} from "react";
-import "../../components/styles/slider-animated.css";
 
 export const SliderProgress: FC<{}> = props => {
     const canvasRef = useRef <HTMLCanvasElement |null>(null);
@@ -96,18 +95,24 @@ export const SliderProgress: FC<{}> = props => {
 
 
             ctx!.clearRect(0, 0, canvas.width, canvas.height)
-            if (valueRange >= 90 ) {
-            var angle = Math.abs(valueRange - 90)  / 10;
-           // setCanvasLeft(canvasLeft + angle) ;// = canvasRef.current.clientLeft + angle;
-           ctx!.beginPath();
-           ctx!.fillStyle = '#005eb8';
-           ctx!.arc(canvas.width/2, canvas.height/2, Math.floor(canvas.width/4), Math.PI, Math.PI + angle, false);
-           //ctx!.arc(centerX, centerY, radius, angleStart, angleEnd);
-           // ctx!.strokeStyle = gradient;
-           ctx!.fill();
-           ctx!.lineWidth = 5;
-           ctx!.strokeStyle = gradient
-           ctx!.lineCap = 'round';
+           
+            var rad = valueRange * (Math.PI / 180)
+            console.log("ValueRange: " , valueRange - 200);
+            // move the context so its center be at 0,0
+            ctx!.setTransform(1, 0, 0, 1, canvas.width / 2, canvas.height / 2)
+            // rotate it so we face the required angle
+            ctx!.rotate(rad)
+            var stepAngle = (Math.PI * 2) / 24,
+              innerRad = canvas.width / 2.8,
+              outerRad = canvas.width / 2.5
+            
+            ctx!.beginPath()
+            for (var i = 0; i < valueRange - 200 ; i++) {
+             // ctx!.globalAlpha = valueRange - 200;  
+              ctx!.moveTo(0, innerRad) // move vertically
+              ctx!.lineTo(0, outerRad) // draw line vertically
+              ctx!.rotate(stepAngle) // rotate by fixed increment
+            }
             
             //Draw arc
             // ctx!.beginPath();
@@ -126,7 +131,7 @@ export const SliderProgress: FC<{}> = props => {
         
                 ctx!.stroke() // all drawn, we can stroke
                 ctx!.setTransform(1, 0, 0, 1, 0, 0) // reset context's position
-            }    
+              
              drawMove;
         }
     },[drawMove])

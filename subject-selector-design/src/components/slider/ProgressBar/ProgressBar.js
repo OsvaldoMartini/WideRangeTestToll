@@ -28,7 +28,7 @@ const ProgressBar = props => {
 
     return (
         <>
-            <svg
+                        <svg
                 className="svg"
                 width={size}
                 height={size}
