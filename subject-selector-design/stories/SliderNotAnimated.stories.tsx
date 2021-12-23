@@ -1,13 +1,13 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import {SliderAnimated} from "../src";
+import {SliderNotAnimated} from "../src";
 
 
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "BCSS-Design/Sliders/SliderAnimated",
-  component: SliderAnimated,
+  title: "BCSS-Design/Sliders/SliderNotAnimated",
+  component: SliderNotAnimated,
   parameters: {
     controls: { expanded: true },
   },
@@ -27,7 +27,7 @@ const StoryDraggableCompGroup: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args}>
-        <SliderAnimated/>
+        <SliderNotAnimated/>
     </StoryLayout>
   );
 };

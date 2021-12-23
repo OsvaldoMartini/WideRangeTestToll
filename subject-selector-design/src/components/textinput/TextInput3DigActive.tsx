@@ -1,38 +1,51 @@
-import React, { FC } from "react";
+import React, { FC, ChangeEvent, KeyboardEvent } from "react";
 import classNames from "classnames";
 
 export interface TextInput3DigActiveProps {
+  id: string;
   type: "text";
-  value: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: number;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   error?: boolean;
   disabled?: boolean;
+  autocomplete?:string;
 }
 
 export const TextInput3DigActive: FC<TextInput3DigActiveProps> = ({
+  id,
   type,
   value,
-  handleChange,
+  onChange,
+  onKeyDown,
   placeholder,
-  error,
-  disabled,
+  disabled=false,
+  autocomplete="off"
 }) => {
-  return (
+
+ return (
     <>
-      <div className={""}>
+      <div className={classNames("", {
+            "ElementsText-input3-DigitActive": !disabled,
+            "bg-gray-50 dark:bg-gray-700": disabled,
+          })} >
         <input
+          id={id}
           type={type}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
+          pattern="\d"
+          disabled={disabled}
           className={classNames("", {
-            "ElementsText-input3-DigitActive border-gray-300 dark:border-gray-500 focus:ring-4 focus:border-primary-300 dark:focus:border-gray-100 focus:ring-primary-100 dark:focus:ring-gray-100 dark:focus:ring-opacity-20": !error,
-            "ElementsText-input3-DigitActive bg-white dark:bg-gray-800": !disabled,
+            "ElementsText-input3-text": !disabled,
             "bg-gray-50 dark:bg-gray-700": disabled,
           })}
-          disabled={disabled}
+          autoComplete={autocomplete}
+
         />
       </div>
     </>

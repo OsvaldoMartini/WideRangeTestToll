@@ -1,12 +1,8 @@
 import React, {FC, useState} from "react";
 import "./slider-animated.css";
-import Lottie from 'react-lottie';
-
-/* tslint:disable-next-line:max-line-length */
-import animationData from "../../lotties/SliderErrorEllipse_12px.json";
 
 
- export const SliderAnimated: FC<{}> = (props) => {
+ export const SliderNotAnimated: FC<{}> = (props) => {
     const dragItem = document.querySelector('#item-draggable')
     const [active, setActive] = useState(false)
     const [currentX, setCurrentX] = useState(0)
@@ -42,7 +38,7 @@ import animationData from "../../lotties/SliderErrorEllipse_12px.json";
       }
 
       function drag(e:any) {
-           e.preventDefault();
+        e.preventDefault();
  
         if (active) {
             if (e.clientX - initialX <= 142) {
@@ -70,18 +66,10 @@ import animationData from "../../lotties/SliderErrorEllipse_12px.json";
     return ( 
         <div {...props}>
           <div id="item-draggable" style={{left:currentX}} className="circular-progress" onMouseDown={e => {dragStart(e)}}  onMouseUp={e=> {dragEnd(e)}} onMouseMove={e => {drag(e)}}>
-          <Lottie 
-                  options={{
-                    animationData,
-                    autoplay:true
-                  }}
-                  width={36}
-                  height={36}
-                  style={{margin: '0 0 0'}}
-                  isStopped={false} />
+            <div className={"circular-progress-circle-gr1"}>                         
+            </div>
           </div>
         </div>
     );
-    
 }
 

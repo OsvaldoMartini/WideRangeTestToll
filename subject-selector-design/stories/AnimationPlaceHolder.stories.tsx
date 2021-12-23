@@ -40,5 +40,5 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["open", "toggleOpen", "darkMode"] },
+  controls: { exclude: ["open", "toggleOpen", "darkMode", "error", "disabled"] },
 };

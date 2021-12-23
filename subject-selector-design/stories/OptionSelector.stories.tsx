@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
 import { options1, OptionSelector, OptionSelectorProps } from "../src";
+import { optionSelecData } from "../src/data";
 
 const meta: Meta = {
   title: "BCSS-Design/Options/OptionSelector",
@@ -15,14 +16,24 @@ const meta: Meta = {
 export default meta;
 
 const StoryOptionSelector: Story<OptionSelectorProps> = (args) => {
-  const [activeItem1, setActiveItem1] = React.useState<string>(
+  const [activeItem1, setActiveItem1] = useState<string>(
     options1[0].value,
   );
 
+  const optSelecIndex = optionSelecData.findIndex(
+    (optionSelec) => optionSelec.title === args.title,
+  );
+  const optionSelector = {
+    ...optionSelecData[optSelecIndex],
+  };
 
   return (
     <StoryLayout {...args}>
-          <OptionSelector variant={args.variant} checked={args.checked} focus={false}/>
+          <OptionSelector 
+            title={args.title}
+            variant={args.variant} 
+            checked={args.checked} focus={false}
+          />
     </StoryLayout>
   );
 };
@@ -36,7 +47,9 @@ export const FocusUnchecked = StoryOptionSelector.bind({});
 export const FocusChecked = StoryOptionSelector.bind({});
 
 Default.args = {
+  title:optionSelecData[0].title,
   variant: "Default",
+  children: "Between two given ages"
 };
 
 Default.parameters = {
@@ -54,6 +67,7 @@ Default.parameters = {
 };
 
 DefaultChecked.args = {
+  title:optionSelecData[0].title,
   variant: "Default",
   checked:true,
 };
@@ -73,6 +87,7 @@ DefaultChecked.parameters = {
 };
 
 FocusUnchecked.args = {
+  title:optionSelecData[0].title,
   variant: "Focus",
 };
 
@@ -92,6 +107,7 @@ FocusUnchecked.parameters = {
 
 
 FocusChecked.args = {
+  title:optionSelecData[0].title,
   variant: "Focus",
   checked: true,
 };

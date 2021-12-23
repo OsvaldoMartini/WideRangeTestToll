@@ -1,4 +1,4 @@
-import React from "react";
+import React , {ChangeEvent, KeyboardEvent} from "react";
 import { Meta, Story } from "@storybook/react";
 import { TextInput3DigActive, TextInput3DigActiveProps } from "../src";
 import StoryLayout from "./StoryLayout";
@@ -17,10 +17,10 @@ interface Props extends TextInput3DigActiveProps {
   darkMode: boolean;
 }
 
-const StoryTextInput3DigActive: Story<Props> = (args) => {
-  const [text1, setText1] = React.useState<string>(args.value);
+const StoryTextInput3DigActive: Story<TextInput3DigActiveProps> = (args) => {
+  const [text1, setText1] = React.useState<any>(args.value);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText1(e.target.value);
   };
 
@@ -30,11 +30,15 @@ const StoryTextInput3DigActive: Story<Props> = (args) => {
         <TextInput3DigActive
           type="text"
           value={text1}
-          handleChange={handleChange}
+
           placeholder="50"
           disabled={args.disabled}
           error={args.error}
-        />
+          id={args.id} onChange={function (event: ChangeEvent<HTMLInputElement>): void {
+            args.value;
+          } } onKeyDown={function (event: KeyboardEvent<HTMLInputElement>): void {
+            args.value
+          } }          />
       </div>
     </StoryLayout>
   );

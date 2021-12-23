@@ -6,6 +6,7 @@ import { ChooseCriteriaTittle } from "../labels/ChooseCriteriaTittle";
 import { AnimationPlaceHolder } from "../placeholders/AnimationPlaceHolder";
 import { ICardMainData } from "../../@interfaces/CardMainData.d";
 import { ButtonSearch } from "../buttons/ButtonSearch";
+import { cardsData } from "../../data";
 
 type HomePageVariant = "Inactive" | "HoverActive";
 
@@ -26,7 +27,7 @@ export const HomePage: FC<HomePageProps> = ({
   const spacerD10 = [176, 1204];
   const spacerWidths = [64, 154, 8];
 
-  const drawSpacerD10 = (idx: number) => {
+  const drawSpacerDs = (idx: number) => {
     return (
       <div {...homePageProps} className="box-set">
         <figure
@@ -54,54 +55,6 @@ export const HomePage: FC<HomePageProps> = ({
 
   var sum = 0;
 
-  const cardMain0: ICardMainData = {
-    id: 0,
-    title: "Demographic",
-    subtitle: "Demo",
-    badge: "Exclusive deal",
-  };
-
-  const cardMain1: ICardMainData = {
-    id: 1,
-    title: "Episode",
-    subtitle: "Epi",
-    badge: "",
-  };
-
-  const cardMain2: ICardMainData = {
-    id: 2,
-    title: "Screening",
-    subtitle: "Scre",
-    badge: "",
-  };
-
-  const cardMain3: ICardMainData = {
-    id: 3,
-    title: "Diagnostic",
-    subtitle: "Diag",
-    badge: "",
-  };
-  const cardMain4: ICardMainData = {
-    id: 4,
-    title: "Kit Status",
-    subtitle: "Kit",
-    badge: "",
-  };
-  const cardMain5: ICardMainData = {
-    id: 5,
-    title: "Surveillance",
-    subtitle: "Scre",
-    badge: "",
-  };
-
-  const cardsData: ICardMainData[] = [
-    cardMain0,
-    cardMain1,
-    cardMain2,
-    cardMain3,
-    cardMain4,
-    cardMain5,
-  ];
 
   return (
     <div className="Desktop-HD-1440-Landing-Page">
@@ -109,7 +62,7 @@ export const HomePage: FC<HomePageProps> = ({
       <hr className="divider-line" />
       <SubHeader open={true} toggleOpen={() => {}} />
       <div className="Desktop-Bar-Space" />
-      {drawSpacerD10(0)}
+      {drawSpacerDs(0)}
       {cardsData &&
         cardsData.map((card: ICardMainData, index: number) => {
           if (index === 0) {
@@ -124,7 +77,7 @@ export const HomePage: FC<HomePageProps> = ({
               <div>
                 <CardMain
                   addClassNames={`box-${index} `}
-                  addLeftPos={`${sum}px`}
+                  addTopPos={`${sum}px`}
                   key={card.id}
                   title={card.title}
                   variant={variant}
@@ -134,7 +87,7 @@ export const HomePage: FC<HomePageProps> = ({
             </>
           );
         })}
-      {drawSpacerD10(1)}
+      {drawSpacerDs (1)}
       <div className="choose-criteria-label-position">
         <ChooseCriteriaTittle open={true} toggleOpen={() => {}} />
       </div>

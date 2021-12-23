@@ -1,13 +1,12 @@
-import React from "react";
+import React , {ChangeEvent} from "react";
 import { Meta, Story } from "@storybook/react";
-import {SliderAnimated} from "../src";
-
+import { MultiRangeSlider, MultiRangeSliderProps } from "../src";
 
 import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
-  title: "BCSS-Design/Sliders/SliderAnimated",
-  component: SliderAnimated,
+  title: "BCSS-Design/Sliders/MultiSliderRoller",
+  component: MultiRangeSlider,
   parameters: {
     controls: { expanded: true },
   },
@@ -19,15 +18,17 @@ interface Props  {
   darkMode: boolean;
 }
 
-const StoryDraggableCompGroup: Story<Props> = (args) => {
-  // const [activeItem1, setActiveItem1] = React.useState<string>(
-  //   options1[0].value,
-  // );
 
+
+const StoryDraggableCompGroup: Story<MultiRangeSliderProps> = (args) => {
 
   return (
     <StoryLayout {...args}>
-        <SliderAnimated/>
+         <MultiRangeSlider
+        min={0}
+        max={120}
+        variant={"Active"} 
+        />
     </StoryLayout>
   );
 };
@@ -39,5 +40,5 @@ Default.args = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["active", "setActive", "options", "darkMode"] },
+  controls: { exclude: ["darkMode", "min" ,"max", ] },
 };

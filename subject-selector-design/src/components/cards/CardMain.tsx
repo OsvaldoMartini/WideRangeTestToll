@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import {} from "react";
 import { Typography } from "../typography/Typography";
 import classNames from "classnames";
 
@@ -27,6 +26,7 @@ export interface CardMainProps {
   title?: string;
   addClassNames?: string;
   addLeftPos?: string;
+  addTopPos?: string;
   opacity?: number;
 }
 
@@ -38,6 +38,7 @@ export const CardMain: FC<CardMainProps> = ({
   title,
   addClassNames,
   addLeftPos,
+  addTopPos,
   opacity,
   ...cardMainProps
 }) => {
@@ -57,11 +58,11 @@ export const CardMain: FC<CardMainProps> = ({
           [classNames(CardMainVariantClassName.default)]: !disabled,
         })}
       >
-        <div style={{ position: "relative" }}>
+        <div className="card-main-typography-position">
           <Typography
             variant="md"
             customWeight="bold"
-            className={`Place-Holder `}
+            className={`place-holder-card-main `}
           >
             {title}
           </Typography>

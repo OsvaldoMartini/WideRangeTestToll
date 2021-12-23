@@ -1,6 +1,5 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import { Meta, Story } from "@storybook/react";
-import { FiAlertCircle, FiHelpCircle, FiMail } from "react-icons/fi";
 import {
   TextInput3DigActiveError,
   TextInput3DigActiveErrorProps,
@@ -17,14 +16,10 @@ const meta: Meta = {
 
 export default meta;
 
-interface Props extends TextInput3DigActiveErrorProps {
-  darkMode: boolean;
-}
+const StoryTextInput3DigActiveError: Story<TextInput3DigActiveErrorProps> = (args) => {
+  const [text1, setText1] = React.useState<any>(args.value);
 
-const StoryTextInput3DigActiveError: Story<Props> = (args) => {
-  const [text1, setText1] = React.useState<string>(args.value);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText1(e.target.value);
   };
 
@@ -34,11 +29,14 @@ const StoryTextInput3DigActiveError: Story<Props> = (args) => {
         <TextInput3DigActiveError
           type="text"
           value={text1}
-          handleChange={handleChange}
           placeholder="120"
           disabled={args.disabled}
-          error={args.error}
-        />
+          errorState={args.errorState}
+          id={args.id} onChange={function (event: ChangeEvent<HTMLInputElement>): void {
+            args.value
+          } } onKeyDown={function (event: KeyboardEvent<HTMLInputElement>): void {
+            args.value;
+          } }        />
       </div>
     </StoryLayout>
   );
@@ -47,8 +45,8 @@ const StoryTextInput3DigActiveError: Story<Props> = (args) => {
 export const Default = StoryTextInput3DigActiveError.bind({});
 
 Default.args = {
+  errorState: false,
   disabled: false,
-  error: false,
   value: "",
 };
 

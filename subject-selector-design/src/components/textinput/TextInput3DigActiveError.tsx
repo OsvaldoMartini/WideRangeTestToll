@@ -1,42 +1,49 @@
-import React, { FC } from "react";
+import React, { FC, KeyboardEvent, ChangeEvent } from "react";
 import classNames from "classnames";
 
 export interface TextInput3DigActiveErrorProps {
+  id: string;
   type: "text";
-  value: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: number;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   label?: string;
-  placeholder: string;
-  error?: boolean;
+  placeholder?: string;
+  errorState: boolean;
   disabled?: boolean;
+  autocomplete?: string;
 }
 
 export const TextInput3DigActiveError: FC<TextInput3DigActiveErrorProps> = ({
+  id,
   type,
   value,
-  handleChange,
+  onChange,
+  onKeyDown,
   placeholder,
-  error,
+  errorState,
   disabled,
+  autocomplete="off"
 }) => {
   return (
     <>
-      <div className={""}>
+          <div className={classNames("", {
+            "ElementsText-input3-DigitActive" : !errorState,
+            "Rectangle_error": errorState,
+             "bg-gray-50 dark:bg-gray-700": disabled,
+          })} > 
         <input
+          id={id}
           type={type}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
-          className={classNames("", {
-            "Rectangle_error ElementsText-input3-DigitActive": error,
-            "ElementsText-input3-DigitActive": !error,
-            // "rounded-lg": !error,
-            "ElementsText-input3-DigitActive border-gray-300 dark:border-gray-500 focus:ring-4 focus:border-primary-300 dark:focus:border-gray-100 focus:ring-primary-100 dark:focus:ring-gray-100 dark:focus:ring-opacity-20": !error,
-            // "ElementsText-input3-DigitActive-error border-error-300 focus:ring-4 focus:border-error-300 focus:ring-error-100": error,
-            "ElementsText-input3-DigitActive bg-white dark:bg-gray-800": !disabled,
-            "bg-gray-50 dark:bg-gray-700": disabled,
+          className={classNames("ElementsText-input3-text", {
+            "": !errorState,
           })}
           disabled={disabled}
+          autoComplete={autocomplete}
         />
       </div>
     </>

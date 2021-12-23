@@ -412,7 +412,7 @@
   background-color: var(--blueCoreTint20C7Daec);
 }
 
-.Place-Holder {
+.place-holder-card-main {
   position: absolute;
   width: 122px;
   height: 32px;
@@ -428,12 +428,6 @@
   letter-spacing: normal;
   text-align: center;
   color: var(--black231F20);
-}
-
-.plus-postion {
-  position: absolute;
-  top: 64px;
-  left: 55px;
 }
 
 .Animation-Place-Hold {
@@ -489,17 +483,17 @@ hr.divider-line {
 .header-bar-logo {
   position: absolute;
   top: 21px;
-  left: 240px;
+  left: 2rem;
 }
 
 .header-bar-title {
   position: absolute;
   top: 25px;
-  left: 588px;
+  left: 9.125rem;
   width: 265px;
   height: 32px;
   /* margin: 4px 0 4px 250px; */
-  font-family: FrutigerLTStd;
+  font-family: FrutigerLTW01;
   font-size: 24px;
   font-weight: 300;
   font-stretch: normal;
@@ -507,6 +501,15 @@ hr.divider-line {
   line-height: 1.33;
   letter-spacing: normal;
   color: var(--whiteCoreFfffff);
+}
+
+.line-copy-4 {
+  position: absolute;
+  width: 25rem;
+  left: 0px;
+  height: 0.063rem;
+  /* margin: 0.75rem 0 1.188rem 3.5rem; */
+  border: solid 1px var(--greyPaleE8Edee);
 }
 
 .subject-criteria-label {
@@ -601,6 +604,16 @@ hr.divider-line {
   padding: 26px 15.6px 24px 16px;
 }
 
+.card-main-typography-position {
+  position: relative;
+}
+
+.plus-postion {
+  position: absolute;
+  top: 64px;
+  left: 55px;
+}
+
 .box-set,
 .box {
   border-radius: 6px;
@@ -634,6 +647,13 @@ hr.divider-line {
   background-color: #e8edee;
 }
 
+.box-D1 {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+  background-color: #e8edee;
+}
+
 .D10-pos {
   position: absolute;
   top: 222px;
@@ -642,6 +662,11 @@ hr.divider-line {
 .D2-pos {
   position: absolute;
   top: 248.8px;
+}
+
+.D1-pos {
+  position: absolute;
+  left: 22px;
 }
 
 .box-0 {
@@ -724,11 +749,13 @@ hr.divider-line {
 .Rectangle_error {
   width: 48px;
   height: 32px;
-  padding: 2px 7px 2px 8px;
+  padding: 0.25rem 0.5rem;
   border-style: hidden;
+  border-radius: 4px;
   box-shadow: 0 0 0 2px var(--highlightWarmYellowFfb81C),
     inset 0 0 0 2px var(--highlightEmergencyServiceRedDa291C);
   background-color: var(--whiteCoreFfffff);
+  outline: none;
 }
 
 .Rectangle {
@@ -761,31 +788,30 @@ hr.divider-line {
 }
 
 .ElementsText-input3-DigitActive {
-  width: 52px;
-  height: 36px;
+  width: 3rem;
+  height: 2rem;
+  border: solid 2px #425563;
+  background-color: #ffffff;
+  color: var(--black231F20);
+  border-radius: 4px;
+  /* text-align: center; */
+  padding: 0.125rem 0.325rem;
+}
+
+.ElementsText-input3-text {
+  width: 2rem;
+  height: 0.75rem;
   font-family: FrutigerLTStd-Roman;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.56;
   letter-spacing: normal;
   text-align: center;
-  color: var(--black231F20);
-}
-
-.CircleProgress-position {
-  width: 150px;
-  padding-right: 30px;
-}
-
-.circle {
-  width: 50px;
-  height: 50px;
-  left: 300px;
-  background: #005eb8;
-  border-radius: 50%;
-  position: absolute;
+  color: #231f20;
+  border: none;
+  outline: none;
 }
 
 .eclipse-black {
@@ -802,6 +828,59 @@ hr.divider-line {
   height: 20px;
   border-radius: 50%;
   background-color: var(--black231F20);
+}
+
+.select-criteria-place-holder {
+  width: 25rem;
+  height: auto;
+  background-color: var(--whiteCoreFfffff);
+}
+
+.option-component-position {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.option-selector-position {
+  position: absolute;
+  top: 0.688rem;
+  left: 1.188rem;
+}
+
+.option-label-position {
+  position: absolute;
+  left: 3.438rem;
+  top: 0.3rem;
+}
+
+.place-holder-option-label {
+  width: 20.125rem;
+  height: 32px;
+  margin: 0 0 6px;
+  font-family: FrutigerLTStd-Roman;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--black231F20);
+}
+
+.option-label {
+  width: 17.125rem;
+  height: 1.5rem;
+  /* margin: 0.5rem 0 0.5rem 0.75rem; */
+  font-family: FrutigerLTStd-Roman;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: var(--Black231F20);
 }
 
 .eclipse-yellow-black {
@@ -826,4 +905,21 @@ hr.divider-line {
   line-height: 1.5;
   letter-spacing: normal;
   color: #212b32;
+}
+
+.BG-body {
+  width: 25rem;
+  height: 31.25rem;
+  margin: 3.5rem 0 0;
+  padding: 0.5rem 0;
+  background-color: var(--whiteCoreFfffff);
+}
+
+.modal-first-selector {
+  width: 50rem;
+  height: 3rem;
+  /* margin: 3.25rem 5rem 0; */
+  /* padding: 0.5rem 41.5rem 0.5rem 1.375rem; */
+  border-radius: 4px;
+  background-color: var(--BlueCoreTint20C7Daec);
 }

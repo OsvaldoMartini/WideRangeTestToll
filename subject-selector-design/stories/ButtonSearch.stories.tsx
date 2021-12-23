@@ -41,6 +41,8 @@ Default.parameters = {
       "size",
       "className",
       "darkMode",
+      "disabled",
+      "variant",    
     ],
   },
 };

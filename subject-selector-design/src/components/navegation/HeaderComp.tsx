@@ -30,9 +30,9 @@ export const HeaderComp: FC<HeaderCompProps> = () => (
       <Typography
         variant="md"
         customWeight="regular"
-        className="header-bar-title text-white"
+        className="text-white header-bar-title"
       >
-        BCSS - Test Subject Finder
+        BCS - Test Subject Finder
       </Typography>
     </div>
   </div>
