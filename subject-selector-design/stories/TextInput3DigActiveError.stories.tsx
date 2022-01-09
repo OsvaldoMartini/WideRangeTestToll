@@ -33,10 +33,12 @@ const StoryTextInput3DigActiveError: Story<TextInput3DigActiveErrorProps> = (arg
           disabled={args.disabled}
           errorState={args.errorState}
           id={args.id} onChange={function (event: ChangeEvent<HTMLInputElement>): void {
-            args.value
+            args.value;
           } } onKeyDown={function (event: KeyboardEvent<HTMLInputElement>): void {
             args.value;
-          } }        />
+          } } 
+          variant={"Default"}
+          />
       </div>
     </StoryLayout>
   );

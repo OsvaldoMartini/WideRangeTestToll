@@ -2,11 +2,11 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
-import { AnimationPlaceHolder, AnimationPlaceHolderProps } from "../src";
+import { SubHeaderAgeCriteria, SubHeaderAgeCriteriaProps } from "../src";
 
 const meta: Meta = {
-  title: "BCSS-Design/Place Holders/AnimationPlaceHolder",
-  component: AnimationPlaceHolder,
+  title: "BCSS-Design/Navigation/SubHeaderAgeCriteria",
+  component: SubHeaderAgeCriteria,
   parameters: {
     controls: { expanded: true },
   },
@@ -14,11 +14,11 @@ const meta: Meta = {
 
 export default meta;
 
-interface Props extends AnimationPlaceHolderProps {
+interface Props extends SubHeaderAgeCriteriaProps {
   darkMode: boolean;
 }
 
-const StoryAnimationPlaceHolder: Story<Props> = (args) => {
+const StorySubHeaderAgeCriteria: Story<Props> = (args) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleToggle = () => {
@@ -27,18 +27,19 @@ const StoryAnimationPlaceHolder: Story<Props> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <AnimationPlaceHolder stopAnimation={false}  />
+      <SubHeaderAgeCriteria showErrorState={args.showErrorState} />
     </StoryLayout>
   );
 };
 
-export const Default = StoryAnimationPlaceHolder.bind({});
+export const Default = StorySubHeaderAgeCriteria.bind({});
 
 Default.args = {
   darkMode: false,
   open: false,
+  showErrorState: true,
 };
 
 Default.parameters = {
-  controls: { exclude: ["open", "toggleOpen", "darkMode", "error", "disabled"] },
+  controls: { exclude: ["darkMode", "open", "toggleOpen"] },
 };

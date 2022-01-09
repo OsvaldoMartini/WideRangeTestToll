@@ -16,6 +16,8 @@ type TypographyVariant =
   | "h2"
   | "h1";
 
+type TypographyFontVariant = "FrutigerLTStd" | "FrutigerLTStdRoman"
+
 type TypographyWeightOption = "regular" | "medium" | "semibold" | "bold";
 
 type TypographyWeightValue =
@@ -25,6 +27,7 @@ type TypographyWeightValue =
   | "font-bold";
 
 export interface TypographyProps {
+  font?: TypographyFontVariant;
   variant: TypographyVariant;
   customColor?: string;
   customWeight?: TypographyWeightOption;
@@ -46,6 +49,11 @@ const TypographyVariantClasses: Record<TypographyVariant, string> = {
   h1: "text-h1",
 };
 
+const TypographyFontVariantClasses: Record<TypographyFontVariant, string> = {
+  FrutigerLTStd: "FrutigerLTStd",
+  FrutigerLTStdRoman: "FrutigerLTStd-Roman",
+};
+
 const TypographyWeightClasses: Record<
   TypographyWeightOption,
   TypographyWeightValue
@@ -57,6 +65,7 @@ const TypographyWeightClasses: Record<
 };
 
 export const Typography: FC<TypographyProps> = ({
+  font = "FrutigerLTStd",
   variant = "md",
   customColor,
   customWeight = "regular",
@@ -65,6 +74,7 @@ export const Typography: FC<TypographyProps> = ({
 }) => {
   const TypographyVariantClassName = TypographyVariantClasses[variant];
   const TypographyWeightClassName = TypographyWeightClasses[customWeight];
+  const TypographyFontVariantClassName = TypographyFontVariantClasses[font];
 
   // h1-h6 should have corresponding component
   // others should be p
@@ -76,10 +86,11 @@ export const Typography: FC<TypographyProps> = ({
       className={classNames(
         TypographyVariantClassName,
         TypographyWeightClassName,
+        TypographyFontVariantClassName,
         className,
         {
-          ["tracking-tight"]: ["h1", "h2", "h3"].includes(variant),
-          ["text-black dark:text-white"]: !customColor,
+          // ["tracking-tight"]: ["h1", "h2", "h3"].includes(variant),
+          // ["text-black dark:text-white"]: !customColor,
         },
         customColor,
       )}

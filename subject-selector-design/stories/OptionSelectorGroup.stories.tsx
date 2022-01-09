@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import StoryLayout from "./StoryLayout";
 import { OptionSelectorGroup, OptionSelectorGroupProps } from "../src";
+import StoryLayout from "./StoryLayout";
 
 const meta: Meta = {
   title: "BCSS-Design/Options/OptionsSelectorGroup",
@@ -14,15 +14,14 @@ const meta: Meta = {
 export default meta;
 
 const StoryOptionSelectorGroup: Story<OptionSelectorGroupProps> = (args) => {
-  const [open, setOpen] = React.useState<boolean>(false);
-
-  const handleToggle = () => {
-    setOpen(!open);
-  };
-
   return (
     <StoryLayout {...args}>
-      <OptionSelectorGroup variant={args.variant} />
+      <OptionSelectorGroup
+        variant={args.variant}
+        checked={args.checked}
+        focus={args.focus}
+        showHeaderError={args.showHeaderError}
+      />
     </StoryLayout>
   );
 };
@@ -33,6 +32,7 @@ Default.args = {
   variant: "Default",
   darkMode: false,
   open: false,
+  showHeaderError: false,
 };
 
 Default.parameters = {
@@ -40,5 +40,15 @@ Default.parameters = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["darkMode", "open", "className", "disabled"] },
+  controls: {
+    exclude: [
+      "darkMode",
+      "open",
+      "className",
+      "disabled",
+      "variant",
+      "focus",
+      "checked",
+    ],
+  },
 };

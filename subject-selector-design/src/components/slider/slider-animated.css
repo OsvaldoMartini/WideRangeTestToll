@@ -108,14 +108,14 @@ body {
   height: 2px;
   margin:20px 0 17px;
   padding: 0 0 0 81px;
-  border:solid 4px var (--blueCoreTint20C7Daec);
+  border:solid 4px var(--BlueCoreTint20C7Daec);
 }
 
 .line-fill {
   width: 271px;
   height: 2px;
   z-index:-1;
-  border: solid 4px var (#005eb8);
+  border: solid 4px var(--BlueCore005Eb8);
 }
 
 .circular-progress-circle-gr1  {
@@ -123,7 +123,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-image: linear-gradient(to right , #005eb8, #005eb8);
+  background-image: linear-gradient(to right , var(--BlueCore005Eb8), var(--BlueCore005Eb8));
   overflow: hidden;
 }
 

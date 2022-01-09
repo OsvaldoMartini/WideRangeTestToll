@@ -1,4 +1,4 @@
-import React , {ChangeEvent} from "react";
+import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { MultiRangeSlider, MultiRangeSliderProps } from "../src";
 
@@ -18,14 +18,12 @@ interface Props  {
   darkMode: boolean;
 }
 
-
-
-const StoryDraggableCompGroup: Story<MultiRangeSliderProps> = (args) => {
+const StoryMultiRangeSliderGroup: Story<MultiRangeSliderProps> = (args) => {
 
   return (
     <StoryLayout {...args}>
          <MultiRangeSlider
-        min={0}
+        min={1}
         max={120}
         variant={"Active"} 
         />
@@ -33,7 +31,7 @@ const StoryDraggableCompGroup: Story<MultiRangeSliderProps> = (args) => {
   );
 };
 
-export const Default = StoryDraggableCompGroup.bind({});
+export const Default = StoryMultiRangeSliderGroup.bind({});
 
 Default.args = {
   darkMode: false,

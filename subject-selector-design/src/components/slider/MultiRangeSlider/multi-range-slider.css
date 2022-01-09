@@ -34,7 +34,7 @@
   background-color: #c7daec;
   width: 20rem;
   z-index: 1;
-  border: solid 4px var(--blueCoreTint20C7Daec);
+  border: solid 4px var(--BlueCoreTint20C7Daec);
   margin-left: 10px;
 }
 
@@ -42,7 +42,7 @@
   background-color: #005eb8;
   z-index: 2;
   height: 0.5rem;
-  borer: solid 4px var(--blueCore005Eb8);
+  borer: solid 4px var(--BlueCore005Eb8);
   left: 5px;
 }
 
@@ -75,7 +75,7 @@
   width: 352px;
   outline: none;
   top: 5.3rem;
-  opacity: 1;
+  opacity: 0;
 }
 
 .thumb--zindex-3 {
@@ -159,5 +159,5 @@
   width: 0.375rem;
   height: 0.063rem;
   /* margin: 1rem 0 0.938rem 0.375rem; */
-  border: solid 2px var(--black231F20);
+  border: solid 2px var(--Black231F20);
 }

@@ -5,17 +5,17 @@ import Lottie from 'react-lottie';
 import animationData from "./Lines.json";
 
 export interface AnimationPlaceHolderProps {
+  children?: string | React.ReactElement;
   error?: boolean;
+  stopAnimation: boolean;  
   disabled?: boolean;
 }
 
 
-export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = ({}) => {
+export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = ({stopAnimation}) => {
  
- const  stStopped = false;
- 
-  return (
-    <div className="main-pa-place-holder">
+   return (
+    <div className="main-place-holder">
       <Lottie 
         options={{
           animationData,
@@ -24,7 +24,7 @@ export const AnimationPlaceHolder: FC<AnimationPlaceHolderProps> = ({}) => {
         width={220}
         height={220}
         style={{margin: '0 0 0'}}
-        isStopped={stStopped} />
+        isStopped={stopAnimation} />
     </div>
   );
 };

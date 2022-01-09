@@ -1,5 +1,5 @@
 export interface IOptionSelectorData {
-    id?: number;
-    title?: string;
+    id: number;
+    title: string;
   }
      

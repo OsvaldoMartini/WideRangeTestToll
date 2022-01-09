@@ -15,19 +15,20 @@ const {
       installFont('./components/styles/custom_fonts/FrutigerLTW01-75Black.ttf'),
       installFont('./components/styles/custom_fonts/FrutigerLTW01-76BlackItalic.ttf'),
       installFont('./components/styles/custom_fonts/FrutigerLTW01-95UltraBlack.ttf'),
+      //installFontsFromDir('~/Downloads/ComicSansMT/')
     ])
     console.log(results[0]) // { result: "was_added", ... }
    
-    // [2] when font is already installed, the result will show that
-    await installFont('~/Downloads/FONT.ttf').then((result) => {
-      console.log(result) // { result: "already_added", ... }
-    })
+    // // [2] when font is already installed, the result will show that
+    // await installFont('~/Downloads/FONT.ttf').then((result) => {
+    //   console.log(result) // { result: "already_added", ... }
+    // })
    
-    // [3] on errors, the result will be an error and a message explaining
-    await installFont('~/Downloads/background.jpg').then((result) => {
-      console.log(result)
-      // { result: "error", error: "Can only install ttf, otf, woff and woff2 fonts", ... }
-    })
+    // // [3] on errors, the result will be an error and a message explaining
+    // await installFont('~/Downloads/background.jpg').then((result) => {
+    //   console.log(result)
+    //   // { result: "error", error: "Can only install ttf, otf, woff and woff2 fonts", ... }
+    // })
    
     // clear the font cache so a reboot is not needed
     await clearCache()
@@ -38,5 +39,5 @@ const {
    
     // Note: clearCache is automatically called after this function, unless `interactive: false`
     // is added as an option
-    await installFontsFromDir('~/Downloads/ComicSansMT/')
+    // await installFontsFromDir('~/Downloads/ComicSansMT/')
   })()

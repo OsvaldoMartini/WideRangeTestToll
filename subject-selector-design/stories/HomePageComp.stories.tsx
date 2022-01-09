@@ -22,7 +22,7 @@ const StoryHomePage: Story<HomePageProps> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <HomePage variant={args.variant} />
+      <HomePage variant={args.variant} title={args.title} />
     </StoryLayout>
   );
 };
@@ -31,6 +31,7 @@ export const Default = StoryHomePage.bind({});
 
 Default.args = {
   variant: "HoverActive",
+  title: "Search",
   darkMode: false,
   open: false,
 };
@@ -40,5 +41,7 @@ Default.parameters = {
 };
 
 Default.parameters = {
-  controls: { exclude: ["darkMode", "open", "className", "disabled"] },
+  controls: {
+    exclude: ["darkMode", "open", "className", "disabled", "title", "variant"],
+  },
 };

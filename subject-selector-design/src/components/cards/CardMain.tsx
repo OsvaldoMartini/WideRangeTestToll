@@ -2,9 +2,9 @@ import React, { FC, useState } from "react";
 import { Typography } from "../typography/Typography";
 import classNames from "classnames";
 
-type CardMainVariant = "Inactive" | "HoverActive";
+type CardMainVariant = "Inactive" | "HoverActive" | "SearchCriteria";
 
-type CardMainState = "default";
+type CardMainState = "default" | "typography";
 
 const CardMainVariantClasses: Record<
   CardMainVariant,
@@ -12,9 +12,15 @@ const CardMainVariantClasses: Record<
 > = {
   Inactive: {
     default: "bg",
+    typography: "card-main-text-typography",
   },
   HoverActive: {
     default: "bg",
+    typography: "card-main-text-typography",
+  },
+  SearchCriteria: {
+    default: "button-search-criteria",
+    typography: "button-criteria-text text-white",
   },
 };
 
@@ -27,7 +33,9 @@ export interface CardMainProps {
   addClassNames?: string;
   addLeftPos?: string;
   addTopPos?: string;
+  addWidth?: string;
   opacity?: number;
+  onClick?: (card: any) => void;
 }
 
 export const CardMain: FC<CardMainProps> = ({
@@ -39,6 +47,7 @@ export const CardMain: FC<CardMainProps> = ({
   addClassNames,
   addLeftPos,
   addTopPos,
+  addWidth,
   opacity,
   ...cardMainProps
 }) => {
@@ -49,7 +58,7 @@ export const CardMain: FC<CardMainProps> = ({
     <div
       {...cardMainProps}
       className={`${addClassNames}`}
-      style={{ left: `${addLeftPos}` }}
+      style={{ left: `${addLeftPos}`, width: `${addWidth}` }}
     >
       <div
         onMouseEnter={() => setIsShown("1")}
@@ -59,14 +68,20 @@ export const CardMain: FC<CardMainProps> = ({
         })}
       >
         <div className="card-main-typography-position">
-          <Typography
-            variant="md"
-            customWeight="bold"
-            className={`place-holder-card-main `}
+          <div
+            className={classNames("text-center align-center", className, {})}
           >
-            {title}
-          </Typography>
-          <div className="plus-postion">
+            <Typography
+              variant="md"
+              customWeight="regular"
+              className={classNames("", className, {
+                [classNames(CardMainVariantClassName.typography)]: !disabled,
+              })}
+            >
+              {title}
+            </Typography>
+          </div>
+          <div className="card-plus-home-page-position">
             <svg
               width="33"
               height="32"
@@ -76,7 +91,7 @@ export const CardMain: FC<CardMainProps> = ({
               <path
                 d="M16.66 8c.553 0 1.001.448 1.001 1v5.999l6.013.001a1.001 1.001 0 1 1 0 2H17.66v6a1.001 1.001 0 0 1-2.004 0v-6H9.645a1.001 1.001 0 1 1 0-2h6.012V9c0-.552.449-1 1.002-1z"
                 fill="#111"
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 opacity={variant === "Inactive" ? opacity : opactityEvent}
               />
             </svg>

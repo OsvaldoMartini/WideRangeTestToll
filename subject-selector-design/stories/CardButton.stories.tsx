@@ -1,12 +1,12 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import { CardMain, CardMainProps } from "../src";
 import StoryLayout from "./StoryLayout";
 import { cardsData } from "../src/data";
+import { CardButton, CardButtonProps } from "../src";
 
 const meta: Meta = {
-  title: "BCSS-Design/Cards/CardMain",
-  component: CardMain,
+  title: "BCSS-Design/Cards/CardButton",
+  component: CardButton,
   parameters: {
     controls: { expanded: true },
     zeplinLink:
@@ -16,7 +16,7 @@ const meta: Meta = {
 
 export default meta;
 
-const StoryCardMain: Story<CardMainProps> = (args) => {
+const StoryCardMain: Story<CardButtonProps> = (args) => {
   const cardMainIndex = cardsData.findIndex(
     (cardMain) => cardMain.title === args.title,
   );
@@ -27,27 +27,30 @@ const StoryCardMain: Story<CardMainProps> = (args) => {
 
   return (
     <StoryLayout {...args}>
-      <CardMain
-        title={cardMain.title}
+      <CardButton
+        title={args.title}
+        addClassNames={args.addClassNames}
+        addWidth={args.addWidth}
+        addPlusPos={args.addPlusPos}
         variant={args.variant}
-        className={args.className}
       />
     </StoryLayout>
   );
 };
 
-export const Default = StoryCardMain.bind({});
+export const SearchCriteria = StoryCardMain.bind({});
 
-export const HoverActive = StoryCardMain.bind({});
+export const HoverCriteria = StoryCardMain.bind({});
 
-Default.args = {
+SearchCriteria.args = {
   title: cardsData[0].title,
-  variant: "Inactive",
-  className: "bg",
+  variant: "SearchCriteria",
+  className: "button-search-criteria",
+  addClassNames: "box-btn-criteria",
   opacity: 1,
 };
 
-Default.parameters = {
+SearchCriteria.parameters = {
   controls: {
     expanded: ["true"],
     exclude: [
@@ -58,6 +61,7 @@ Default.parameters = {
       "addClassNames",
       "addLeftPos",
       "addTopPos",
+      "addPlusPos",
       "addWidth",
       "onClick",
       "variant",
@@ -67,14 +71,17 @@ Default.parameters = {
     "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
 };
 
-HoverActive.args = {
+HoverCriteria.args = {
   title: cardsData[0].title,
-  variant: "HoverActive",
-  className: "bg",
+  width: "150",
+  plusPos: "75",
+  variant: "HoverCriteria",
+  className: "hover-plus-criteria-button",
+  addClassNames: "box-btn-criteria",
   opacity: 1,
 };
 
-HoverActive.parameters = {
+HoverCriteria.parameters = {
   controls: {
     expanded: ["true"],
     exclude: [
@@ -85,6 +92,7 @@ HoverActive.parameters = {
       "addClassNames",
       "addLeftPos",
       "addTopPos",
+      "addPlusPos",
       "addWidth",
       "onClick",
       "variant",

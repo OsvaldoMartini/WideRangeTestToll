@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryLayout from "./StoryLayout";
-import { options1, OptionSelector, OptionSelectorProps } from "../src";
-import { optionSelecData } from "../src/data";
+import {  optionSelecData, OptionSelector, OptionSelectorProps } from "../src";
 
 const meta: Meta = {
   title: "BCSS-Design/Options/OptionSelector",
@@ -16,10 +15,6 @@ const meta: Meta = {
 export default meta;
 
 const StoryOptionSelector: Story<OptionSelectorProps> = (args) => {
-  const [activeItem1, setActiveItem1] = useState<string>(
-    options1[0].value,
-  );
-
   const optSelecIndex = optionSelecData.findIndex(
     (optionSelec) => optionSelec.title === args.title,
   );
@@ -30,9 +25,10 @@ const StoryOptionSelector: Story<OptionSelectorProps> = (args) => {
   return (
     <StoryLayout {...args}>
           <OptionSelector 
-            title={args.title}
+            id={args.id}
+            title={optionSelector.title}
             variant={args.variant} 
-            checked={args.checked} focus={false}
+            checked={args.checked} 
           />
     </StoryLayout>
   );

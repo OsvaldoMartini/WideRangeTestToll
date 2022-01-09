@@ -2,10 +2,11 @@ import React, {FC, useState } from "react";
 import classNames from "classnames";
 import { OvalOption } from "./OvalOption";
 import { Typography } from "../..";
+import "./option-selector.css";
 
 type OptionSelectorVariant = "Default" | "Focus";
 
-type OptionSelectorState = "default";
+type OptionSelectorState = "default" | "position" | "labelPosition" | "typographyText"
 
 const OptionSelectorVariantClasses: Record<
   OptionSelectorVariant,
@@ -13,81 +14,86 @@ const OptionSelectorVariantClasses: Record<
 > = {
   "Default": {
     default: "eclipse-black",
+    position: "option-selector-position",
+    labelPosition: "option-label-position", 
+    typographyText: "option-typography-text"
   },
   "Focus": {
     default: "eclipse-yellow-black",
-  },
-  
+    position: "option-selector-position",
+    labelPosition: "option-label-position",
+    typographyText: "option-typography-text" 
+  }, 
 };
 
 export interface OptionSelectorProps {
-    children?: string | React.ReactElement;
+    id:number;
     title?:string;
     className?: string;
     variant: OptionSelectorVariant;
     checked: boolean;
     disabled?: boolean;
-    focus:boolean;
     addClassNames?: string;
-    addTopPos?: string;
+    addTopPos?: number;
+    addHeight?: number;
+    parentCallback?: (id: any) => void;
   }
 
  export const OptionSelector: FC<OptionSelectorProps> = ({
-        children,
+        id,      
         title,
-        className,
-        variant = "Focus",
-        checked = false,
+        variant = "Default",
+        checked,
         disabled,
-        addClassNames,
         addTopPos,
-        focus,
-        ...optionSelectorProps
+        addHeight,
+        parentCallback
       }) => {
         const [OptionSelectorVariantClassName, setVariant] = useState(OptionSelectorVariantClasses[variant]);
-        const [showOval, setShowOval] = useState(false);
-        const boxMouseOverHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-          const box_div: HTMLDivElement = event.currentTarget; // eslnt-disable-line
-          setVariant(OptionSelectorVariantClasses["Focus"]);
+        
+        const boxMouseOverHandler = () => {
+         setVariant(OptionSelectorVariantClasses["Focus"]);
         };
     
-        const boxMouseOutHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-          // eslint-disable-next-line
-          const box_div: HTMLDivElement = event.currentTarget;
+        const boxMouseOutHandler = () => {
           setVariant(OptionSelectorVariantClasses["Default"]);
         };
 
-        
-        const boxMouseClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-          // eslint-disable-next-line
-          const box_div: HTMLDivElement = event.currentTarget;
-          setShowOval(!showOval)
-          checked = true;
-        };
 
+        console.log(variant);
     return (
-        <div {...optionSelectorProps} 
-        className={`option-selector-position `}
-        style={{ top: `${addTopPos}` }}
+        <div 
+        className={classNames("", {
+          [classNames(OptionSelectorVariantClassName.position)]: !disabled, 
+        })}
+        style={{ height: `${addHeight}px` }}
+        key={`${id}`}
+        data-uniqueid={addTopPos}
+        onClick={() => {parentCallback!(id)}}
         >
         <div className={classNames("", {
                 [classNames(OptionSelectorVariantClassName.default)]: !disabled, 
               })}
               onMouseOver={boxMouseOverHandler}
               onMouseOut={boxMouseOutHandler}
-              onClick={boxMouseClickHandler}
+              data-uniqueid={`option-${addTopPos}`}
             >
-             {checked || showOval && (<OvalOption/>)}
+             {checked && (<OvalOption key={`oval-${addTopPos}`}/>)}
           </div>
-          <div className="option-label-position"
+          <div 
+          className={classNames("", {
+            [classNames(OptionSelectorVariantClassName.labelPosition)]: !disabled, 
+          })}
            onMouseOver={boxMouseOverHandler}
            onMouseOut={boxMouseOutHandler}
-           onClick={boxMouseClickHandler}
+          data-uniqueid={`label-${addTopPos}`}
           >
           <Typography
             variant="md"
-            className={`place-holder-option-label `}
-          >
+            className={classNames("", {
+              [classNames(OptionSelectorVariantClassName.typographyText)]: !disabled, 
+            })}
+            >
             {title}
           </Typography>
           </div>
@@ -95,3 +101,5 @@ export interface OptionSelectorProps {
         </div>
     )
 }
+
+

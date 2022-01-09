@@ -20,10 +20,6 @@ interface Props  {
 }
 
 const StoryDraggableCompGroup: Story<Props> = (args) => {
-  // const [activeItem1, setActiveItem1] = React.useState<string>(
-  //   options1[0].value,
-  // );
-
 
   return (
     <StoryLayout {...args}>
