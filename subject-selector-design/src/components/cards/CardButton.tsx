@@ -6,7 +6,8 @@ type CardButtonVariant =
   | "Inactive"
   | "HoverActive"
   | "SearchCriteria"
-  | "HoverCriteria";
+  | "HoverCriteria"
+  | "HoverCriteriaClicked";
 
 type CardButtonState =
   | "default"
@@ -42,6 +43,12 @@ const CardButtonVariantClasses: Record<
     typoPosition: "card-main-typography-position",
     svgPosition: "card-plus-criteria-position",
   },
+  HoverCriteriaClicked: {
+    default: "hover-plus-criteria-clicked",
+    typography: "hover-plus-criteria-clicked-text",
+    typoPosition: "card-main-typography-position",
+    svgPosition: "hidden",
+  }
 };
 
 export interface CardButtonProps {
@@ -56,7 +63,10 @@ export interface CardButtonProps {
   addWidth?: string;
   addPlusPos?: string;
   opacity?: number;
+  hoverClicked:boolean;
+  buttCriteria?: any;
   onClick?: (card: any) => void;
+  parentClickCallback?: (clicked: any) => void;
 }
 
 export const CardButton: FC<CardButtonProps> = ({
@@ -71,20 +81,28 @@ export const CardButton: FC<CardButtonProps> = ({
   addWidth,
   addPlusPos,
   opacity,
+  hoverClicked = false, 
+  buttCriteria,
+  parentClickCallback,
   ...CardButtonProps
 }) => {
   const [hoverButton, setHoverButton] = useState(false);
   const [opactityEvent, setIsShown] = useState("0");
 
-  const CardButtonVariantClassName = hoverButton
-    ? CardButtonVariantClasses["HoverCriteria"]
-    : CardButtonVariantClasses[variant];
+   const [buttonClicked, setButtonClicked] = useState(false);
+  
+  const CardButtonVariantClassName = buttonClicked  ? CardButtonVariantClasses["HoverCriteriaClicked"] : !buttonClicked && hoverButton ? CardButtonVariantClasses["HoverCriteria"]  : CardButtonVariantClasses[variant];
+   
 
   return (
     <div
       {...CardButtonProps}
       className={`${addClassNames}`}
       style={{ left: `${addLeftPos}`, width: `${addWidth}` }}
+       onClick={() => {
+         console.log(hoverClicked);
+         setButtonClicked(!buttonClicked && hoverClicked) ;
+         parentClickCallback!(buttCriteria); }}
     >
       <div
         onMouseEnter={() => {

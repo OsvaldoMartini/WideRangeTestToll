@@ -4,6 +4,7 @@ interface ICriteriaButtons {
   filterName?: string;
   width: number;
   action?: string;
+  hoverClicked?:boolean;
 }
 
 export interface ICardMainData {

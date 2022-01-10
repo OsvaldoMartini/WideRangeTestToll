@@ -11,6 +11,7 @@ const cardMain0: ICardMainData = {
       width: 110,
       action: "Default",
       filterName: "NHS Number",
+      hoverClicked: true
     },
     {
       id: 2,
@@ -18,6 +19,7 @@ const cardMain0: ICardMainData = {
       width: 44,
       action: "AgeCriteriaVar",
       filterName: "Subject Age",
+      hoverClicked: false
     },
     {
       id: 3,
@@ -25,6 +27,7 @@ const cardMain0: ICardMainData = {
       width: 44,
       action: "Default",
       filterName: "Hub Name",
+      hoverClicked: false
     },
     {
       id: 4,
@@ -32,6 +35,7 @@ const cardMain0: ICardMainData = {
       width: 140,
       action: "Default",
       filterName: "Centre Name",
+      hoverClicked: false
     },
     {
       id: 5,
@@ -39,6 +43,7 @@ const cardMain0: ICardMainData = {
       width: 125,
       action: "Default",
       filterName: "Nome GP",
+      hoverClicked: false
     },
   ],
 };

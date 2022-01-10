@@ -9,8 +9,8 @@ const meta: Meta = {
   component: CardButton,
   parameters: {
     controls: { expanded: true },
-    zeplinLink:
-      "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
+    
+      
   },
 };
 
@@ -32,8 +32,8 @@ const StoryCardMain: Story<CardButtonProps> = (args) => {
         addClassNames={args.addClassNames}
         addWidth={args.addWidth}
         addPlusPos={args.addPlusPos}
-        variant={args.variant}
-      />
+        variant={args.variant} 
+        hoverClicked={false}      />
     </StoryLayout>
   );
 };
@@ -41,6 +41,9 @@ const StoryCardMain: Story<CardButtonProps> = (args) => {
 export const SearchCriteria = StoryCardMain.bind({});
 
 export const HoverCriteria = StoryCardMain.bind({});
+
+export const HoverCriteriaClicked = StoryCardMain.bind({});
+
 
 SearchCriteria.args = {
   title: cardsData[0].title,
@@ -67,8 +70,8 @@ SearchCriteria.parameters = {
       "variant",
     ],
   },
-  zeplinLink:
-    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9593a",
+  
+    
 };
 
 HoverCriteria.args = {
@@ -98,6 +101,39 @@ HoverCriteria.parameters = {
       "variant",
     ],
   },
-  zeplinLink:
-    "zpl://components?stid=6166e46ef9e058b868df8688&coid=618166484bfc9d83bcb9???",
+  
+    
+};
+
+
+
+HoverCriteriaClicked.args = {
+  title: cardsData[0].title,
+  width: "150",
+  plusPos: "75",
+  variant: "HoverCriteriaClicked",
+  className: "hover-plus-criteria-button",
+  addClassNames: "box-btn-criteria",
+  opacity: 1,
+};
+
+HoverCriteriaClicked.parameters = {
+  controls: {
+    expanded: ["true"],
+    exclude: [
+      "title",
+      "className",
+      "opacity",
+      "disabled",
+      "addClassNames",
+      "addLeftPos",
+      "addTopPos",
+      "addPlusPos",
+      "addWidth",
+      "onClick",
+      "variant",
+    ],
+  },
+  
+    
 };

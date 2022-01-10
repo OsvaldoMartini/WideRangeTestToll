@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useCallback } from "react";
 import { CardMain } from "../cards/CardMain";
 import { HeaderComp } from "../navigation/HeaderComp";
 import { SubHeader } from "../navigation/SubHeader";
@@ -9,6 +9,7 @@ import { cardsData } from "../../data";
 import { ModalContainer } from "../modals/ModalContainer";
 import { ButtonComp } from "../buttons/ButtonComp";
 import { CardButton, OptionSelectorGroup, TextInput3DigActive } from "../..";
+
 
 type HomePageVariant = "Inactive" | "HoverActive";
 
@@ -36,6 +37,10 @@ export const HomePage: FC<HomePageProps> = ({
   const [inputTextactive, setInputTextActive] = useState(false);
   //const [filterAction, setFilterAction] = useState("");
   const [stopPlaceAnimation, setStopAnimation] = useState(false);
+
+  const [hoverInverted, setHoverInverted] = useState(false);
+  
+  //const [groupButtons, setGroupButtons] = useState([]);
 
   const [valueTextAge, setValueTextAge] = useState(333.333);
 
@@ -68,6 +73,54 @@ export const HomePage: FC<HomePageProps> = ({
     }
   };
 
+
+  const clickCallbackChecked = useCallback((butt: any) => {
+    console.log("Change clicked : ", butt);
+    
+    setFilterSelected(butt.filterName);
+    setHoverInverted(true);
+
+    // buttonsCriteria.map((button: any) => {
+    //   if (butt.id !== button.id){
+    //   button.hoverClicked = false;
+    //   } else{
+    //     button.hoverClicked = true;
+    //   }
+    // });
+    
+    console.log("BUTTONS ", butt);
+    
+    if (butt.action !== undefined && butt.action === "AgeCriteriaVar") {
+      setInputTextActive(false);
+      setSelectAgeCriteria(true);
+    } else {
+      setSelectAgeCriteria(false);
+      setInputTextActive(true);
+    }
+
+
+
+    
+    // setGroupOptions(
+    //   groupOption.map((opt, index) => {
+    //     if (opt.id === id) {
+    //       opt.checked = true;
+    //       setValueTextAge(1);
+    //       opt.addHeight =
+    //         index < groupOption.length - 1
+    //           ? spacerHights[1] + box_nested[1]
+    //           : box_nested[2];
+    //     } else {
+    //       opt.checked = false;
+    //       opt.addHeight = spacerHights[1];
+    //       setValueTextAge(1);
+    //     }
+
+    //     return opt;
+    //   }),
+    // );
+  }, []);
+
   // const callbackOnHide = useCallback((value:boolean) => {
   //   console.log('Change Checked : ' , value );
   //  if (modalFilterActive){
@@ -92,11 +145,20 @@ export const HomePage: FC<HomePageProps> = ({
   //   }
   //     },[]);
 
-  const subjectSelected = (butt: any) => {
+  const subjectSelected = (butt: any, buttonsCriteria:any) => {
     //setFilterAction(butt.action);
     setFilterSelected(butt.filterName);
 
-    console.log("action ", butt.action);
+    // buttonsCriteria.map((button: any) => {
+    //   if (butt.id !== button.id){
+    //   button.hoverClicked = false;
+    //   } else{
+    //     button.hoverClicked = true;
+    //   }
+    // });
+    
+    console.log("BUTTONS ", buttonsCriteria);
+    
     if (butt.action !== undefined && butt.action === "AgeCriteriaVar") {
       setInputTextActive(false);
       setSelectAgeCriteria(true);
@@ -104,6 +166,8 @@ export const HomePage: FC<HomePageProps> = ({
       setSelectAgeCriteria(false);
       setInputTextActive(true);
     }
+
+    //setHoverClicked(true);
   };
 
   useEffect(() => {}, [stopPlaceAnimation]);
@@ -114,6 +178,13 @@ export const HomePage: FC<HomePageProps> = ({
   // }
 
   useEffect(() => {}, [modalCriteriaActive]);
+
+  const handleCardSelection =(card:any) => {
+    setStopAnimation(true);
+    setCardSelection(card);
+    setModalCriteriaActive(true);
+    
+  }
 
   // section Render Buttons Criteria from the Previous Selection
   const renderButtonsCriteria = (card: any) => {
@@ -127,27 +198,28 @@ export const HomePage: FC<HomePageProps> = ({
       let box_pos = sum + item.width;
       let left_pos = sum;
       sum += item.width + spacerWidths[1];
-      let plus_pos = Math.abs(item.width / 2) - 15;
-      console.log(
-        "leftPos: " +
-          left_pos +
-          "    boxPos  :  " +
-          box_pos +
-          " Prox " +
-          sum +
-          "  PlusPos " +
-          plus_pos,
-      );
+      // let plus_pos = Math.abs(item.width / 2) - 15;
+      // console.log(
+      //   "leftPos: " +
+      //     left_pos +
+      //     "    boxPos  :  " +
+      //     box_pos +
+      //     " Prox " +
+      //     sum +
+      //     "  PlusPos " +
+      //     plus_pos,
+      // );
       return {
         id: item.id,
         title: item.title,
         action: item.action,
         filterName: item.filterName,
-        width: item.width,
+        width: "auto",//item.width,
         pressed: false,
         addLeftPos: left_pos,
         spacerBoxPos: box_pos,
-        plusPos: plus_pos,
+        plusPos: "auto",//plus_pos,
+        hoverClicked: item.hoverClicked
       };
     });
 
@@ -196,16 +268,22 @@ export const HomePage: FC<HomePageProps> = ({
                       title={butt.title}
                       addClassNames={`box-btn-criteria`}
                       addLeftPos={`${butt.addLeftPos}px`}
-                      addWidth={`${butt.width}px`}
+                      addWidth={`${butt.width}`}
                       addPlusPos={butt.plusPos}
                       variant={"SearchCriteria"}
+                      buttCriteria={butt}
                       onClick={() => {
-                        subjectSelected(butt);
+                        subjectSelected(butt, buttonsCriteria);
+                       // setHoverClicked(!hoverClicked);
+
                         // onActionCallback!(butt.action);
                         // setCardSelection(card);
                         // setModalCriteriaActive(true);
-                      }}
-                    />
+                      } } 
+                      
+                      hoverClicked={true}
+                      parentClickCallback={clickCallbackChecked}
+                      />
                   </div>
                   {middleSpacers(
                     butt.spacerBoxPos,
@@ -291,9 +369,7 @@ export const HomePage: FC<HomePageProps> = ({
                     title={card.title}
                     variant={"HoverActive"}
                     onClick={() => {
-                      setStopAnimation(true);
-                      setCardSelection(card);
-                      setModalCriteriaActive(true);
+                      handleCardSelection(card);
                     }}
                   />
                 </div>
@@ -323,6 +399,7 @@ export const HomePage: FC<HomePageProps> = ({
               onHide={() => {
                 //callbackOnHide}
                 setModalCriteriaActive(false);
+                setSelectAgeCriteria(false);
                 setStopAnimation(false);
                 setInputTextActive(false);
               }}

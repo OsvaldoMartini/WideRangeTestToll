@@ -602,8 +602,8 @@ div.first-modal-header {
 
 .button-cancel-criteria-position {
   position: absolute;
-  top: 1rem;
-  left: 31.5rem;
+  top: -6px;
+  left: 29.5rem;
 }
 
 .button-add-criterion-position {
@@ -614,14 +614,14 @@ div.first-modal-header {
 
 .button-age-cancel-position {
   position: absolute;
-  top: 1rem;
-  left: 14.375rem;
+  top: 0rem;
+  left: 13.375rem;
 }
 
 .button-age-okay-position {
   position: absolute;
-  top: 1rem;
-  left: 19.563rem;
+  top: 0rem;
+  left: 18.563rem;
 }
 
 .default-input-search-position {
@@ -720,6 +720,15 @@ div.first-modal-header {
   background-color: rgba(56, 72, 84, 0.5);
 }
 
+/* div {
+  display: table-cell;
+  width: 250px;
+  height: 200px;
+  padding: 10px;
+  border: 3px dashed #1c87c9;
+  vertical-align: middle;
+} */
+
 .button-search-criteria {
   height: 28px;
   /* padding: 21px 118px 16px 119px; */
@@ -743,13 +752,15 @@ div.first-modal-header {
 
 .button-criteria-text {
   /* width: 4.313rem; */
+  /* width: 5.25rem; */
   height: 1.75rem;
-  font-family: FrutigerLTStd;
+  padding: 0 0.5rem;
+  font-family: FrutigerLTStd-Roman;
   font-size: 0.875rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  /* line-height: normal; */
+  line-height: normal;
   letter-spacing: normal;
   color: var(--WhiteCoreFfffff);
 }
@@ -816,37 +827,66 @@ div.first-modal-header {
 
 .card-main-typography-position {
   position: relative;
-  top: 2px;
+  top: 5px;
 }
 
 .hover-plus-criteria-button {
   /* width: 8rem; */
   height: 1.75rem;
-  /* padding: 0 0.5rem; */
-  opacity: 0.5;
+  padding: 0 0.5rem;
   border-radius: 4px;
   border: solid 1px var(--BlueCore005Eb8);
   background-color: var(--BlueCoreTint20C7Daec);
+  z-index: 125;
 }
 
 .hover-plus-criteria-text {
-  /* width: 7rem; */
+  /* width: 5.25rem; */
   height: 1.75rem;
-  /* padding: 0.125rem 2.75rem; */
-  font-family: FrutigerLTStd;
+  /* padding: 0.125rem 1.875rem; */
+  font-family: FrutigerLTStd-Roman;
+  opacity: 0.5;
   font-size: 0.875rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: var(--BtnReverseTxt212B32);
+  color: var(--btn-reverse-txt-212-b-32);
+}
+
+.hover-plus-criteria-clicked {
+  /* width: 6.45rem; */
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  border: solid 1px var(--GreyMid768692);
+  background-color: var(--GreyPaleE8Edee);
+}
+
+.hover-plus-criteria-clicked-text {
+  /* width: 5.25rem; */
+  height: 1.75rem;
+  font-family: FrutigerLTStd-Roman;
+  font-size: 0.875rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--btn-reverse-txt-212-b-32);
 }
 
 .card-plus-criteria-position {
   position: absolute;
-  top: -2px;
-  left: 36px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-plus-criteria-position-styles {
+  z-index: 150;
+  opacity: 1;
 }
 
 .card-plus-home-page-position {
@@ -1206,51 +1246,6 @@ div.first-modal-header {
   height: 3rem;
   background-color: #c7daec;
 }
-
-.timedButton {
-  position: relative;
-
-  &::after {
-    content: "";
-
-    position: absolute;
-
-    width: calc(100% + 2px);
-
-    height: 100%;
-
-    border-bottom-right-radius: 0.25rem;
-
-    border-bottom-left-radius: 0.25rem;
-
-    right: -1px;
-
-    bottom: -1px;
-
-    animation-name: expandWithRadius;
-
-    animation-duration: 8s;
-
-    box-shadow: 0 4px 0 $cyan;
-  }
-
-  @keyframes expandWithRadius {
-    from {
-      width: 0%;
-
-      border-bottom-left-radius: 0rem;
-    }
-
-    to {
-      width: calc(100% + 2px);
-
-      /* FIXME currently either flat or causes top of radius to show */
-
-      border-bottom-left-radius: 0rem;
-    }
-  }
-}
-
 .svg-padding {
   padding-right: 0.375rem;
   display: initial;
@@ -1292,8 +1287,8 @@ div.first-modal-header {
 
 .select-age-criteria-selection-position {
   position: absolute;
-  left: 19.875rem;
-  top: 0.625rem;
+  left: 307px;
+  top: -12px;
 }
 
 .select-age-criteria-selection {
