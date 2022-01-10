@@ -53,6 +53,7 @@ export interface ModalContainerProps {
   addClassNames?: string;
   show: boolean;
   onHide?: (id: any) => void;
+  onOkay?: () => void;
   onActionCallback?: (action: any) => void;
   disabled: boolean;
 }
@@ -62,6 +63,7 @@ export const ModalContainer: FC<ModalContainerProps> = ({
   title,
   card,
   onHide,
+  onOkay,
   variant = "Default",
   disabled,
 }) => {
@@ -135,7 +137,12 @@ export const ModalContainer: FC<ModalContainerProps> = ({
             {variant === "Default" ? (
               <ButtonSecondary variant={"Disabled"} title={"Add criterion"} />
             ) : (
-              <ButtonComp title={"Okay"} variant={"ButtonOkayAge"} />
+              <ButtonComp   
+              onClick={() => {
+                onOkay!();
+              }}
+              
+              title={"Okay"} variant={"ButtonOkayAge"} />
             )}
           </div>
         </div>

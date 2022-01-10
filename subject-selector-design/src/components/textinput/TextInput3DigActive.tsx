@@ -21,7 +21,7 @@ const TextInput3DigActiveVariantClasses: Record<
 };
 
 export interface TextInput3DigActiveProps {
-  id: string;
+  id?: number;
   type: "text";
   value?: number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -35,7 +35,6 @@ export interface TextInput3DigActiveProps {
 }
 
 export const TextInput3DigActive: FC<TextInput3DigActiveProps> = ({
-  id,
   type,
   value,
   onChange,
@@ -76,7 +75,6 @@ export const TextInput3DigActive: FC<TextInput3DigActiveProps> = ({
         onClick={boxOnClickHandler}
       >
         <input
-          id={id}
           type={type}
           value={value}
           onChange={onChange}

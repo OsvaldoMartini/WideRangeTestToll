@@ -7,7 +7,8 @@ type CardButtonVariant =
   | "HoverActive"
   | "SearchCriteria"
   | "HoverCriteria"
-  | "HoverCriteriaClicked";
+  | "HoverCriteriaClicked"
+  | "CardWithFilter";
 
 type CardButtonState =
   | "default"
@@ -47,6 +48,12 @@ const CardButtonVariantClasses: Record<
     default: "hover-plus-criteria-clicked",
     typography: "hover-plus-criteria-clicked-text",
     typoPosition: "card-main-typography-position",
+    svgPosition: "hidden",
+  },
+  CardWithFilter: {
+    default: "card-with-age-filter",
+    typography: "card-with-filter-title",
+    typoPosition: "card-with-filter-title-position",
     svgPosition: "hidden",
   }
 };
@@ -106,12 +113,17 @@ export const CardButton: FC<CardButtonProps> = ({
     >
       <div
         onMouseEnter={() => {
-          setIsShown("1");
-          setHoverButton(true);
-        }}
+          if (variant !== "CardWithFilter"){
+            setIsShown("1");
+            setHoverButton(true);
+          }
+         }}
         onMouseLeave={() => {
-          setIsShown("0");
-          setHoverButton(false);
+          if (variant !== "CardWithFilter"){
+            setIsShown("0");
+            setHoverButton(false);
+  
+          }
         }}
         className={classNames("", {
           [classNames(CardButtonVariantClassName.default)]: !disabled,

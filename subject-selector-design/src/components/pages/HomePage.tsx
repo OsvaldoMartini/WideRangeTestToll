@@ -38,11 +38,31 @@ export const HomePage: FC<HomePageProps> = ({
   //const [filterAction, setFilterAction] = useState("");
   const [stopPlaceAnimation, setStopAnimation] = useState(false);
 
-  const [hoverInverted, setHoverInverted] = useState(false);
+  const [minAge, setMinAge] = useState(0);
+  const [maxAge, setMaxAge] = useState(50);
+
+  //const [hoverInverted, setHoverInverted] = useState(false);
   
+  const [showLabelValues, setShowLabelValues] = useState(false);
   //const [groupButtons, setGroupButtons] = useState([]);
 
   const [valueTextAge, setValueTextAge] = useState(333.333);
+
+  const setLabelValues =() => {
+    const minAge = localStorage.getItem("Between-min");
+    const maxAge = localStorage.getItem("Between-max");
+    console.log(minAge, maxAge);
+    setMinAge(Number(minAge));
+    setMaxAge(Number(maxAge));
+
+    if (minAge === "" || maxAge === ""){
+      setShowLabelValues(false);
+    }else{
+      setShowLabelValues(true);
+
+    }
+
+  }
 
   const spacerD10 = [176, 1204];
   const spacerWidths = [64, 154, 8];
@@ -78,7 +98,7 @@ export const HomePage: FC<HomePageProps> = ({
     console.log("Change clicked : ", butt);
     
     setFilterSelected(butt.filterName);
-    setHoverInverted(true);
+   // setHoverInverted(true);
 
     // buttonsCriteria.map((button: any) => {
     //   if (butt.id !== button.id){
@@ -300,18 +320,32 @@ export const HomePage: FC<HomePageProps> = ({
             <div className="label-criteria-selected-position">
               <div className="label-criteria-selected">{filterSelected}</div>
             </div>
-            <div className="select-age-criteria-selection-position">
-              <ButtonComp
-                title={"Select Age Criteria"}
-                variant={"ButtonSelectAgeCriteria"}
-                onClick={() => {
-                  setModalFilterAgeCriteria(true);
-                  // onActionCallback!(butt.action);
-                  // setCardSelection(card);
-                  // setModalCriteriaActive(true);
-                }}
-              />
-            </div>
+            {showLabelValues && (
+                <div>
+                  <div className="label-age-title-position">
+                  <div className="label-age-title">Between two given age</div>
+                </div>
+                <div className="label-age-values-position">
+                  <div className="label-age-values">{minAge}-{maxAge}</div>
+                </div>
+              </div>
+                
+              )}  
+            {!showLabelValues && (
+                <div className="select-age-criteria-selection-position">
+                    <ButtonComp
+                      title={"Select Age Criteria"}
+                      variant={"ButtonSelectAgeCriteria"}
+                      onClick={() => {
+                        setModalFilterAgeCriteria(true);
+                        // onActionCallback!(butt.action);
+                        // setCardSelection(card);
+                        // setModalCriteriaActive(true);
+                      }}
+                    />
+                </div>
+            )}
+
           </div>
         )}
         {inputTextactive && (
@@ -321,7 +355,6 @@ export const HomePage: FC<HomePageProps> = ({
             </div>
             <div className="nhs-number-input-position">
               <TextInput3DigActive
-                id={""}
                 type={"text"}
                 value={valueTextAge}
                 onChange={function (
@@ -398,6 +431,7 @@ export const HomePage: FC<HomePageProps> = ({
               show={modalCriteriaActive}
               onHide={() => {
                 //callbackOnHide}
+                setShowLabelValues(false);
                 setModalCriteriaActive(false);
                 setSelectAgeCriteria(false);
                 setStopAnimation(false);
@@ -425,6 +459,7 @@ export const HomePage: FC<HomePageProps> = ({
                 filterSelected !== "Default" ? "AgeCriteriaVar" : "Default"
               }
               disabled={false}
+              onOkay={()=> setLabelValues()}
               //</div>variant={"Default"}
             >
               <div>

@@ -44,6 +44,8 @@ export const HoverCriteria = StoryCardMain.bind({});
 
 export const HoverCriteriaClicked = StoryCardMain.bind({});
 
+export const CardWithFilter = StoryCardMain.bind({});
+
 
 SearchCriteria.args = {
   title: cardsData[0].title,
@@ -118,6 +120,36 @@ HoverCriteriaClicked.args = {
 };
 
 HoverCriteriaClicked.parameters = {
+  controls: {
+    expanded: ["true"],
+    exclude: [
+      "title",
+      "className",
+      "opacity",
+      "disabled",
+      "addClassNames",
+      "addLeftPos",
+      "addTopPos",
+      "addPlusPos",
+      "addWidth",
+      "onClick",
+      "variant",
+    ],
+  },
+};
+
+
+CardWithFilter.args = {
+  title: cardsData[0].title,
+  width: "150",
+  plusPos: "75",
+  variant: "CardWithFilter",
+  className: "card-with-age-filter",
+  addClassNames: "box-btn-criteria",
+  opacity: 1,
+};
+
+CardWithFilter.parameters = {
   controls: {
     expanded: ["true"],
     exclude: [

@@ -60,7 +60,7 @@ export interface OptionSelectorProps {
         };
 
 
-        console.log(variant);
+        //console.log(variant);
     return (
         <div 
         className={classNames("", {

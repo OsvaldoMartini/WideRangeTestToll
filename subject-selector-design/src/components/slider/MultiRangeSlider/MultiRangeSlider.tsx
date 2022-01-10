@@ -110,6 +110,9 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         setValueTextLeft(minVal!);
       }
     }
+
+    localStorage.setItem("Between-min", JSON.stringify(minVal));
+    localStorage.setItem("Between-max", JSON.stringify(maxVal));
   }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
@@ -144,6 +147,8 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         }
       }
     }
+    localStorage.setItem("Between-min", JSON.stringify(minVal));
+    localStorage.setItem("Between-max", JSON.stringify(maxVal));
   }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
@@ -221,7 +226,6 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         <div>
           <div className="position-left-text">
             <TextInput3DigActive
-              id={"textLeft"}
               type={"text"}
               value={valueTextLeft!}
               placeholder={"0"}

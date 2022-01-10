@@ -119,6 +119,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
         setValueTextAge(1);
       }
     }
+    localStorage.setItem("textAge", JSON.stringify(valueTextAge));
   };
 
   return (
@@ -153,7 +154,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
                     }}
                   >
                     <TextInput3DigActive
-                      id={""}
+                      key={optSelec.id}
                       type={"text"}
                       value={valueTextAge}
                       onChange={function (
