@@ -10,12 +10,12 @@ RUN npm ci --production
 
 COPY . .
 
-RUN npm run build-storybook
+RUN npm run build
 
 # NGNIX Web Server
 FROM nginx:1.14.0-alpine as prod
 
-COPY --from=build /code/storybook-static /usr/share/nginx/html
+COPY --from=build /code/build /usr/share/nginx/html
 
 EXPOSE 80
 
