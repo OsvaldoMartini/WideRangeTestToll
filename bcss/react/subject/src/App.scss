@@ -1,0 +1,79 @@
+
+$theme-colors: (
+  "primary":#005eb8
+);
+
+$card-bg:transparent;
+
+$footer-height : 3rem;
+
+$breadcrumb-divider : url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>');/**/
+
+@import "~bootstrap/scss/bootstrap";
+
+.nhs-logo-background {
+  fill:#005eb8;
+}
+
+.nhs-logo-text {
+  fill:#fff;
+}
+
+.navbar .nhs-logo-background {
+  fill:#fff;  
+}
+
+.navbar .nhs-logo-text {
+  fill:#005eb8;
+}
+.form-floating .form-control:read-only {
+  background-color: transparent;
+  border-style:none;
+}
+
+.form-floating label {
+  opacity: .65;
+}
+
+body {
+  background-color: #d8dde0;
+}
+
+header {
+
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  //Style divider here
+}
+
+main {
+  background-color: #f0f4f5;
+//  padding-bottom: $footer-height; (if using sticky)
+padding-bottom: 1rem;
+}
+
+.container > h1 {
+  margin-left: 1rem;
+}
+
+html {
+  
+}
+
+footer {
+//  height: $footer-height;
+  background-color: #d8dde0;
+  border-top: 4px solid #005eb8;
+  margin-bottom:auto;
+}
+
+.svg-rotate {
+  animation: spin 4s infinite linear;
+  transform-origin: 50% 50%;
+}
+
+@keyframes spin {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}

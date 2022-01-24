@@ -1,0 +1,1 @@
+Hello welcome to the react folder - this is where we build react single page applications and also maintain the bcss component library

@@ -1,0 +1,30 @@
+$cyan: #60daaa;
+
+.timedButton {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: calc(100% + 2px);
+		height: 100%;
+		border-bottom-right-radius: 0.25rem;
+		border-bottom-left-radius: 0.25rem;
+		right: -1px;
+		bottom:-1px;
+		animation-name: expandWithRadius;
+		animation-duration: 8s;
+		box-shadow: 0 4px 0 $cyan;
+	}
+
+	@keyframes expandWithRadius {
+		from { 
+			width: 0%;
+			border-bottom-left-radius: 0rem;}
+		to {
+			width: calc(100% + 2px);
+			//FIXME currently either flat or causes top of radius to show
+			border-bottom-left-radius: 0rem;
+		}
+	  }
+}
