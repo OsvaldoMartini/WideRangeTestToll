@@ -75,7 +75,10 @@
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.4.7",
     "@types/luxon": "^2.0.7",
+    "@types/react-lottie": "1.2.6",
     "copyfiles": "^2.4.1",
+    "react-lottie": "^1.2.3",
+    "react-unhook": "^0.4.1",
     "rimraf": "^3.0.2"
   }
 }

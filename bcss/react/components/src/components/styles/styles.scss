@@ -1,0 +1,1545 @@
+$BlueCore005Eb8: #005eb8;
+$WhiteCoreFfffff: #fff;
+$BlueDark003087: #003087;
+$BlueBright0072Ce: #0072ce;
+$BlueLight41B6E6: #41b6e6;
+$BlueAqua00A9Ce: #00a9ce;
+$Black231F20: #231f20;
+$GreyDark425563: #425563;
+$GreyMid768692: #768692;
+$GreyPaleE8Edee: #e8edee;
+$GreenDark006747: #006747;
+$GreenCore009639: #009639;
+$GreenLight78Be20: #78be20;
+$GreenAqua00A499: #00a499;
+$HighlightPurple330072: #330072;
+$HighlightDarkPink7C2855: #7c2855;
+$HighlightPinkAe2573: #ae2573;
+$HighlightDarkRed8A1538: #8a1538;
+$HighlightEmergencyServiceRedDa291C: #da291c;
+$HighlightOrangeEd8B00: #ed8b00;
+$HighlightWarmYellowFfb81C: #ffb81c;
+$HighlightYellowFae100: #fae100;
+$HighlightEuroAmbulanceYellowF1Dd38: #f1dd38;
+$SpacersBgBgShow: #ff00d3;
+$BlueCoreTint80327Dc5: #327dc5;
+$BlueCoreTint60649Cd2: #649cd2;
+$BlueCoreTint4095Bbdf: #95bbdf;
+$BlueCoreTint20C7Daec: #c7daec;
+$GreenAquaTint8052Ccc4: #52ccc4;
+$GreenAquaTint607Cd8D1: #7cd8d1;
+$GreenAquaTint40A5E2Df: #a5e2df;
+$GreenAquaTint20Cfeeeb: #cfeeeb;
+$HighlightDarkPinkTint80955276: #955276;
+$HighlightDarkPinkTint60Ae7C97: #ae7c97;
+$HighlightDarkPinkTint20E0Cfd8: #e0cfd8;
+$HighlightWarmYellowTint80Fec548: #fec548;
+$HighlightWarmYellowTint60Fdd275: #fdd275;
+$HighlightWarmYellowTint40Fbdfa0: #fbdfa0;
+$HighlightWarmYellowTint20Faeccd: #faeccd;
+$HighlightEmergencyServiceRedTint80E05348: #e05348;
+$HighlightEmergencyServiceRedTint60E77D75: #e77d75;
+$HighlightEmergencyServiceRedTint40Eca5A0: #eca5a0;
+$HighlightEmergencyServiceRedTint20F3Cfcd: #f3cfcd;
+$HighlightPurpleTint805B328D: #5b328d;
+$HighlightPurpleTint608364A8: #8364a8;
+$HighlightPurpleTint40A995C3: #a995c3;
+$HighlightPurpleTint20D1C7De: #d1c7de;
+$NhsGrey5F0F4F5: #f0f4f5;
+$BtnPriDefaultShadow003317: #003317;
+$BtnPriDefaultFill007F3B: #007f3b;
+$BtnSecDisabledShadow8E9397: #8e9397;
+$BtnPriDefaultHoverFill00662F: #00662f;
+$BtnSecDisabledFill9Ba3A9: #a0aab1;
+$BtnPriDisabledFill7Fbf9D: #7fbf9d;
+$BtnSecDefaultHover384854: #384854;
+$BtnPriDisabledShadow7C9688: #7c9688;
+$BtnReverseTxt212B32: #212b32;
+$BtnRevActiveFillF2F2F2: #f2f2f2;
+$BtnRevDisabledFillB9C5Be: #b9c5be;
+
+//$frutiger-font-path: "./custom_fonts";
+
+//@import url('https://fonts.googleapis.com/css?family=Overpass')
+
+@import url("./fonts/fonts.css?family=FrutigerLightItalic");
+
+$FrutigerLight: "FrutigerLight";
+.selector {
+  font-family: $FrutigerLight;
+}
+
+$FrutigerLightItalic: "FrutigerLightItalic";
+.selector {
+  font-family: $FrutigerLightItalic;
+}
+
+$FrutigerLTStdRoman: "FrutigerLTStd-Roman";
+.selector {
+  font-family: $FrutigerLTStdRoman;
+}
+
+$FrutigerItalic: "FrutigerItalic";
+.selector {
+  font-family: $FrutigerItalic;
+}
+$FrutigerBold: "FrutigerBold";
+.selector {
+  font-family: $FrutigerBold;
+}
+$FrutigerBoldItalic: "FrutigerBoldItalic";
+.selector {
+  font-family: $FrutigerBoldItalic;
+}
+$FrutigerLTStd: "FrutigerLTStd";
+.selector {
+  font-family: $FrutigerLTStd;
+}
+$FrutigerBlackItalic: "FrutigerBlackItalic";
+.selector {
+  font-family: $FrutigerBlackItalic;
+}
+$FrutigerUltraBlack: "FrutigerUltraBlack";
+.selector {
+  font-family: $FrutigerUltraBlack;
+}
+$FrutigerLTW01: "FrutigerLTW01";
+.selector {
+  font-family: $FrutigerLTW01;
+}
+
+.FrutigerLTStd {
+  font-family: $FrutigerLTStd;
+  font-weight: normal;
+  font-style: normal;
+}
+.FrutigerLTStd-Roman {
+  font-family: $FrutigerLTStdRoman;
+  font-weight: normal;
+  font-style: normal;
+}
+.DesktopH1 {
+  font-family: $FrutigerLTStd;
+  font-size: 48px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileH1 {
+  font-family: $FrutigerLTStd;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopH2 {
+  font-family: $FrutigerLTStd;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileH2 {
+  font-family: $FrutigerLTStd;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopH3 {
+  font-family: $FrutigerLTStd;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopLead-paragraph {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopH4 {
+  font-family: $FrutigerLTStd;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileH3 {
+  font-family: $FrutigerLTStd;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileLead-paragraph {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopParagraph {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopNumbered-list {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopLink---Align-right {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: right;
+  color: $BlueCore005Eb8;
+}
+.DesktopLink---Align-left {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $BlueCore005Eb8;
+}
+.DesktopBullet-list {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileH4 {
+  font-family: $FrutigerLTStd;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopH5 {
+  font-family: $FrutigerLTStd;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopInput-Field {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopHint-text-Style-Desktop {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: rgba(66, 85, 99, 0.8);
+}
+.MobileH5 {
+  font-family: $FrutigerLTStd;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileParagraph {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileNumbered-list {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileLink {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: $BlueCore005Eb8;
+}
+.MobileHint-text-Style-Mobile {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #465968;
+}
+.MobileBullet-list {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopSmall-text {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.MobileSmall-text {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.DesktopTag-Text {
+  font-family: $FrutigerLTStdRoman;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #212b32;
+}
+.main-place-holder {
+  width: 220px;
+  height: 220px;
+}
+.main-place-holder-position {
+  position: absolute;
+  top: 540px;
+  left: 580px;
+}
+.bg {
+  width: 154px;
+  height: 120px;
+  border-radius: 4px;
+  background-color: $BlueCoreTint20C7Daec;
+}
+.card-main-text-typography {
+  position: absolute;
+  width: 122px;
+  height: 32px;
+  margin: 0 0 6px;
+  top: 26px;
+  left: 16px;
+  font-family: $FrutigerLTStd;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: center;
+  color: $Black231F20;
+}
+.Animation-Place-Hold {
+  width: 138px;
+  height: 74px;
+  font-family: Helvetica;
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $Black231F20;
+}
+.header-bar-box {
+  position: inherit;
+  width: 1440px;
+  height: 82px;
+  background-color: $BlueCore005Eb8;
+}
+div.padding-top-reset {
+  padding-top: 0;
+}
+div.padding-bottom-reset {
+  padding-bottom: 0;
+}
+// Rounded border
+hr.divider-line {
+  position: absolute;
+  width: 1440px;
+  height: 1px;
+  border-top: 1px solid #bbb;
+  border-radius: 5px;
+  top: 82px;
+  left: 0px;
+  z-index: 1;
+}
+div.modal-block {
+  display: block;
+}
+div.firstmodal-content {
+  margin-left: -16px;
+  margin-right: -16px;
+  height: 48px;
+  padding-bottom: 10.88px;
+  padding-top: 10.88px;
+}
+div.svg-padding > svg > g > text > tspan {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+div.first-modal-header {
+  max-width: 880px;
+  height: 48px;
+  border-radius: 4px;
+}
+.subheader-bar-box {
+  position: inherit;
+  width: 1440px;
+  height: 52px;
+  background-color: $BlueCore005Eb8;
+}
+.header-bar-logo {
+  position: absolute;
+  top: 21px;
+  left: 32px;
+}
+.header-bar-title {
+  position: absolute;
+  top: 30px;
+  left: 146px;
+  width: 216px;
+  margin: 11px 0 10px 16px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $WhiteCoreFfffff;
+}
+.button-cancel-criteria-position {
+  position: absolute;
+  top: 16px;
+  left: 512px;
+}
+.button-add-criterion-position {
+  position: absolute;
+  top: 16px;
+  left: 640px;
+}
+.button-age-cancel-position {
+  position: absolute;
+  top: 10px;
+  left: 240px;
+}
+.button-age-okay-position {
+  position: absolute;
+  top: 10px;
+  left: 318px;
+}
+.default-input-search-position {
+  position: absolute;
+  left: 309.008px;
+  top: 20px;
+}
+.button-cancel-criteria {
+  width: 116px;
+  height: 32px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: right;
+  color: $BlueCore005Eb8;
+  background-color: $BlueCoreTint20C7Daec;
+  text-decoration: underline;
+  border-radius: 4px;
+  border-style: none;
+}
+.button-cancel-age {
+  width: 71.808px;
+  height: 28px;
+  text-decoration: underline;
+  border-radius: 4px;
+  border-style: none;
+  background-color: $BlueCoreTint20C7Daec;
+}
+.button-okay-age {
+  width: 59px;
+  height: 28px;
+  border-radius: 4px;
+  border-style: none;
+  background-color: $BlueCoreTint20C7Daec;
+}
+.button-cancel-criteria-text {
+  font-family: $FrutigerLTStd;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: right;
+  text-decoration: underline;
+  color: $BlueCore005Eb8;
+}
+.button-cancel-age-text {
+  width: 59px;
+  height: 28px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: right;
+  text-decoration: underline;
+  color: $Black231F20;
+}
+.button-okay-age-text {
+  width: 47px;
+  height: 28px;
+  font-family: $FrutigerLTStd;
+  font-size: 19.008px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: right;
+  text-decoration: underline;
+  color: $BlueCore005Eb8;
+}
+.button-search {
+  position: relative;
+  width: 296px;
+  height: 56px;
+  padding: 15px 124px 16px 110px;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 0 #8e9397;
+  border: solid 0 rgba(0, 0, 0, 0);
+  background-color: rgba(56, 72, 84, 0.5);
+}
+.button-search-criteria {
+  position: relative;
+  height: 28px;
+  border-radius: 4px;
+  border: solid 0 rgba(0, 0, 0, 0);
+  background-color: $BlueCore005Eb8;
+}
+.button-search-position {
+  position: absolute;
+  bottom: 96px;
+  left: 542px;
+}
+.button-main-search-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-subject-age-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-cancel-criteria-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-cancel-age-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-okay-age-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-search-text-position {
+  position: absolute;
+  top: 14px;
+}
+.button-search-text {
+  font-family: $FrutigerLTStd;
+  font-size: 19px;
+  font-stretch: normal;
+  color: $WhiteCoreFfffff;
+}
+.button-criteria-text-position {
+  position: absolute;
+  top: 2px;
+  left: auto;
+}
+.button-criteria-text {
+  height: 28px;
+  padding: 0 8px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $WhiteCoreFfffff;
+}
+.button-secondary-disabled {
+  width: 144px;
+  height: 28px;
+  padding: 8px 12px 4px;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 0 #8e9397;
+  background-color: #a0aab1;
+}
+.button-secondary-text {
+  width: 120px;
+  font-size: 16px;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  margin-top: -3.2px;
+}
+.button-secondary-background {
+  width: 144px;
+  height: 28px;
+  padding: 8px 12px 4px;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 0 $BtnSecDisabledShadow8E9397;
+  background-color: $BtnSecDisabledFill9Ba3A9;
+}
+.button-text {
+  float: right;
+  margin-top: 3.2px;
+}
+//  Button
+.card-base {
+  width: 154px;
+  height: 120px;
+  border-radius: 4px;
+  background-color: #c7daec;
+}
+.card-base-hover {
+  width: 154px;
+  height: 120px;
+  border-radius: 4px;
+  background-color: #c7daec;
+}
+.componentCard-Card-Main {
+  position: absolute;
+  width: 153.6px;
+  height: 120px;
+  padding: 26px 15.6px 24px 16px;
+}
+.card-main-typography-position {
+  position: absolute;
+  top: 5px;
+}
+.hover-plus-criteria-button {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: solid 1px $BlueCore005Eb8;
+  background-color: $BlueCoreTint20C7Daec;
+  z-index: 125;
+}
+.hover-plus-criteria-text {
+  height: 28px;
+  font-family: $FrutigerLTStdRoman;
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $BtnReverseTxt212B32;
+}
+.hover-plus-criteria-clicked {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: solid 1px $GreyMid768692;
+  background-color: $GreyPaleE8Edee;
+}
+.hover-plus-criteria-clicked-text {
+  height: 28px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $BtnReverseTxt212B32;
+}
+.card-plus-criteria-position {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card-plus-criteria-position-styles {
+  z-index: 150;
+  opacity: 1;
+}
+.card-plus-home-page-position {
+  position: absolute;
+  top: 66px;
+  left: 60px;
+}
+.box-set,
+.box {
+  border-radius: 6px;
+}
+.box-set {
+  background: #e8edee;
+}
+.box {
+  background: $WhiteCoreFfffff;
+  width: 154px;
+  height: 120px;
+  margin: 60px 0px 120px 0;
+  padding: 0 0.4px 0 0;
+  border-radius: 4px;
+}
+.box-D10 {
+  width: 64px;
+  height: 64px;
+  padding: 29px 0 24px;
+  opacity: 0;
+  background-color: $SpacersBgBgShow;
+}
+.box-D3 {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  background-color: $SpacersBgBgShow;
+}
+.box-D2 {
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+  background-color: $SpacersBgBgShow;
+}
+.box-D1 {
+  width: 4px;
+  height: 4px;
+  opacity: 0;
+  background-color: $SpacersBgBgShow;
+}
+.D2-pos {
+  position: absolute;
+  top: 248.8px;
+}
+.D10-pos {
+  position: absolute;
+  top: 222px;
+}
+.D3-pos {
+  position: absolute;
+  top: 19px;
+}
+.D1-pos {
+  position: absolute;
+  left: 22px;
+}
+.box-card {
+  position: absolute;
+}
+.box-btn-criteria {
+  position: absolute;
+  top: 10px;
+}
+.nhs-number-input-position {
+  position: absolute;
+  left: 309.008px;
+  top: 10px;
+}
+.label-criteria-selected-position {
+  position: absolute;
+  left: 22px;
+  top: 10px;
+}
+.label-criteria-selected {
+  width: 185px;
+  height: 28px;
+  margin: 4px 110px 4px 0;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.label-age-title-position {
+  position: absolute;
+  left: 150px;
+  top: 10px;
+}
+.label-age-title {
+  width: calc(100% - 50px);
+  height: 28px;
+  margin: 4px 110px 4px 0;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.label-age-values-position {
+  position: absolute;
+  left: 374px;
+  top: 10px;
+}
+.label-age-values {
+  width: calc(100% - 50px);
+  height: 28px;
+  margin: 4px 110px 4px 0;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.card-with-age-filter {
+  width: 153.008px;
+  height: 78px;
+  padding: 12px 8px 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+  border: solid 1px $BlueCoreTint20C7Daec;
+  background-color: $WhiteCoreFfffff;
+}
+.card-with-filter-title-position {
+  position: absolute;
+  left: 8px;
+  top: 10px;
+}
+.card-with-filter-title-text {
+  width: 137.008px;
+  height: 16px;
+  margin: 0 0 12px;
+  font-family: $FrutigerLTStd;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $Black231F20;
+}
+.card-with-filter-subtitle-position {
+  position: absolute;
+  left: 8px;
+  top: 40px;
+}
+.card-with-filter-subtitle-text {
+  width: 137.008px;
+  height: 30px;
+  margin: 12px 0 0;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $BlueDark003087;
+}
+.main-disabled {
+  position: absolute;
+  top: 82px;
+  left: 0px;
+  width: 1440px;
+  height: 890px;
+  margin: 52px 0 0;
+  padding: 56px 176px 92px;
+  background-color: rgba(0, 0, 0, 0.7);
+  disabled: true;
+  z-index: 150;
+}
+.modal-card-subject-disabled {
+  position: absolute;
+  top: 82px;
+  left: 0px;
+  width: 1440px;
+  height: 890px;
+  margin: 52px 0 0;
+  padding: 56px 176px 92px;
+  background-color: whiteCoreFfffff;
+  disabled: true;
+  z-index: 225;
+}
+.Desktop-HD-1440-Landing-Page {
+  width: 1440px;
+  height: 1024px;
+  background-color: #e8edee;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
+.rectangle-bottom {
+  position: absolute;
+  width: 1440px;
+  height: 4px;
+  background-color: $BlueCore005Eb8;
+  top: 1024px;
+  left: 0;
+  right: 0;
+}
+.Desktop-Bar-Space {
+  width: 1440px;
+  height: 82px;
+  background-color: #e8edee;
+}
+.spacer-col-176 {
+  right: 0px;
+  padding: 0px;
+  width: 176px;
+}
+.spacer-col-64x64 {
+  width: 64px;
+  height: 64px;
+}
+.spacer-col-8x11 {
+  width: 8px;
+  height: 11px;
+}
+.oval-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $Black231F20;
+}
+.option-component-position {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+.option-label {
+  width: 274px;
+  height: 24px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.label-options {
+  width: 280px;
+  height: 24px;
+  margin: 8px 0 8px 12px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #212b32;
+}
+.modal-criteria-selector-position {
+  position: absolute;
+  left: 370px;
+  top: 342px;
+  width: 800px;
+  background-color: #fff;
+  border-radius: 4.8px;
+  outline: 0;
+  height: 160px;
+  disabled: false;
+  z-index: 200;
+}
+.modal-header {
+  padding: 0px 0px;
+}
+.modal-header-title-position {
+  position: absolute;
+  left: 18px;
+  top: 12px;
+}
+.modal-header-title {
+  width: 284px;
+  height: 32px;
+  margin: 0 56px 3.74px 0;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $BtnReverseTxt212B32;
+}
+.modal-bottom {
+  height: 64px;
+  background-color: $BlueCoreTint20C7Daec;
+  border-bottom-left-radius: 4.8px;
+  border-bottom-right-radius: 4.8px;
+  outline: 0;
+}
+.box-subject-criteria-selected {
+  position: relative;
+  height: 48px;
+  //  box-shadow: inset: 0 -1px 0 0 $GreyMid768692
+  background-color: $WhiteCoreFfffff;
+}
+
+.buttons-criteria-place-holder {
+  position: relative;
+  height: 48px;
+  background-color: $NhsGrey5F0F4F5;
+  overflow: hidden;
+}
+.modal-body {
+  padding: 0px;
+}
+.modal-box {
+  background-clip: padding-box;
+  border-top-left-radius: 4.8px;
+  border-top-right-radius: 4.8px;
+  outline: 0;
+}
+.modal-criteria-selector {
+  width: 800px;
+  height: 48px;
+  position: relative;
+  padding: 8px 664px 8px 22px;
+  background-color: #c7daec;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  color: $BtnReverseTxt212B32;
+}
+.grey {
+  background-color: #e8edee;
+}
+.white {
+  background-color: white;
+}
+.modal-age-criteria-selector-position {
+  position: absolute;
+  left: 520px;
+  top: 208px;
+  width: 400px;
+  disabled: false;
+  z-index: 250;
+}
+.modal-age-criteria-selector {
+  position: relative;
+  height: 48px;
+  background-color: #c7daec;
+}
+.svg-padding {
+  padding-right: 6px;
+  display: initial;
+}
+.subheader-age-criteria {
+  position: relative;
+  width: 400px;
+  height: 56px;
+  background-color: $NhsGrey5F0F4F5;
+}
+.subheader-anima-position {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.subheader-age-text-position {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+.subheader-age-text {
+  width: 368px;
+  height: 24px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.select-age-criteria-selection-position {
+  position: absolute;
+  left: 307px;
+  top: 10px;
+}
+.select-edit-delete-criteria-selection-position {
+  position: absolute;
+  left: 407px;
+  top: 10px;
+}
+.select-age-criteria-selection {
+  width: 173.6px;
+  height: 28px;
+  border-radius: 4px;
+  border-style: none;
+  background-color: $WhiteCoreFfffff;
+}
+.select-age-criteria-selection-text {
+  width: 164px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 19.008px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-decoration: underline;
+  text-align: center;
+  color: $BlueCore005Eb8;
+}
+.option-group-age-criteria-place-holder {
+  width: 400px;
+  overflow: hidden;
+  background-color: $WhiteCoreFfffff;
+}
+.select-criteria-place-holder {
+  position: relative;
+  width: 400px;
+  background-color: $WhiteCoreFfffff;
+}
+.line-copy-4 {
+  position: absolute;
+  width: 425px;
+  left: 0px;
+  height: 1px;
+  margin: 0px 0 13px -18px;
+  border-bottom: solid 1px $GreyPaleE8Edee;
+}
+.subject-criteria-label {
+  width: 122px;
+  height: 32px;
+  margin: 0 0 6px;
+  font-family: $FrutigerLTStd;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: center;
+  color: #231f20;
+}
+.choose-criteria-label-position {
+  position: absolute;
+  top: 434px;
+  left: 458px;
+}
+.choose-criteria-label {
+  width: 570px;
+  height: 32px;
+  font-family: $FrutigerLTStd;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: $Black231F20;
+}
+.option-label-position {
+  position: absolute;
+  left: 55px;
+  top: 10px;
+}
+.eclipse-yellow-black {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 0 3px $HighlightWarmYellowFfb81C;
+  inset: 0 0 0 2px #425462;
+  background-color: $WhiteCoreFfffff;
+}
+.eclipse-black {
+  width: 40px;
+  height: 40px;
+  border: solid 2px #425562;
+  border-radius: 50%;
+  display: block;
+  padding: 8px;
+}
+.option-selector-position {
+  position: relative;
+  top: 11px;
+  left: 21px;
+}
+.option-typograpy-text {
+  width: 322px;
+  height: 32px;
+  margin: 0 0 6px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: left;
+  color: $Black231F20;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider {
+  position: relative;
+  width: 200px;
+}
+.slider-all-position {
+  position: absolute;
+  left: 24px;
+}
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+  position: absolute;
+  top: 85px;
+}
+.slider__track,
+.slider__range {
+  border-radius: 3px;
+  height: 5px;
+}
+.slider__track {
+  background-color: #c7daec;
+  width: 320px;
+  z-index: 1;
+  border: solid 4px $BlueCoreTint20C7Daec;
+  margin-left: 10px;
+}
+.slider__range {
+  background-color: #005eb8;
+  z-index: 2;
+  height: 8px;
+  borer: solid 4px $BlueCore005Eb8;
+  left: 5px;
+}
+.slider__left-value,
+.slider__right-value {
+  color: #dee2e6;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.slider__left-value {
+  left: 6px;
+}
+.slider__right-value {
+  right: -4px;
+}
+//  Removing the default appearance
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 352px;
+  outline: none;
+  top: 84.8px;
+  opacity: 0;
+}
+.thumb--zindex-3 {
+  z-index: 3;
+}
+.thumb--zindex-4 {
+  z-index: 4;
+}
+.thumb--zindex-5 {
+  z-index: 5;
+}
+// For Chrome browsers
+.thumb::-webkit-slider-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 34px;
+  width: 34px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+//  For Firefox browsers
+.thumb::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+.slider-position {
+  position: absolute;
+  top: 68.8px;
+  z-index: 2;
+}
+.slider-position-animated {
+  position: absolute;
+  top: 84px;
+  z-index: 2;
+}
+.componentSlider-Typed {
+  position: relative;
+  width: 400px;
+  height: 120px;
+}
+.position-left-text {
+  position: absolute;
+  left: 151px;
+  top: 26px;
+}
+.position-right-text {
+  position: absolute;
+  left: 215px;
+  top: 26px;
+}
+.Line-2-position {
+  position: absolute;
+  left: 205px;
+  top: 42px;
+}
+.Line-2 {
+  width: 6px;
+  height: 1px;
+  border: solid 2px $Black231F20;
+}
+.ElementsText-input3-DigitActive-error {
+  width: 52px;
+  height: 36px;
+  margin: 19px 41px 8px 84px;
+  padding: 2px;
+}
+.ElementsText-input3-DigitActive-position {
+  top: 26px;
+  left: 209px;
+}
+.ElementsText-input3-DigitActive-focus {
+  width: 48px;
+  height: 32px;
+  padding: 2px 7px 2px 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $HighlightWarmYellowFfb81C;
+  inset: 0 0 0 2px $GreyDark425563;
+  background-color: $WhiteCoreFfffff;
+}
+.Rectangle_error {
+  width: 48px;
+  height: 32px;
+  padding: 4px 8px;
+  border-style: hidden;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $HighlightWarmYellowFfb81C;
+  inset: 0 0 0 2px $HighlightEmergencyServiceRedDa291C;
+  background-color: $WhiteCoreFfffff;
+  outline: none;
+}
+.Rectangle_focus {
+  padding: 4px 8px !important;
+  border: hidden !important;
+  border-style: hidden !important;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $HighlightWarmYellowFfb81C;
+  inset: 0 0 0 2px $GreyDark425563;
+  background-color: $WhiteCoreFfffff;
+  outline: none;
+}
+// .Rectangle
+//   width: 36px
+//   height: 36px
+//   margin: 3px 1px 0 99px
+//   border-radius: 20px
+//   border-style: solid
+//   border-width: 3px
+//   border-image-source: conic-gradient(
+//     from 0.34turn,
+//     $BlueCore005Eb8,
+//   #484d85 0.3turn,
+//     $HighlightEmergencyServiceRedDa291C 0.91turn
+//   )
+//     border-image-slice: 1
+//     background-image: linear-gradient(
+//       to bottom,
+//       $BlueCore005Eb8,
+//       $BlueCore005Eb8
+//     ),
+//     conic-gradient(
+//       from 0.34turn,
+//       $BlueCore005Eb8,
+//     #484d85 0.3turn,
+//       $HighlightEmergencyServiceRedDa291C 0.91turn
+//     )
+//       background-origin: border-box
+//       background-clip: content-box, border-box
+
+.ElementsText-input3-DigitActive {
+  width: 48px;
+  height: 32px;
+  border: solid 2px #425563;
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 2px 5.2px;
+}
+.ElementsText-input3-text {
+  width: 33.6px;
+  height: 13.6px;
+  padding: 12px 0px 11px 0px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  text-align: center;
+  color: #231f20;
+  border: none;
+  outline: none;
+}
+.nhs-number-input {
+  width: 182px !important;
+  height: 32px !important;
+  border: solid 2px #425563;
+  background-color: #ffffff;
+  color: $Black231F20;
+  border-radius: 4px;
+  text-align: center;
+  padding: 6px 5.2px;
+}
+.nhs-number-input-text {
+  width: 172.8px;
+  height: 13.6px;
+  font-family: $FrutigerLTStdRoman;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  text-align: center;
+  color: #231f20;
+  border: none;
+  outline: none;
+}
