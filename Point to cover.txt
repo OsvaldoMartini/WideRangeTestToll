@@ -1,0 +1,51 @@
+all backgotru no widh 100% of the screen 
+
+ 
+
+Blue suheader/ header 100%
+
+ 
+
+body and botom also 100% width
+
+ 
+
+ 
+
+when squeeze  all centralized / until the limit but not changing the as boostrap
+
+ 
+
+the minimal 1080....
+
+ 
+
+scrool bar under the bottom
+
+Not meant to Mobile-First
+
+ 
+
+resolution 2560 x 1440
+
+the bottom bule line should at bottom
+
+button search should be 96px above
+
+ 
+
+Other points (Maybe react-boostrap is a defautl behave)
+
+Main Cards Cursor (Hand Cursor)
+
+search and (Clickd)
+
+ 
+
+ 
+
+ 
+
+search button aligment is not centralized
+
+and also the search text

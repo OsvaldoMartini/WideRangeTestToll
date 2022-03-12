@@ -1,5 +1,8 @@
+const path = require("path");
 var webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 module.exports = {
   // Tell webpack to run babel on every file it runs through
@@ -26,10 +29,13 @@ module.exports = {
         },
       },
       {
-        loader: ExtractTextPlugin.extract({
-          loader: "css-loader",
-        }),
-        test: /\.css$/,
+        test: /\.((c|sa|sc)ss)$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -41,12 +47,15 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV), //When React Boost Up it's going to look for this variable on Windows Scope
       "process.env.DEBUG": JSON.stringify(process.env.DEBUG),
     }),
-    new ExtractTextPlugin({
-      filename: "css/[name].css",
-    }),
+    // new ExtractTextPlugin({
+    //   filename: "css/[name].css",
+    // }),
   ],
 };
