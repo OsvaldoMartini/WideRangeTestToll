@@ -1,0 +1,13 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-external-ingress-storybook
+spec:
+  podSelector:
+    matchLabels:
+      app: ddc-bcss-test-subject-selector-storybook
+  ingress:
+  - from: []
+    ports:
+    - protocol: TCP
+      port: 443

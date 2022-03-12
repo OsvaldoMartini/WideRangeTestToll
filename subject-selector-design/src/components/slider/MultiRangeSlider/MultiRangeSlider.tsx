@@ -3,13 +3,10 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  useRef,
-  KeyboardEvent,
-  ChangeEvent,
+  useRef
 } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import "./multi-range-slider.css";
 import Lottie from "react-lottie";
 
 /* tslint:disable-next-line:max-line-length */
@@ -35,31 +32,42 @@ const MultiRangeSliderVariantClasses: Record<
 
 export interface MultiRangeSliderProps {
   children?: string | React.ReactElement;
-  min: number;
-  max: number;
+  id?: number;
+  title?: string;
+  short?: string;
+  operation?: string;
+  minLeft: number;
+  maxLeft: number;
+  minRight: number;
+  maxRight: number;
   variant: MultiRangeSliderVariant;
-  onChange?: ChangeEvent<HTMLElement>;
   disabled?: boolean;
-  handleChange?: any;
-  onKeyDown?: KeyboardEvent<HTMLInputElement>;
+  changeValues: (value: any) => void;
+  //parentCallback?: (values: any) => void;
 }
 
-export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
-  min,
-  max,
-  variant = "Inactive",
-  onChange,
-  disabled,
-  handleChange,
-  onKeyDown,
-  ...multSlidProps
-}) => {
+export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
+  const {
+    id,
+    title,
+    short,
+    operation,
+    minLeft,
+    maxLeft,
+    minRight,
+    maxRight,
+    variant = "Active",
+    changeValues,
+    disabled } = props;
+
+  //const [state, dispatch] = useReducer(optionReducer, { buttonSubmit: true });
+
   const MultiRangeSliderVariantClassName =
     MultiRangeSliderVariantClasses[variant];
   const [stStopped, setStopState] = useState(true);
   const [showErrorStateRight, setShowErrorStateRight] = useState(false);
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+  const [minVal, setMinVal] = useState(minLeft);
+  const [maxVal, setMaxVal] = useState(maxRight);
   const minValRef = useRef<HTMLInputElement | null>(null);
   const maxValRef = useRef<HTMLInputElement | null>(null);
   const range = useRef<HTMLInputElement | null>(null);
@@ -72,34 +80,110 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
 
   const [preventLeftEffect, setPreventLeftEffect] = useState(false);
   const [preventRightEffect, setPreventRightEffect] = useState(false);
+
+  const [moveToRight, setMoveToRight] = useState(false);
+  const [moveToLeft, setMoveToLeft] = useState(false);
+
+
+  const [greaterLeft, setGreaterLeft] = useState(false);
+  const [greaterRight, setGreaterRight] = useState(false);
+
+
+
   // Convert to percentage
   const getPercent = useCallback(
-    (value) => Math.round(((value - min!) / (max! - min!)) * 160),
-    [min, max],
+    (value) => Math.round(((value - minLeft!) / (maxRight! - minLeft!)) * 180),
+    [minLeft, maxRight],
   );
+
+
+  // const usePrevious = (value: any) => {
+  //   const ref = useRef();
+  //   useEffect(() => {
+  //     ref.current = value;
+  //   });
+  //   return ref.current;
+  // }
+
+  useEffect(() => {
+    if (greaterLeft) {
+      ////console.log("GREATE LEFT")
+      setMinVal(valueTextLeft);
+      setMaxVal(valueTextLeft + 1);
+
+    }
+  }, [greaterLeft]);
+
+  useEffect(() => {
+    if (greaterRight) {
+      //console.log("GREATER RIGHT")
+      setMinVal(valueTextRight - 1);
+      setMaxVal(valueTextRight);
+    }
+  }, [greaterRight]);
+
+
+  useEffect(() => {
+    if (moveToRight) {
+      //console.log("ACTION MOVE TO RIGHT")
+      setMoveToRight(false);
+      if (!greaterLeft && !greaterRight) {
+        setMaxVal(maxVal + 1);
+        setValueTextLeft(valueTextLeft + 1);
+      } else {
+        //setGreaterLeft(false);
+      }
+    }
+  }, [moveToRight]);
+
+
+  useEffect(() => {
+    if (moveToLeft) {
+      //console.log("ACTION MOVE TO LEFT")
+      setMoveToLeft(false);
+      if (!greaterLeft && !greaterRight) {
+        setMinVal(minVal - 1);
+        setValueTextRight(valueTextRight - 1);
+      }
+    }
+  }, [moveToLeft]);
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
     if (!preventLeftEffect) {
-      console.log("USER LEFT " + maxVal);
-
+      //console.log("USER LEFT " + maxVal);
       if (maxValRef.current) {
-        setMinVal(
-          minVal! >= 107 ? 107 : minVal! >= maxVal! ? maxVal! - 1 : minVal,
-        );
+        // setMinVal(
+        //   minVal! >= 107 ? 107 : minVal! >= maxVal! ? maxVal! - 1 : minVal,
+        // );
 
         //Push Handle Circle the Right
-        if (Math.abs(maxVal! - minVal!) <= 13 && minVal! <= 107) {
-          // console.log(maxVal, minVal)
-          // setValueTextRight(minVal! + 13);
-          setMaxVal(minVal! + 13);
+        //console.log("PUSHING RIGHT", maxVal! - minVal!);
+        if (!preventRightEffect && Math.abs(maxVal! - minVal!) === 1 && maxVal! < 120) {
+          //console.log("PUSHING RIGHT", maxVal! - minVal!);
+
+          if (!greaterLeft && !greaterRight) {
+            setMoveToRight(true);
+          } else {
+            setGreaterLeft(false);
+            setGreaterRight(false);
+          }
+          //setMaxVal(maxVal! + 1);
+          //setValueTextRight(minVal! + 1);
+        } else if (preventRightEffect && Math.abs(maxVal! - minVal!) === 1 && maxVal! < 120) {
+          //console.log("PUSHING RIGHT", maxVal! - minVal!);
+          setMaxVal(maxVal!);
         }
 
+
         if (range.current && minVal! >= 0) {
+          setPreventRightEffect(true);
           const minPercent = getPercent(minVal);
           const maxPercent = getPercent(+maxValRef.current.value); // Preceding with '+' converts the value from type string to type number
-          range.current.style.left = `${minPercent + 5}%`;
-          range.current.style.width = `${maxPercent - minPercent + 5}%`;
+          range.current.style.left = `${minPercent}%`;
+          range.current.style.width = `${(maxPercent - minPercent) + 5}%`;
+          //range.current.style.top = `${maxPercent - minPercent + 15}%`;
+          setPreventRightEffect(false);
         }
 
         // For Scale 240
@@ -110,23 +194,30 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         setValueTextLeft(minVal!);
       }
     }
-
-    localStorage.setItem("Between-min", JSON.stringify(minVal));
-    localStorage.setItem("Between-max", JSON.stringify(maxVal));
   }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
     if (!preventRightEffect) {
-      console.log("USER RIGHT" + minVal);
       if (minValRef.current) {
-        setMaxVal(maxVal! < 13 ? 13 : maxVal! >= 121 ? 121 : maxVal);
+        //setMaxVal(maxVal! < 13 ? 13 : maxVal! >= 121 ? 121 : maxVal);
+        setMaxVal(maxVal! >= 121 ? 121 : maxVal);
 
         //Push Handle Circle the Left
-        if (Math.abs(maxVal! - minVal!) <= 13 && minVal! > 0) {
-          // console.log(maxVal, minVal)
-          // setValueTextRight(minVal! + 13);
-          setMinVal(maxVal! - 13 < 0 ? 0 : maxVal! - 13);
+        if (!preventLeftEffect && Math.abs(maxVal! - minVal!) === 1 && minVal! > 0) {
+          //console.log("PUSHING LEFT", maxVal! - minVal!);
+
+          if (!greaterLeft && !greaterRight) {
+            setMoveToLeft(true);
+          } else {
+            setGreaterLeft(false);
+            setGreaterRight(false);
+          }
+
+        }
+        else if (!preventLeftEffect && Math.abs(maxVal! - minVal!) === 1 && minVal! > 0) {
+          setMinVal(minVal!);
+          setValueTextLeft(minVal!);
         }
 
         if (maxVal! > 120) {
@@ -135,89 +226,57 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         } else {
           setShowErrorStateRight(false);
         }
-        const minPercent = getPercent(+minValRef.current.value + 5);
-        const maxPercent = getPercent(maxVal! + 5);
-        const rightCalc =
-          maxVal! <= 120 ? maxVal! * 2.63333 + 24 : 120 * 2.63333 + 24;
+
+
+        const minPercent = getPercent(+minValRef.current.value);
+        const maxPercent = getPercent(maxVal!);
+        const rightCalc = maxVal! <= 120 ? maxVal! * 2.63333 + 55 : 120 * 2.63333 + 55;
+
         setRightCircle(rightCalc);
         setValueTextRight(maxVal!);
 
         if (range.current) {
-          range.current.style.width = `${maxPercent - minPercent}%`;
+          setPreventLeftEffect(true);
+          //let widthPercent = maxPercent - minPercent <= 5 ? maxPercent - minPercent + 10 : maxPercent - minPercent + 5;
+          range.current.style.left = `${minPercent}%`;
+          range.current.style.width = `${(maxPercent - minPercent) + 10}%`;
+          //range.current.style.top = `${maxPercent - minPercent + 5}%`;
+          setPreventLeftEffect(false);
         }
       }
     }
-    localStorage.setItem("Between-min", JSON.stringify(minVal));
-    localStorage.setItem("Between-max", JSON.stringify(maxVal));
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
   // useEffect(() => {
+  //   // console.log("Effect Left valueTextLeft");
+  //   //parentCallback!({ title: title, short: short, operation: operation, minVal: valueTextLeft, maxVal: maxVal });
+  //   changeValues({ id: id, title: title, short: short, operation: operation, minVal: valueTextLeft, maxVal: maxVal });
+  // }, [valueTextLeft]);
 
-  //   onChange();
+  // useEffect(() => {
+  //   //console.log("Effect Right valueTextRight");
+  //   //parentCallback!({ title: title, short: short, operation: operation, minVal: minVal, maxVal: valueTextRight });
+  //   changeValues({ id: id, title: title, short: short, operation: operation, minVal: minVal, maxVal: valueTextRight });
+  // }, [valueTextRight]);
 
-  // }, [minVal, maxVal, onChange]);
+  // const handleTypeLeft = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === "Enter") {
+  //     if (Number(e.currentTarget.value) >= valueTextRight) {
+  //       setGreaterLeft(true);
+  //    } else if (Math.abs(Number(e.currentTarget.value) - valueTextRight) < 1) {
+  //       setGreaterLeft(true);
+  //     } else {
+  //       setMinVal(Number(e.currentTarget.value));
+  //     }
+  //   }
+  // };
 
-  const handleTypeLeft = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.key);
-    //console.log(e.target.);
-    console.log("RIGHT " + valueTextRight + "    LEFT " + valueTextLeft);
-    if (e.key === "Enter") {
-      setPreventLeftEffect(false);
-      setPreventRightEffect(true);
-      //setValueTextRight(maxVal);
-      setMinVal(valueTextLeft <= 0 ? 0 : valueTextLeft);
-
-      if (valueTextLeft! >= 107) {
-        setValueTextLeft(107);
-        setMinVal(107);
-        setMaxVal(120);
-        setPreventRightEffect(false);
-        setValueTextRight(maxVal!);
-      } else if (valueTextLeft >= valueTextRight) {
-        setMaxVal(valueTextLeft + 13);
-        setMinVal(valueTextLeft);
-        setPreventRightEffect(false);
-        setValueTextRight(maxVal!);
-        setValueTextLeft(minVal!);
-      } else if (Math.abs(valueTextLeft - valueTextRight) < 13) {
-        setMaxVal(valueTextLeft + 13);
-        setMinVal(valueTextLeft);
-        setPreventRightEffect(false);
-        setValueTextRight(maxVal!);
-        setValueTextLeft(minVal!);
-      }
-    }
-  };
-
-  const handleTypeRight = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.key);
-    //console.log(e.target.);
-    console.log("RIGHT " + valueTextRight);
-    if (e.key === "Enter") {
-      setPreventLeftEffect(true);
-      setPreventRightEffect(false);
-      setMaxVal(valueTextRight >= 121 ? 121 : valueTextRight);
-
-      if (valueTextRight! <= 13) {
-        setValueTextLeft(0);
-        setMinVal(0);
-        setMaxVal(13);
-        setPreventLeftEffect(false);
-        setValueTextRight(maxVal!);
-      } else if (valueTextRight <= valueTextLeft) {
-        // || Math.abs(valueTextRight - valueTextLeft) < 13) {
-        setMinVal(valueTextRight - 13);
-        setMaxVal(valueTextRight);
-        setPreventLeftEffect(false);
-        setValueTextLeft(minVal!);
-        setValueTextRight(maxVal!);
-      }
-    }
-  };
+  // const handleTypeRight = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   // let valueDigited = Number(e.currentTarget.value);
+  // };
 
   return (
-    <div {...multSlidProps}>
+    <div>
       <div
         className={classNames("", {
           [classNames(MultiRangeSliderVariantClassName.default)]: !disabled,
@@ -229,11 +288,29 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
               type={"text"}
               value={valueTextLeft!}
               placeholder={"0"}
-              onChange={function (event: ChangeEvent<HTMLInputElement>): void {
-                setValueTextLeft(Number(event.target.value));
+              onChange={function (event: React.ChangeEvent<HTMLInputElement>): void {
+                let valueDigited = Number(event.target.value);
+                if (valueDigited! >= 120) {
+                  valueDigited = 119;
+                } else if (Number(event.target.value) < 0) {
+                  valueDigited = 0;
+                }
+                if (valueDigited >= valueTextRight) {
+                  console.log(" AQUI entra 1");
+                  setGreaterLeft(true);
+
+                } else if (Math.abs(valueDigited - valueTextRight) < 1) {
+                  console.log(" AQUI entra 2");
+                  setGreaterLeft(true);
+                }
+
+                setMinVal(valueDigited);
+                setValueTextLeft(valueDigited);
+
+                changeValues({ id: id, title: title, short: short, operation: operation, minVal: valueDigited });
               }}
               onKeyDown={(_event) => {
-                handleTypeLeft(_event);
+                //handleTypeLeft(_event);
               }}
               variant={"Default"}
               errorState={false}
@@ -247,11 +324,28 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
               value={valueTextRight}
               placeholder={"120"}
               errorState={showErrorStateRight}
-              onChange={function (event: ChangeEvent<HTMLInputElement>): void {
-                setValueTextRight(Number(event.target.value));
+              onChange={function (event: React.ChangeEvent<HTMLInputElement>): void {
+                let valueDigited = Number(event.target.value);
+                if (valueDigited! >= 121) {
+                  valueDigited = 121;
+                  setStopState(false);
+                  setShowErrorStateRight(true);
+                } else if (valueDigited <= 1) {
+                  valueDigited = 1;
+                  setValueTextLeft(0);
+                  setMinVal(0);
+                  setShowErrorStateRight(false);
+                } else if (valueDigited <= valueTextLeft) {
+                  setGreaterRight(true);
+                } else { }
+                setMaxVal(valueDigited);
+                setValueTextRight(valueDigited);
+
+                changeValues({ id: id, title: title, short: short, operation: operation, maxVal: valueDigited });
+
               }}
               onKeyDown={(_event) => {
-                handleTypeRight(_event);
+                // handleTypeRight(_event);
               }}
               variant={"Default"}
             />
@@ -259,10 +353,12 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         </div>
         <div className="slider-all-position">
           <input
+            style={{ left: "-2px" }}
             type="range"
-            min={min}
-            max={max}
-            value={minVal! >= 107 ? 107 : minVal}
+            min={minLeft}
+            max={maxLeft}
+            // value={minVal! >= 107 ? 107 : minVal}
+            value={minVal}
             ref={minValRef}
             onChange={(event) => {
               setPreventLeftEffect(false);
@@ -271,14 +367,16 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
               event.target.value = value.toString();
             }}
             className={classNames("thumb thumb--zindex-3", {
-              "thumb--zindex-5": minVal! > max! - 100,
+              "thumb--zindex-5": minVal! > maxRight! - 100,
             })}
           />
           <input
+            style={{ left: "33px" }}
             type="range"
-            min={min}
-            max={max}
-            value={maxVal! <= 13 ? 13 : maxVal}
+            min={minRight}
+            max={maxRight}
+            // value={maxVal! <= 13 ? 13 : maxVal}
+            value={maxVal}
             ref={maxValRef}
             onChange={(event) => {
               setPreventRightEffect(false);
@@ -296,14 +394,14 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         </div>
         <div
           id="sliderNotAnima"
-          className="circular-progress-circle-gr1 slider-position"
+          className="circular-progress-circle-grp1 slider-position"
           style={{ left: `${leftCirclePos}px` }}
         ></div>
         <div
           id="sliderAnima"
           style={{ left: `${rightCirclePos}px` }}
           className={classNames("slider-position", {
-            "circular-progress-circle-gr1": !showErrorStateRight,
+            "circular-progress-circle-grp1": !showErrorStateRight,
           })}
         >
           {showErrorStateRight && (
@@ -325,7 +423,6 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
 };
 
 MultiRangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  // onChange: PropTypes.func.isRequired,
+  minLeft: PropTypes.number.isRequired,
+  maxRight: PropTypes.number.isRequired,
 };

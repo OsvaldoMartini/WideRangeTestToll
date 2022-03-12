@@ -2,8 +2,28 @@
 
 @Library("texas-pipeline@master")
 import texas.common.pipeline.Pipeline
+import texas.common.pipeline.aws.AWSSecretManager
+import texas.common.pipeline.cmdexecution.CommandExecutor
+
+import texas.common.pipeline.aws.AWSSecretManager
+import texas.common.pipeline.cmdexecution.CommandExecutor
 
 Pipeline texasPipeline = new Pipeline()
+AWSSecretManager secretManager = new AWSSecretManager()
+def secretsMap = [:]
+
+//*****************************************************************************
+//
+// Pipeline Config Switches
+//
+//*****************************************************************************
+def pipelineConfig = [:]
+
+//*****************************************************************************
+//
+// Pipeline
+//
+//*****************************************************************************
 
 pipeline {
   agent {
@@ -47,7 +67,8 @@ pipeline {
     DEPLOYMENT_FILE="deployment/deploy.sh ${env.ACCOUNT_SHORT_NAME}"
     SECRET_NAME_PREFIX="bcss-${env.COMMON_NAME}"
 
-    SECRET_DEPLOYMENT_KEY_ORDER='some_secret,another_secret'
+    SECRET_DEPLOYMENT_KEY_ORDER='DUMMY_VALUE'
+    SECRET_DEPLOYMENT_NAME='bcss/deployment'
 
     // Slack notifications (see https://confluence.digital.nhs.uk/display/TEX/Jenkins)
 //    SLACK_TEAM_DOMAIN = '<your slack space>'
@@ -75,6 +96,18 @@ pipeline {
     //TIME_TO_LIVE='2'
     //BUILDS_TO_KEEP='5'
     //TIME_TO_WAIT_FOR_DNS_SERVICE=120
+        //Database variables
+    DATABASE_PREFIX='bcss-oracle-'
+    DATABASE_BASELINE_SNAPSHOT='bcss-test-db'
+    DATABASE_SUBNET_SUBGROUP='bcss-sng'
+    DATABASE_SECURITY_GROUP_ID='sg-007768bc6f6361912'
+    //Jenkins Credentials UserID
+    JENKINS_USER_ID='14fe78a5-c738-4243-afa8-89bc61561712'
+    JENKINS_USER_NAME='Jenkins DaBuilder'
+    JENKINS_USER_EMAIL='jenkins@texas.nhs.net'
+
+    // S3 bukect for artifacts
+    S3_ARTIFACT_URI = "s3://nhsd-texasplatform-service-bcss-build-artifacts"
   }
 
   stages {
@@ -85,6 +118,28 @@ pipeline {
           // Need to prepare before sending notify so we can construct the URL correctly.
           texasPipeline.prepare(this)
           sendTeamsNotification(this, 'Started')
+        }
+      }
+    }
+
+    stage('Retrieve Deployment Authentication Details') {
+      steps {
+        script {
+          // Retrieve a map of all the usernames/passwords required for deployment
+          // & required by the deployed applications. These will be injected in to
+          // the deployment and applications in later steps.
+          secretsMap = secretManager.getSecrets(this, SECRET_DEPLOYMENT_NAME)
+        }
+      }
+    }
+
+    stage('Restore Database') {
+      environment {
+        INSTANCE_ID="${DATABASE_PREFIX}bcss-${PIPELINE_ID}"
+      }
+     steps {
+       script {
+          restoreDatabase(this)
         }
       }
     }
@@ -315,19 +370,24 @@ pipeline {
   }
 }
 
+//*****************************************************************************
+//
+// Methods
+//
+//*****************************************************************************
+
 def sendTeamsNotification(steps, state) {
   echo "sendTeamsNotification"
-  //echo "GIT_COMMIT ${steps.GIT_COMMIT}"
-  //echo "STATE ${state}"
-  //SET_STATUS='curl -X POST --header \"PRIVATE-TOKEN: HJiBG2GoNLUxndCBdrG_\" \"https://gitlab.mgmt.texasplatform.uk/api/v4/projects/374/statuses/'+steps.GIT_COMMIT+'?state='+state+'\"'
 
   URL_PREFIX = steps.env.NAMESPACE_PREFIX + "-" + steps.PIPELINE_ID + "-" + steps.env.POD_NAME + "-"
   URL_SUFFIX = "." + steps.K8S_NAME + ".texas" + steps.TEXAS_PLATFORM + ".uk"
   APP_URL = URL_PREFIX+"app"+URL_SUFFIX
   STORYBOOK_URL = URL_PREFIX+"storybook"+URL_SUFFIX
 
-  JENKINS_URL = "https://jenkins.mgmt.texas" + steps.TEXAS_PLATFORM + ".uk/view/BCSS/job/"+steps.env.NAMESPACE_PREFIX+"-"+steps.COMMON_NAME+'/job/'+steps.env.BRANCH_NAME
+  JENKINS_URL = "https://jenkins.mgmt.texas" + steps.TEXAS_PLATFORM + ".uk/view/BCSS/job/"+steps.env.NAMESPACE_PREFIX+"-"+steps.COMMON_NAME+"/job/"+steps.env.BRANCH_NAME
   JENKINS_URL = JENKINS_URL.replace("/"+JIRA_TICKET_PREFIX+"-","%252F"+JIRA_TICKET_PREFIX+"-")
+
+  GITLAB_BRANCH_URL = "https://gitlab.mgmt.texas" + steps.TEXAS_PLATFORM + ".uk/"+steps.env.NAMESPACE_PREFIX+"/"+steps.COMMON_NAME+"-ts/-/tree/"+steps.env.BRANCH_NAME
 
   echo "JENKINS_URL: ${JENKINS_URL}"
 
@@ -357,6 +417,9 @@ def sendTeamsNotification(steps, state) {
             \"facts\": [{ \
                 \"name\": \"State\", \
                 \"value\": \""+state+"\" \
+            }, { \
+                \"name\": \"Branch\", \
+                \"value\": \"["+steps.env.BRANCH_NAME+"]("+GITLAB_BRANCH_URL+")\" \
             }"+MSG_MOD+"], \
             \"markdown\": true \
           }] \
@@ -366,4 +429,69 @@ def sendTeamsNotification(steps, state) {
     echo just a test
     ${SEND_NOTIFY}
   """  
+}
+
+// Restore Database
+def restoreDatabase(steps) {
+  CommandExecutor cmd = new CommandExecutor()
+
+  // env.INSTANCE_ID = "${DATABASE_PREFIX}bcss-${PIPELINE_ID}"
+  echo "Need DB instance ${steps.INSTANCE_ID}"
+  String INSTANCE1 = steps.INSTANCE_ID
+
+  //This command when run will restore a new database from a snapshot
+  String awsCmd = "aws rds restore-db-instance-from-db-snapshot --db-instance-identifier ${steps.INSTANCE_ID} --db-snapshot-identifier ${steps.DATABASE_BASELINE_SNAPSHOT} --db-instance-class db.t3.small --db-subnet-group-name ${steps.DATABASE_SUBNET_SUBGROUP} --vpc-security-group-ids ${steps.DATABASE_SECURITY_GROUP_ID} --tags Key=Service,Value=bcss --region eu-west-2 1>&2"
+  echo awsCmd
+
+  //This command when run will return the name of the db instance if it exists in RDS
+  String awsCmdList = "aws rds describe-db-instances --query 'DBInstances[*].[DBInstanceIdentifier]' --filters Name=db-instance-id,Values=${steps.INSTANCE_ID} --output text --region eu-west-2"
+  echo awsCmdList
+
+  //This command when run will return the name of the db instance IF it is in a state 'available'
+  String awsCmdCheckAvailable = "aws rds describe-db-instances --query 'DBInstances[?DBInstanceStatus==`available`].[DBInstanceIdentifier]' --filters Name=db-instance-id,Values=${steps.INSTANCE_ID} --output text --region eu-west-2"
+  echo awsCmdCheckAvailable
+
+  //This command when run will return the name of the db instance IF it is in the 'stopped' state
+  String awsCmdCheckStopped = "aws rds describe-db-instances --query 'DBInstances[?DBInstanceStatus==`stopped`].[DBInstanceIdentifier]' --filters Name=db-instance-id,Values=${steps.INSTANCE_ID} --output text --region eu-west-2"
+  echo awsCmdCheckStopped
+
+  // check if the DB instance exists
+  response = cmd.executeCommand(steps, awsCmdList, true)
+  echo "Found instance names: ${response.trim()}"
+
+  // check if the DB instance is in a 'stopped' state
+  dbStoppedCheck = cmd.executeCommand(steps, awsCmdCheckStopped, true)
+  echo "DB Stopped: ${dbStoppedCheck.trim()}"
+
+  if (INSTANCE1 == response.trim() && INSTANCE1 != dbStoppedCheck.trim()) {
+    echo "Database instance exists and is not in a stopped state"
+  }
+  else {
+    // if it is 'stopped' restart it
+    if (INSTANCE1 == dbStoppedCheck.trim()) {
+      echo "Database instance needs starting"
+      String awsCmdStartDBInstance = "aws rds start-db-instance --db-instance-identifier ${steps.INSTANCE_ID} --region eu-west-2"
+      echo awsCmdStartDBInstance
+      dbStartCheck = cmd.executeCommand(steps, awsCmdStartDBInstance, true)
+    } else {
+      // database just plain doesn't exist, so create it
+      echo "Database instance needs creating"
+      cmd.executeCommand(steps, awsCmd, true)
+    }
+
+    // check if the database is available now that is has been created or started
+    dbcheck = cmd.executeCommand(steps, awsCmdCheckAvailable, true)
+    loopCount = 0
+    echo "First DB name ${dbcheck.trim()}"
+    while (INSTANCE1 != dbcheck.trim() && loopCount < 10) {
+      //Wait 30 seconds then check the value of dbcheck again
+      echo "Loop instance ${loopCount}"
+      echo "Current DB name ${dbcheck.trim()}"
+      sleep(30)
+      dbcheck = cmd.executeCommand(steps, awsCmdCheckAvailable, true)
+      loopCount += 1
+    }
+    echo "Exited loop after ${loopCount} iterations"
+    echo "Final DB name ${dbcheck.trim()}"
+  }
 }

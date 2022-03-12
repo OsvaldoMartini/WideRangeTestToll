@@ -10,7 +10,7 @@ export const HeaderComp: FC<HeaderCompProps> = () => (
   <div className="header-bar-box" style={{ position: "relative" }}>
     <div className="header-bar-logo">
       <div>
-        <svg
+        <svg style={{ cursor: "pointer" }}
           width="98"
           height="40"
           viewBox="0 0 98 40"

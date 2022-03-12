@@ -2,6 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Comments By Marco
 
+## Database
+```
+	jdbc:oracle:thin:@bcss-oracle-bcss-develop.cqger35bxcwy.eu-west-2.rds.amazonaws.com:1521:TSTBCS01
+```
+
 ## Pre-requisities
 
 I upgraded to the latest LTS version of node...

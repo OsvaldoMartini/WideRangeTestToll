@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { ICardMainData } from "../../@interfaces";
+import { ICardMainData } from "../@interfaces";
 import classNames from "classnames";
-import { ButtonComp, ButtonSecondary } from "../..";
+import { ButtonComp } from "../buttons/ButtonComp";
 
 type ModalContainerVariant = "Default" | "AgeCriteriaVar";
 
@@ -13,6 +13,7 @@ type ModalContainerState =
   | "buttonCancelPosition"
   | "buttonAddCriterionPosition"
   | "buttonCancelVariant"
+  | "buttonOKVariant"
   | "colMdDiv1"
   | "colMdDiv2";
 
@@ -28,6 +29,7 @@ const ModalContainerVariantClasses: Record<
     buttonCancelPosition: "button-cancel-criteria-position",
     buttonAddCriterionPosition: "button-add-criterion-position",
     buttonCancelVariant: "ButtonCancelCriteria",
+    buttonOKVariant: "ButtonAddCriterion",
     colMdDiv1: "col-md-7",
     colMdDiv2: "col-md-5",
   },
@@ -39,6 +41,7 @@ const ModalContainerVariantClasses: Record<
     buttonCancelPosition: "button-age-cancel-position",
     buttonAddCriterionPosition: "button-age-okay-position",
     buttonCancelVariant: "ButtonCancelAge",
+    buttonOKVariant: "ButtonOkayAge",
     colMdDiv1: "col-md-4",
     colMdDiv2: "col-md-6",
   },
@@ -50,22 +53,25 @@ export interface ModalContainerProps {
   className?: string;
   variant: ModalContainerVariant;
   title?: string;
+  titleOK?: string;
   addClassNames?: string;
   show: boolean;
   onHide?: (id: any) => void;
   onOkay?: () => void;
-  onActionCallback?: (action: any) => void;
   disabled: boolean;
+  okayDisabled?: boolean;
 }
 
 export const ModalContainer: FC<ModalContainerProps> = ({
   children,
   title,
+  titleOK,
   card,
   onHide,
   onOkay,
   variant = "Default",
   disabled,
+  okayDisabled = true,
 }) => {
   //    const {modal: {open, body}, closeModal} = rootStore.modalStore;
   const ModalContainerVariantClassName = ModalContainerVariantClasses[variant];
@@ -117,7 +123,7 @@ export const ModalContainer: FC<ModalContainerProps> = ({
               title={"Cancel"}
               variant={
                 ModalContainerVariantClassName.buttonCancelVariant ===
-                "ButtonCancelAge"
+                  "ButtonCancelAge"
                   ? "ButtonCancelAge"
                   : "ButtonCancelCriteria"
               }
@@ -134,16 +140,34 @@ export const ModalContainer: FC<ModalContainerProps> = ({
               )]: !disabled,
             })}
           >
-            {variant === "Default" ? (
-              <ButtonSecondary variant={"Disabled"} title={"Add criterion"} />
-            ) : (
-              <ButtonComp   
+            <ButtonComp
+              title={titleOK!}
+              disabled={okayDisabled}
+              variant={
+                ModalContainerVariantClassName.buttonOKVariant ===
+                  "ButtonOkayAge"
+                  ? "ButtonOkayAge"
+                  : "ButtonAddCriterion"
+              }
               onClick={() => {
                 onOkay!();
               }}
-              
-              title={"Okay"} variant={"ButtonOkayAge"} />
-            )}
+            />
+
+            {/* {variant === "Default" ? (
+              <ButtonComp variant={"ButtonAddCriterion"}
+                title={"Add criterion"}
+                disabled={false} />
+            ) : (
+              <ButtonComp
+                disabled={okayDisabled}
+                onClick={() => {
+                  onOkay!();
+                }}
+
+                title={"Okay"}
+                variant={"ButtonOkayAge"} />
+            )} */}
           </div>
         </div>
       </div>

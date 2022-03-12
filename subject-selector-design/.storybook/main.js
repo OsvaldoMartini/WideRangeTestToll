@@ -1,14 +1,12 @@
 module.exports = {
-  stories: ["../stories/**/*.stories.@(ts|tsx|js|jsx)"],
-  addons: [
+  "stories": [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-a11y",
-    "storybook-addon-designs",
-    "@storybook/addon-actions",
+    "@storybook/preset-create-react-app"
   ],
-  // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
-  typescript: {
-    check: true, // type-check stories during Storybook build
-  },
-};
+  "framework": "@storybook/react"
+}

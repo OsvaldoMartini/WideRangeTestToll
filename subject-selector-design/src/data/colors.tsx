@@ -1,4 +1,5 @@
-import { IColor } from "../@interfaces";
+import { IColor } from "../components";
+
 
 export const colors: IColor[] = [
   {

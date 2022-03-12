@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import classNames from "classnames";
-import { Typography } from "../..";
+import { Typography } from "../typography/Typography";
 
 type ButtonVariant =
   | "ButtonMainPage"
@@ -8,37 +8,55 @@ type ButtonVariant =
   | "ButtonCancelCriteria"
   | "ButtonCancelAge"
   | "ButtonOkayAge"
-  | "ButtonSelectAgeCriteria";
+  | "ButtonSelectAgeCriteria"
+  | "ButtonAddCriterion"
+  | "ButtonCancelSearch";
 
-type ButtonState = "default" | "typography";
+type ButtonState = "default" | "textPosition" | "typography";
 
 const ButtonVariantClasses: Record<
   ButtonVariant,
   Record<ButtonState, string>
 > = {
   ButtonMainPage: {
-    default: "button-search",
+    default: "button-search-disabled",
+    textPosition: "button-main-search-text-position",
     typography: "button-search-text text-white",
   },
   SearchCriteria: {
     default: "button-search-criteria",
+    textPosition: "button-criteria-text-position",
     typography: "button-criteria-text text-white",
   },
   ButtonCancelCriteria: {
     default: "button-cancel-criteria",
+    textPosition: "", //button-cancel-criteria-text-position
     typography: "button-cancel-criteria-text",
   },
   ButtonCancelAge: {
     default: "button-cancel-age",
+    textPosition: "button-cancel-age-text-position",
     typography: "button-cancel-age-text",
   },
   ButtonOkayAge: {
     default: "button-okay-age",
+    textPosition: "button-okay-age-text-position",
     typography: "button-okay-age-text",
   },
   ButtonSelectAgeCriteria: {
     default: "select-age-criteria-selection",
+    textPosition: "", //button-subject-age-text-position
     typography: "select-age-criteria-selection-text",
+  },
+  ButtonAddCriterion: {
+    default: "button-add-criterion",
+    textPosition: "button-add-criterion-text-position",
+    typography: "button-add-criterion-text",
+  },
+  ButtonCancelSearch: {
+    default: "button-search",
+    textPosition: "button-main-cancel-text-position",
+    typography: "button-search-text text-white",
   },
 };
 
@@ -85,15 +103,20 @@ export const ButtonComp: FC<ButtonProps> = ({
       <button
         className={classNames("", className, {
           [classNames(ButtonVariantClassName.default)]: !disabled,
+          // "button-search": !disabled && variant === "ButtonMainPage",
+          "button-search": !disabled && (variant === "ButtonMainPage" || variant === "ButtonCancelSearch"),
+          "button-search-disabled": disabled && variant === "ButtonMainPage",
+          "button-add-criterion-disabled": disabled && variant === "ButtonAddCriterion",
+          "button-add-criterion": !disabled && variant === "ButtonAddCriterion",
+          "button-okay-age": variant === "ButtonOkayAge",
         })}
+        disabled={disabled}
       >
-        <div className={classNames("", className, {})}>
+        <div className={ButtonVariantClassName.textPosition}>
           <Typography
             variant="md"
             customWeight="regular"
-            className={classNames("", className, {
-              [classNames(ButtonVariantClassName.typography)]: !disabled,
-            })}
+            className={ButtonVariantClassName.typography}
           >
             {title}
           </Typography>

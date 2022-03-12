@@ -1,28 +1,28 @@
+//const path = require("path");
+//const views = path.join(__dirname, "../dist");
+
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-widgets/dist/css/react-widgets.css";
-import "semantic-ui-css/semantic.min.css";
 import "./app/layout/styles.css";
 import App from "./app/layout/App";
 import * as serviceWorker from "./serviceWorker";
 import ScrollToTop from "./app/layout/ScrollToTop";
 import dateFnsLocalizer from "react-widgets-date-fns";
-
-import "subject-selector-design/src/components/styles/styles.css";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 dateFnsLocalizer();
 
-export const history = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={history}>
+  <BrowserRouter>
     <ScrollToTop>
       <App />
     </ScrollToTop>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("root"),
 );
 

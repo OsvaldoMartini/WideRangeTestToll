@@ -1,0 +1,120 @@
+import React from "react";
+import { Meta, Story } from "@storybook/react";
+
+import { Typography, TypographyProps } from "./Typography";
+import StoryLayout from "../StoryLayout";
+
+const meta: Meta = {
+  title: "BCSS-Design/Typographys/Typography",
+  component: Typography,
+  parameters: {
+    controls: { expanded: true },
+  },
+};
+
+export default meta;
+
+interface Props extends TypographyProps {
+  darkMode: boolean;
+}
+
+const TypographyDynamic: Story<Props> = (args) => {
+  const isHeading = args.variant.startsWith("h");
+
+  return (
+    <StoryLayout {...args}>
+      <Typography {...args}>
+        {isHeading ? "Display" : "Text"} {args.variant} <br />{" "}
+        {args.customWeight}
+      </Typography>
+    </StoryLayout>
+  );
+};
+
+const TypographyHeadings: Story<Props> = (args) => {
+  return (
+    <StoryLayout {...args}>
+      <Typography {...args} variant="h1">
+        Display h1
+      </Typography>
+      <Typography {...args} variant="h2">
+        Display h2
+      </Typography>
+      <Typography {...args} variant="h3">
+        Display h3
+      </Typography>
+      <Typography {...args} variant="h4">
+        Display h4
+      </Typography>
+      <Typography {...args} variant="h5">
+        Display h5
+      </Typography>
+      <Typography {...args} variant="h6">
+        Display h6
+      </Typography>
+    </StoryLayout>
+  );
+};
+
+export const Heading = TypographyHeadings.bind({});
+
+Heading.args = {
+  customWeight: "regular",
+  className: "",
+  darkMode: false,
+};
+
+Heading.parameters = {
+  controls: { exclude: ["darkMode", "variant", "customColor", "className"] },
+};
+
+const TypographyText: Story<Props> = (args) => {
+  return (
+    <StoryLayout {...args}>
+      <Typography {...args} variant="xl">
+        Text xl
+      </Typography>
+      <Typography {...args} variant="lg">
+        Text lg
+      </Typography>
+      <Typography {...args} variant="md">
+        Text md
+      </Typography>
+      <Typography {...args} variant="sm">
+        Text sm
+      </Typography>
+      <Typography {...args} variant="xs">
+        Text xs
+      </Typography>
+    </StoryLayout>
+  );
+};
+
+export const Text = TypographyText.bind({});
+
+Text.args = {
+  customWeight: "regular",
+  className: "",
+  darkMode: false,
+};
+
+Text.parameters = {
+  controls: {
+    exclude: ["darkMode", "className", "customWeight", "customColor"],
+  },
+};
+export const Dynamic = TypographyDynamic.bind({});
+
+Dynamic.args = {
+  variant: "h1",
+  customColor: "", //text-primary-600 dark:text-white
+  customWeight: "regular",
+  className: "",
+  darkMode: false,
+};
+
+Dynamic.parameters = {
+  controls: {
+    exclude: ["darkMode", "className", "customWeight", "customColor"],
+  },
+};

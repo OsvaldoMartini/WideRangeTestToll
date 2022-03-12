@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Typography } from "../typography/Typography";
 import classNames from "classnames";
 
-type CardMainVariant = "Inactive" | "HoverActive" | "SearchCriteria";
+type CardMainVariant = "InitialState" | "HoverCriteria" | "SearchCriteria";
 
 type CardMainState = "default" | "typography";
 
@@ -10,12 +10,12 @@ const CardMainVariantClasses: Record<
   CardMainVariant,
   Record<CardMainState, string>
 > = {
-  Inactive: {
-    default: "bg",
+  InitialState: {
+    default: "card-main-button",
     typography: "card-main-text-typography",
   },
-  HoverActive: {
-    default: "bg",
+  HoverCriteria: {
+    default: "card-main-button",
     typography: "card-main-text-typography",
   },
   SearchCriteria: {
@@ -41,7 +41,7 @@ export interface CardMainProps {
 export const CardMain: FC<CardMainProps> = ({
   children,
   className,
-  variant = "Inactive",
+  variant = "InitialState",
   disabled,
   title,
   addClassNames,
@@ -82,7 +82,7 @@ export const CardMain: FC<CardMainProps> = ({
             </Typography>
           </div>
           <div className="card-plus-home-page-position">
-            <svg
+            <svg style={{ cursor: "pointer" }}
               width="33"
               height="32"
               viewBox="0 0 33 32"
@@ -92,7 +92,7 @@ export const CardMain: FC<CardMainProps> = ({
                 d="M16.66 8c.553 0 1.001.448 1.001 1v5.999l6.013.001a1.001 1.001 0 1 1 0 2H17.66v6a1.001 1.001 0 0 1-2.004 0v-6H9.645a1.001 1.001 0 1 1 0-2h6.012V9c0-.552.449-1 1.002-1z"
                 fill="#111"
                 fillRule="evenodd"
-                opacity={variant === "Inactive" ? opacity : opactityEvent}
+                opacity={variant === "InitialState" ? opacity : opactityEvent}
               />
             </svg>
           </div>

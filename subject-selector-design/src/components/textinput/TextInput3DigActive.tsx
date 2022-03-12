@@ -1,6 +1,5 @@
-import React, { FC, ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { FC, ChangeEvent, KeyboardEvent } from "react";
 import classNames from "classnames";
-import "./text-input.css";
 
 type TextInput3DigActiveVariant = "Default" | "NHSNumber";
 
@@ -21,7 +20,6 @@ const TextInput3DigActiveVariantClasses: Record<
 };
 
 export interface TextInput3DigActiveProps {
-  id?: number;
   type: "text";
   value?: number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -45,20 +43,19 @@ export const TextInput3DigActive: FC<TextInput3DigActiveProps> = ({
   autocomplete = "off",
   variant = "Default",
 }) => {
-  const TextInput3DigActiveVariantClassName =
-    TextInput3DigActiveVariantClasses[variant];
+  const TextInput3DigActiveVariantClassName = TextInput3DigActiveVariantClasses[variant];
 
-  const [focusState, setFocusState] = useState(false);
+  // const [focusState, setFocusState] = useState(false);
 
-  const boxMouseOutHandler = () => {
-    //  setVariant(TextInput3DigActiveVariantClasses["Default"]);
-    setFocusState(false);
-  };
+  // const boxMouseOutHandler = () => {
+  //   //  setVariant(TextInput3DigActiveVariantClasses["Default"]);
+  //   setFocusState(false);
+  // };
 
-  const boxOnClickHandler = () => {
-    // setVariant(TextInput3DigActiveVariantClasses["Focus"]);
-    setFocusState(true);
-  };
+  // const boxOnClickHandler = () => {
+  //   // setVariant(TextInput3DigActiveVariantClasses["Focus"]);
+  //   setFocusState(true);
+  // };
 
   return (
     <div>
@@ -67,12 +64,12 @@ export const TextInput3DigActive: FC<TextInput3DigActiveProps> = ({
           [classNames(
             TextInput3DigActiveVariantClassName.default,
           )]: !errorState,
-          Rectangle_focus: focusState && !errorState,
-          Rectangle_error: errorState,
+          "Rectangle_focus": !errorState,
+          "Rectangle_error": errorState,
           "bg-gray-50 dark:bg-gray-700": disabled,
         })}
-        onMouseOut={boxMouseOutHandler}
-        onClick={boxOnClickHandler}
+      // onMouseOut={boxMouseOutHandler}
+      // onClick={boxOnClickHandler}
       >
         <input
           type={type}

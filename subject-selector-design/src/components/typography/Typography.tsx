@@ -20,11 +20,11 @@ type TypographyFontVariant = "FrutigerLTStd" | "FrutigerLTStdRoman"
 
 type TypographyWeightOption = "regular" | "medium" | "semibold" | "bold";
 
-type TypographyWeightValue =
-  | "font-normal"
-  | "font-medium"
-  | "font-semibold"
-  | "font-bold";
+// type TypographyWeightValue =
+//   | "font-normal"
+//   | "font-medium"
+//   | "font-semibold"
+//   | "font-bold";
 
 export interface TypographyProps {
   font?: TypographyFontVariant;
@@ -35,46 +35,45 @@ export interface TypographyProps {
   children: string | React.ReactNode;
 }
 
-const TypographyVariantClasses: Record<TypographyVariant, string> = {
-  xs: "text-xs",
-  sm: "text-sm",
-  md: "text-md",
-  lg: "text-lg",
-  xl: "text-xl",
-  h6: "text-h6",
-  h5: "text-h5",
-  h4: "text-h4",
-  h3: "text-h3",
-  h2: "text-h2",
-  h1: "text-h1",
-};
+// const TypographyVariantClasses: Record<TypographyVariant, string> = {
+//   xs: "text-xs",
+//   sm: "text-sm",
+//   md: "text-md",
+//   lg: "text-lg",
+//   xl: "text-xl",
+//   h6: "text-h6",
+//   h5: "text-h5",
+//   h4: "text-h4",
+//   h3: "text-h3",
+//   h2: "text-h2",
+//   h1: "text-h1",
+// };
 
-const TypographyFontVariantClasses: Record<TypographyFontVariant, string> = {
-  FrutigerLTStd: "FrutigerLTStd",
-  FrutigerLTStdRoman: "FrutigerLTStd-Roman",
-};
+// const TypographyFontVariantClasses: Record<TypographyFontVariant, string> = {
+//   FrutigerLTStd: "FrutigerLTStd",
+//   FrutigerLTStdRoman: "FrutigerLTStd-Roman",
+// };
 
-const TypographyWeightClasses: Record<
-  TypographyWeightOption,
-  TypographyWeightValue
-> = {
-  regular: "font-normal",
-  medium: "font-medium",
-  semibold: "font-semibold",
-  bold: "font-bold",
-};
+// const TypographyWeightClasses: Record<
+//   TypographyWeightOption,
+//   TypographyWeightValue
+// > = {
+//   regular: "font-normal",
+//   medium: "font-medium",
+//   semibold: "font-semibold",
+//   bold: "font-bold",
+// };
 
 export const Typography: FC<TypographyProps> = ({
-  font = "FrutigerLTStd",
+  // font = "FrutigerLTStd",
   variant = "md",
-  customColor,
-  customWeight = "regular",
+  // customWeight = "regular",
   className,
   children,
 }) => {
-  const TypographyVariantClassName = TypographyVariantClasses[variant];
-  const TypographyWeightClassName = TypographyWeightClasses[customWeight];
-  const TypographyFontVariantClassName = TypographyFontVariantClasses[font];
+  // const TypographyVariantClassName = TypographyVariantClasses[variant];
+  // const TypographyWeightClassName = TypographyWeightClasses[customWeight];
+  // const TypographyFontVariantClassName = TypographyFontVariantClasses[font];
 
   // h1-h6 should have corresponding component
   // others should be p
@@ -84,15 +83,15 @@ export const Typography: FC<TypographyProps> = ({
   return (
     <Component
       className={classNames(
-        TypographyVariantClassName,
-        TypographyWeightClassName,
-        TypographyFontVariantClassName,
+        // TypographyVariantClassName,
+        // TypographyWeightClassName,
+        // TypographyFontVariantClassName,
         className,
         {
           // ["tracking-tight"]: ["h1", "h2", "h3"].includes(variant),
           // ["text-black dark:text-white"]: !customColor,
         },
-        customColor,
+        // customColor,
       )}
     >
       {children}

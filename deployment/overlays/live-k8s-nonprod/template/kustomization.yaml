@@ -1,0 +1,8 @@
+# This "imports" every yaml file in the "../../base" folder.
+bases:
+  - ../../base
+
+patchesStrategicMerge:
+  - service-certificate.yaml
+
+namespace: NAMESPACE_TO_BE_REPLACED

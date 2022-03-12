@@ -1,9 +1,9 @@
-import React, { FC, useState} from "react";
+import React, { FC } from "react";
 import classNames from "classnames";
 
-type TextInput3DigActiveErrorVariant = "Default" | "Focus";
+type TextInput3DigActiveErrorVariant = "Default";
 
-type TextInput3DigActiveErrorState = "default";
+type TextInput3DigActiveErrorState = "default" | "focus" | "error";
 
 const TextInput3DigActiveErrorVariantClasses: Record<
   TextInput3DigActiveErrorVariant,
@@ -11,10 +11,9 @@ const TextInput3DigActiveErrorVariantClasses: Record<
 > = {
   "Default": {
     default: "ElementsText-input3-DigitActive",
+    focus: "ElementsText-input3-DigitActive",
+    error: "ElementsText-input3-DigitActive",
   },
-  "Focus": {
-    default: "Rectangle_focus",
-  }, 
 };
 
 export interface TextInput3DigActiveErrorProps {
@@ -28,7 +27,7 @@ export interface TextInput3DigActiveErrorProps {
   errorState: boolean;
   disabled?: boolean;
   autocomplete?: string;
-  variant: TextInput3DigActiveErrorVariant;
+  variant?: TextInput3DigActiveErrorVariant;
 }
 
 export const TextInput3DigActiveError: FC<TextInput3DigActiveErrorProps> = ({
@@ -40,33 +39,17 @@ export const TextInput3DigActiveError: FC<TextInput3DigActiveErrorProps> = ({
   placeholder,
   errorState,
   disabled,
-  autocomplete="off",
- variant="Default"
+  autocomplete = "off",
 }) => {
-  const [TextInput3DigActiveErrorVariantClassName, setVariant] = useState(TextInput3DigActiveErrorVariantClasses[variant]);
-  const [focusState, setFocusState] = useState(false);  
-  
-  const boxMouseOutHandler = () => {
-    setVariant(TextInput3DigActiveErrorVariantClasses["Default"]);
-  };
-
-  const boxOnClickHandler = () => {
-    setVariant(TextInput3DigActiveErrorVariantClasses["Focus"]);
-    setFocusState(true);
-  };
-  
 
   return (
     <div>
-          <div className={classNames("", {
-              [classNames(TextInput3DigActiveErrorVariantClassName.default)]: !focusState && !errorState,  
-              "Rectangle_focus": focusState && !errorState,
-              "Rectangle_error": errorState,
-                "bg-gray-50 dark:bg-gray-700": disabled,
-              })}  
-              onMouseOut={boxMouseOutHandler}
-              onClick={boxOnClickHandler}
-              >
+      <div className={classNames("", {
+        "Rectangle_focus": !errorState,
+        "Rectangle_error": errorState,
+        "bg-gray-50 dark:bg-gray-700": disabled,
+      })}
+      >
         <input
           id={id}
           type={type}

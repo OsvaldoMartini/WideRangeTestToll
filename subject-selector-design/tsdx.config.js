@@ -1,23 +1,28 @@
 const postcss = require('rollup-plugin-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 
 module.exports = {
   rollup(config, options) {
     config.plugins.push(
       postcss({
-        plugins: [
-          autoprefixer(),
-          cssnano({
-            preset: 'default',
-          }),
-        ],
-        inject: false,
-        // only write out CSS for the first bundle (avoids pointless extra files):
+        inject: true,
         extract: !!options.writeMeta,
-        modules: true,
-      })
+        Modules: true, // use CSS modules
+        //Namedexport: true, // class name export
+        CamelCase: true, // supports hump
+        Sass: true, // use sass
+        // less:true,
+        // autoModules:true,
+        // namedExports(name) {
+        //   // Maybe you simply want to convert dash to underscore
+        //   return name.replace(/-/g, '_')
+        // }
+    }),
     );
+
+    // config.plugins.map((item) => {
+    //   console.log(item);
+    // });
+
     return config;
   },
 };

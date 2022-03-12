@@ -1,0 +1,26 @@
+resources:
+- namespace.yaml
+- app/deployment.yaml
+- app/service.yaml
+- storybook/deployment.yaml
+- storybook/service.yaml
+- network-policy/default-deny-ingress.yaml
+- network-policy/default-deny-egress.yaml
+- network-policy/allow-https-egress.yaml
+- network-policy/allow-https-egress-storybook.yaml
+- network-policy/allow-external-ingress-app.yaml
+- network-policy/allow-external-ingress-storybook.yaml
+- network-policy/allow-dns-egress.yaml
+
+configMapGenerator:
+- name: configmap
+  literals:
+    - PARAM_APIVERSION=IMAGE_TAG_TO_BE_REPLACED
+    - SECRET1=SOME_SECRET_TO_BE_REPLACED
+    - SECRET2=ANOTHER_SECRET_TO_BE_REPLACED
+
+images:
+- name: 461183108257.dkr.ecr.eu-west-2.amazonaws.com/bcss-test-subject-selector-app
+  newTag: IMAGE_TAG_TO_BE_REPLACED
+- name: 461183108257.dkr.ecr.eu-west-2.amazonaws.com/bcss-test-subject-selector-storybook
+  newTag: IMAGE_TAG_TO_BE_REPLACED

@@ -22,3 +22,11 @@ Or override entry point
 ```
 docker run -it --entrypoint /bin/sh test-subject-selector-runtime:1.0
 ```
+
+
+
+
+
+docker build -t test-subject-selector-base-build:1.0 --build-arg VERSION=1.0 -f pipeline-build-base.dockerfile .
+
+docker build -t test-subject-selector-app-build:1.0 --build-arg VERSION=1.0 -f pipeline-build-app.dockerfile .

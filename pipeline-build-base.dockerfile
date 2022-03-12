@@ -5,7 +5,9 @@ FROM node:16.13-alpine
 
 WORKDIR /subject-selector-design
 COPY ./subject-selector-design .
-RUN cp -r ./src/styles/Fonts ./src/styles/custom_fonts 2>/dev/null || :
+
+#RUN cp -r ./src/styles/Fonts ./src/styles/custom_fonts 2>/dev/null || :
+
 RUN yarn
 
 WORKDIR /subject-selector-app

@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "459e78d7-e06e-4a45-a642-b947666a3e5c",
+		"name": "BCSS-Subject-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users Subjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/users/subjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"users",
+						"subjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"osvaldo.martini@gmail.com\",\n\t\"fullName\":\"Osvaldo Martini\",\n\t\"password\":\"martini\",\n\t\"confirmPassword\":\"martini\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9095/api/users/register/Demographic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"users",
+						"register",
+						"Demographic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Register Subject Script",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"fullName\":\"{{fullname}}\",\n\t\"password\":\"{{password}}\",\n\t\"confirmPassword\":\"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9095/api/users/register/{{subject}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"users",
+						"register",
+						"{{subject}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subject Critria All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/subject/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"subject",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

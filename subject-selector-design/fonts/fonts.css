@@ -1,0 +1,88 @@
+/* FrutigerLight */
+/* @font-face {
+  font-family: "FrutigerLight";
+  font-style: normal;
+  font-weight: normal;
+  src: url(https://fonts.gstatic.com/s/overpass/v7/qFda35WCmI96Ajtm83upeyoaX6QPnlo6_PPbM5qKhcc.woff2)
+    format("woff2");
+} */
+
+/* FrutigerLight */
+@font-face {
+  font-family: "FrutigerLight";
+  src: local("FrutigerLight"),
+    url("FrutigerLTW01-45Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerLightItalic */
+@font-face {
+  font-family: "FrutigerLightItalic";
+  src: local("FrutigerLightItalic"),
+    url("FrutigerLTW01-46LightItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerLTStd-Roman */
+@font-face {
+  font-family: "FrutigerLTStd-Roman";
+  src: local("FrutigerLTStd"),
+    url("FrutigerLTW01-55Roman.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerItalic */
+@font-face {
+  font-family: "FrutigerItalic";
+  src: local("FrutigerItalic"),
+    url("FrutigerLTW01-56Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerBold */
+@font-face {
+  font-family: "FrutigerBold";
+  src: local("FrutigerBold"), url("FrutigerLTW01-65Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerBoldItalic */
+@font-face {
+  font-family: "FrutigerBoldItalic";
+  src: local("FrutigerBoldItalic"),
+    url("FrutigerLTW01-66BoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerLTStd */
+@font-face {
+  font-family: "FrutigerLTStd";
+  src: local("FrutigerLTStd"),
+    url("FrutigerLTW01-75Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerBlackItalic */
+@font-face {
+  font-family: "FrutigerBlackItalic";
+  src: local("FrutigerBlackItalic"),
+    url("FrutigerLTW01-76BlackItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FrutigerUltraBlack */
+@font-face {
+  font-family: "FrutigerUltraBlack";
+  src: local("FrutigerUltraBlack"),
+    url("FrutigerLTW01-95UltraBlack.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

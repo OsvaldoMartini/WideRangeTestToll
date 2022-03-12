@@ -6,14 +6,14 @@ type ButtonSecondaryVariant = "Enabled" | "Disabled";
 type ButtonSecondaryState = "default";
 
 const ButtonSecondaryVariantClasses: Record<
-ButtonSecondaryVariant,
+  ButtonSecondaryVariant,
   Record<ButtonSecondaryState, string>
 > = {
   "Enabled": {
-      default: "button-secondary-disabled",
+    default: "button-add-criterion",
   },
   "Disabled": {
-      default: "button-secondary-disabled",
+    default: "button-add-criterion-disabled",
   }
 };
 
@@ -40,7 +40,7 @@ export const ButtonSecondary: FC<ButtonSecondaryProps> = ({
         <Typography
           variant="md"
           customWeight="regular"
-          className={`button-secondary-text`}
+          className={`button-add-criterion-text`}
         >
           {title}
         </Typography>

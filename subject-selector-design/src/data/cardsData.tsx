@@ -1,9 +1,33 @@
-import { ICardMainData } from "../@interfaces";
+import { ICardMainData } from "../components";
 
 const cardMain0: ICardMainData = {
   id: 1,
   title: "Demographic",
   subtitle: "Demo",
+  // filtersSelection: [
+  //   {
+  //     id: 1,
+  //     title: "Specific Age",
+  //     subTitle: "15",
+  //     operation: "equal",
+  //     minAgeValue: 15,
+  //     maxAgeValue: -9999
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Between Ages",
+  //     subTitle: "15 - 25",
+  //     operation: "between",
+  //     minAgeValue: 15,
+  //     maxAgeValue: 25
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "NHS number",
+  //     subTitle: "333 444 555",
+  //     operation: "equal",
+  //   },
+  // ],
   criteriaOptions: [
     {
       id: 1,
@@ -11,7 +35,7 @@ const cardMain0: ICardMainData = {
       width: 110,
       action: "Default",
       filterName: "NHS Number",
-      hoverClicked: true
+      hoverClicked: false
     },
     {
       id: 2,
@@ -60,8 +84,11 @@ const cardMain1: ICardMainData = {
     },
     {
       id: 2,
-      title: "Address",
+      title: "Age",
       width: 44,
+      action: "AgeCriteriaVar",
+      filterName: "Subject Age",
+      hoverClicked: false
     },
     {
       id: 3,
@@ -178,10 +205,35 @@ const cardMain4: ICardMainData = {
     },
   ],
 };
+
 const cardMain5: ICardMainData = {
   id: 6,
   title: "Surveillance",
   subtitle: "Scre",
+  // filtersSelection: [
+  //   {
+  //     id: 1,
+  //     title: "Between Ages",
+  //     subTitle: "15 - 25",
+  //     operation: "between",
+  //     minAgeValue: 15,
+  //     maxAgeValue: 25
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "NHS number",
+  //     subTitle: "456 333 111",
+  //     operation: "equal",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Specific Age",
+  //     subTitle: "35",
+  //     operation: "equal",
+  //     minAgeValue: 15,
+  //     maxAgeValue: -9999
+  //   },
+  // ],
   criteriaOptions: [
     {
       id: 1,
@@ -205,11 +257,15 @@ const cardMain5: ICardMainData = {
     },
     {
       id: 5,
-      title: "GP Practice",
-      width: 125,
+      title: "Age from Grand Mother",
+      width: 44,
+      action: "AgeCriteriaVar",
+      filterName: "Subject Age",
+      hoverClicked: false
     },
   ],
 };
+
 
 export const cardsData: ICardMainData[] = [
   cardMain0,
