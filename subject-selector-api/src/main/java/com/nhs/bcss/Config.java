@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -19,6 +22,13 @@ import org.springframework.web.servlet.resource.ResourceResolverChain;
 public class Config implements WebMvcConfigurer {
 
 
+	@Value("${spring.datasource.url}")
+	private String jdbcUrl;
+	@Value("${spring.datasource.username}")
+	private String jdbcUser;
+	@Value("${spring.datasource.password}")
+	private String jdbcPwd;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceResolver resolver = new ReactResourceResolver();
@@ -27,6 +37,15 @@ public class Config implements WebMvcConfigurer {
                 .addResolver(resolver);
     }
 
+    
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer properties() {
+        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+        configurer.setIgnoreUnresolvablePlaceholders(true);
+        configurer.setIgnoreResourceNotFound(true);
+        return configurer;
+    }
+    
     public class ReactResourceResolver implements ResourceResolver {
         // this is the same directory you are using in package.json
         // "build-spring": "react-scripts build &&  mv build static && mv static ../src/main/resources",

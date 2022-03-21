@@ -27,12 +27,12 @@ public class TomcatEmbedServerCustomConfigration implements WebServerFactoryCust
 	public void customize(TomcatServletWebServerFactory factory) {
 		logger.info("Setting the Tomcat specific configurations. started");
 		//factory.setPort(9095);
-		factory.setDisplayName("PPMTool Server");
+		factory.setDisplayName("BCSS Server");
 		factory.setServerHeader("Server header of tomcat");
 		factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
             @Override
             public void customize(Connector connector) {
-                connector.setPort(9095);
+                //connector.setPort(9095);
                 connector.setMaxPostSize(2000);
                 boolean re = connector.setProperty("maxHeaderCount", Integer.toString(maxHeaderCount));
                 System.out.println("Set maxHeaderCount:" + re);
