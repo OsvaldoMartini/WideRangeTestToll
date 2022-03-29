@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ddc-bcss-test-subject-selector-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddc-bcss-test-subject-selector-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ddc-bcss-test-subject-selector-api
+    spec:
+      containers:
+        - name: ddc-bcss-test-subject-selector-api
+          image: 461183108257.dkr.ecr.eu-west-2.amazonaws.com/bcss-test-subject-selector-api:IMAGE_TAG
+          envFrom:
+            - configMapRef:
+                name: configmap
+          ports:
+            - containerPort: 443
+          # Note 1, resource limits do not change for current overlays implemented.
+          # Note 2, you mysr set requests otherwise limits are used for requests defaults
+          resources:
+            requests:
+              memory: "0Mi"
+              cpu: "0m"
+            limits:
+              memory: "2048Mi"
+              cpu: "1000m"

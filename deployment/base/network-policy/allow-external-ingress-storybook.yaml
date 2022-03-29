@@ -7,7 +7,7 @@ spec:
     matchLabels:
       app: ddc-bcss-test-subject-selector-storybook
   ingress:
-  - from: []
-    ports:
-    - protocol: TCP
-      port: 443
+    - from: []
+      ports:
+        - protocol: TCP
+          port: 443

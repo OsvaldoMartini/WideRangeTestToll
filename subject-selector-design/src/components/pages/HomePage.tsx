@@ -14,8 +14,8 @@ import { FilterSelectionGroup } from "../filtersSelection/FiltersSelectionGroup"
 import { CustomPagination } from "../navigation/CustomPagination";
 //import optionReducer from "../../stores/OptionSelectedReducer";
 
-import dataJson from '../../data/customers_data.json';
 import { CardTotal } from "../cards/CardTotal";
+import SubjectSearchService from "../services/SubjectSearch/SubjectSearchService";
 
 
 type HomePageVariant = "InitialState" | "HoverCriteria";
@@ -26,6 +26,7 @@ export interface HomePageProps {
   className?: string;
   variant: HomePageVariant;
   disabled?: boolean;
+  changeValues: (value: any) => void;
 }
 
 export const HomePage: FC<HomePageProps> = ({
@@ -34,6 +35,7 @@ export const HomePage: FC<HomePageProps> = ({
   className,
   variant = "InitialState",
   disabled,
+  changeValues,
   ...homePageProps
 }) => {
 
@@ -53,9 +55,11 @@ export const HomePage: FC<HomePageProps> = ({
 
   // const [disableButtons, setDisableButtons] = useState(false);
   const [betweenOperation, setBetweenOperation] = useState(false);
-  const [operationSelected, setOperationSelected] = useState<any>();
-  const [minAgeValue, setMinAgeValue] = useState(0);
-  const [maxAgeValue, setMaxAgeValue] = useState(50);
+  const [optionSelected, setOptionSelected] = useState({ id: 1, title: "Specific age", short: "Specific age", operation: "equal" });
+  const [valuesAge, setValuesAge] = useState({ minAge: 1, maxAge: 120 });
+
+  //  const [minAgeValue, setMinAgeValue] = useState(0);
+  //   const [maxAgeValue, setMaxAgeValue] = useState(50);
 
   const [alterOrDelete, setAlterOrDelete] = useState(false);
 
@@ -63,67 +67,98 @@ export const HomePage: FC<HomePageProps> = ({
 
 
   const [filtersApplied, setFiltersApplied] = useState(false);
-  const [filtered, setFiltered] = useState<any[]>([dataJson]);
+
+  const [filtered, setFiltered] = useState<any[]>([]);
 
   const addCriterion = (cardSelection: ICardMainData) => {
     console.log("addCriterion")
+
     if (!cardSelection.filtersSelection) {
       cardSelection.filtersSelection = [];
     }
 
+    console.log("cardSelection");
     cardSelection.filtersSelection.push(
       {
         id: cardSelection.filtersSelection.length + 1,
-        title: operationSelected.short || operationSelected.title,
-        subTitle: operationSelected.maxVal !== -9999 ? `${operationSelected.minVal}-${operationSelected.maxVal}` : `${operationSelected.minVal}`,
-        operation: operationSelected.operation,
-        minAgeValue: operationSelected.minVal,
-        maxAgeValue: operationSelected.maxVal
+        title: optionSelected.short || optionSelected.title,
+        subTitle: optionSelected.operation === "between" ? `${valuesAge.minAge}-${valuesAge.maxAge}` : `${valuesAge.minAge}`,
+        operation: optionSelected.operation,
+        minAgeValue: valuesAge.minAge,
+        maxAgeValue: valuesAge.maxAge
       });
 
     setHasFilters(true);
   };
 
+
+
+  // useEffect(() => {
+  //   callSearch();
+  // }, []);
+
   const callSearch = () => {
-    if (filtered.length > 0) {
-      console.log("callSearch", filtered);
+    console.log("callSearch", filtered);
 
-      console.log("filtersSelection", cardSelection.filtersSelection);
-      let operation = "";
-      let rangeAge = [0];
+    console.log("filtersSelection", cardSelection.filtersSelection);
+    let operation = "";
+    let rangeAge = [0];
 
-      cardSelection.filtersSelection.forEach((item: any) => {
-        operation = item.operation;
-        rangeAge = item.subTitle.split("-");
-      });
-
-      if (rangeAge.length > 1) {
-        let result = filtered.filter((item) => {
-          return Number(item.AGE) >= Number(rangeAge[0]) && Number(item.AGE) < Number(rangeAge[1]);
-        });
-        setFiltered(result);
-      }
-
-      if (rangeAge.length === 1) {
-        let result = filtered.filter((item) => {
-          if (operation === "<=") {
-            return Number(item.AGE) <= Number(rangeAge[0]);
-          } else if (operation === ">=") {
-            return Number(item.AGE) >= Number(rangeAge[0]);
-          } else if (operation === "<") {
-            return Number(item.AGE) < Number(rangeAge[0]);
-          } else if (operation === ">") {
-            return Number(item.AGE) > Number(rangeAge[0]);
-          } else if (operation === "equal") {
-            return Number(item.AGE) === Number(rangeAge[0]);
-          }
-        });
-        setFiltered(result);
-      }
-
-      setFiltersApplied(true);
+    cardSelection.filtersSelection.forEach((item: any) => {
+      operation = item.operation;
+      rangeAge = item.subTitle.split("-");
+    });
+    let oper = operation;
+    if (operation === "<=") {
+      oper = "lessorequalthan";
+    } else if (operation === ">=") {
+      oper = "greaterorequalthan";
+    } else if (operation === "<") {
+      oper = "lessthan";
+    } else if (operation === ">") {
+      oper = "greaterthan";
+    } else if (operation === "equal") {
+      oper = "equal";
     }
+
+    let dataResult = { status: "loading", payload: "" };
+    if (rangeAge.length > 1) {
+      const responses = SubjectSearchService({
+        operation: oper,
+        minAge: rangeAge[0],
+        maxAge: rangeAge[1],
+        changeData: (filtered: any) => {
+          setFiltersApplied(true);
+          setFiltered(filtered)
+        }
+      }).then(response => {
+        console.log("responses ", responses);
+      });
+      //      console.log("responses ", responses);
+
+    }
+    else {
+      const responses = SubjectSearchService({
+        operation: oper,
+        minAge: rangeAge[0],
+        maxAge: null,
+        changeData: (filtered: any) => {
+          setFiltersApplied(true);
+          setFiltered(filtered)
+        }
+      }).then(response => {
+        console.log("responses ", responses);
+      });
+    }
+
   };
+
+  useEffect(() => {
+    if (filtered && filtersApplied) {
+      setFiltersApplied(true);
+      //      console.log("Response", filtered)
+    }
+  }, [filtered]);
 
   const closeSearch = () => {
     setFiltersApplied(false);
@@ -131,9 +166,9 @@ export const HomePage: FC<HomePageProps> = ({
 
 
   const setLabelValues = () => {
-    console.log("values", minAgeValue)
+    //    console.log("values", valuesAge.minAge)
 
-    if (minAgeValue >= 0 || maxAgeValue <= 120) {
+    if (valuesAge.minAge >= 0 || valuesAge.maxAge <= 120) {
       setShowLabelValues(true);
     } else {
       setShowLabelValues(false);
@@ -145,7 +180,7 @@ export const HomePage: FC<HomePageProps> = ({
 
   const drawSpacerDs = (idx: number) => {
     return (
-      <figure {...homePageProps}
+      <figure
         className={"box-D10 D10-pos"}
         style={{ left: `${spacerD10[idx]}px` }}
       >
@@ -173,7 +208,7 @@ export const HomePage: FC<HomePageProps> = ({
   const subjectSelected = (butt: any) => {
     //setFilterAction(butt.action);
     setFilterSelected(butt.filterName);
-    //console.logbutt);
+    console.log(butt);
 
     groupButtons.map((button: any) => {
       if (butt.id !== button.id) {
@@ -194,7 +229,7 @@ export const HomePage: FC<HomePageProps> = ({
 
 
   const handleCardSelection = (card: any) => {
-    //console.logcard)
+    console.log(card)
     setStopAnimation(true);
     setCardSelection(card);
     setModalCriteriaActive(true);
@@ -225,9 +260,9 @@ export const HomePage: FC<HomePageProps> = ({
 
     let sum = initialPosition[0];
 
-    //console.log"modalCriteriaActive", modalCriteriaActive);
+    console.log("modalCriteriaActive", modalCriteriaActive);
     if (modalCriteriaActive) {
-      //console.logcardSelection);
+      console.log(cardSelection);
 
       let buttonsCriteria = cardSelection && cardSelection.criteriaOptions.map((item: any) => {
         //if (index === 0) {
@@ -236,7 +271,7 @@ export const HomePage: FC<HomePageProps> = ({
         let left_pos = sum;
         sum += dynWidth + spacerWidths[0];
         let plus_pos = Math.abs(dynWidth / 2) - 2;  //+ left_pos;
-        //console.log
+        // console.log(
         //   // "item.width :" + item.width,
         //   "dynWidth: " + dynWidth,
         //   "leftPos: " +
@@ -265,13 +300,19 @@ export const HomePage: FC<HomePageProps> = ({
       });
       setGroupButtons(buttonsCriteria)
       //setCardSelection(cardSelection);
-      //console.logbuttonsCriteria);
+      //     console.log(buttonsCriteria);
 
     }
   }
 
 
-  useEffect(() => { }, [stopPlaceAnimation]);
+  useEffect(() => {
+    if (optionSelected.operation !== "between") {
+      setBetweenOperation(false)
+    } else {
+      setBetweenOperation(true);
+    }
+  }, [valuesAge]);
 
   useEffect(() => {
 
@@ -308,7 +349,7 @@ export const HomePage: FC<HomePageProps> = ({
     };
 
     const handleTypeTextAge = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      //console.loge.key);
+      //console.log(e.key);
       if (e.key === "Enter") {
         // if (valueTextAge! >= 121) {
         //   setValueTextAge(120);
@@ -377,16 +418,16 @@ export const HomePage: FC<HomePageProps> = ({
             {showLabelValues && (
               <div>
                 {/* <div className="label-age-title-position">
-                  <div className="label-age-title">{operationSelected.title}</div>
+                  <div className="label-age-title">{optionSelected.title}</div>
                 </div> */}
                 {/* {betweenOperation && (<div className="label-age-values-position"> */}
                 {betweenOperation && (<div className="label-age-title-position">
                   <div className="label-age-values">
-                    {operationSelected.title}  {minAgeValue}-{maxAgeValue}</div></div>)}
+                    {optionSelected.title}  {valuesAge.minAge}-{valuesAge.maxAge}</div></div>)}
                 {/* {!betweenOperation && (<div className="label-age-values-position"> */}
                 {!betweenOperation && (<div className="label-age-title-position">
                   <div className="label-age-values">
-                    {operationSelected.title}  {minAgeValue}</div></div>)}
+                    {optionSelected.title}  {valuesAge.minAge}</div></div>)}
               </div>
             )}
             {alterOrDelete && (
@@ -488,40 +529,13 @@ export const HomePage: FC<HomePageProps> = ({
     );
   };
 
-
-
-  // const valuesState = useCallback((values: any) => {
-  //   console.log("Home Page Value State", values);
-
-
-  //   // if (values.minVal > 120 || values.maxVal > 120) {
-  //   //   setDisableButtons(true);
-  //   // } else {
-  //   //   setBetweenOperation(true);
-  //   // }
-
-
-  //   if (values.maxVal > 120) {
-  //     setMinAgeValue(120);
-  //   }
-
-  //   if (values.minVal >= 0 && values.maxVal === -9999) {
-  //     setBetweenOperation(false);
-  //   } else {
-  //     setBetweenOperation(true);
-  //   }
-
-  //   setOperationSelected(values);
-  //   setMinAgeValue(values.minVal);
-  //   setMaxAgeValue(values.maxVal);
-
-  // }, []);
-
   var sum = 0;
+
+  //  console.log("Values Home Page:", valuesAge.minAge + " - " + valuesAge.maxAge)
 
   return (
 
-    <div style={{ overflow: "hidden", backgroundColor: "#e8edee" }}>
+    <div {...homePageProps} style={{ overflow: "hidden", backgroundColor: "#e8edee" }}>
       <nav className="navbar navbar-expand-md fixed-top header-set" >
         <div className="container">
           {/* <a className="navbar-brand header-bar-box" href="/#"></a> */}
@@ -548,7 +562,7 @@ export const HomePage: FC<HomePageProps> = ({
             let totFilter = card.filtersSelection && card.filtersSelection.length ? card.filtersSelection.length : 0;
 
             return (
-              <div>
+              <div key={`_grp_keys_${card.id}`}>
                 <div key={`_${card.id}`}>
                   <CardButton
                     addClassNames={`box-card`}
@@ -697,7 +711,10 @@ export const HomePage: FC<HomePageProps> = ({
             >
               <div>
                 <OptionSelectorGroup
-                //   parentCallback={valuesState}
+                  changeValuesAge={(valuesAge: any) => setValuesAge(valuesAge)}
+                  changeOptions={(optionSelected: any) => setOptionSelected(optionSelected)}
+                  valueAgeInit={valuesAge}
+                  optionsInit={optionSelected}
                 />
               </div>
             </ModalContainer>
@@ -706,7 +723,7 @@ export const HomePage: FC<HomePageProps> = ({
       }
 
       <div className="rectangle-bottom"></div>
-    </div >
+    </div>
 
   );
 };

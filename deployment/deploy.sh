@@ -86,6 +86,7 @@ do
   TRY=$(expr $TRY + 1)
   if [ $TRY = 20 ]
   then
+    eval "${KUBECTL} logs -l app=ddc-bcss-test-subject-selector-api 1>&2"
     eval "${KUBECTL} logs -l app=ddc-bcss-test-subject-selector-app 1>&2"
     eval "${KUBECTL} logs -l app=ddc-bcss-test-subject-selector-storybook 1>&2"
     exit 0

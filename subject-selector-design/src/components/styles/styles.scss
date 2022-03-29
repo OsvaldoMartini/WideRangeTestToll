@@ -912,6 +912,9 @@ div.padding-bottom-reset {
   background-color: $BlueCoreTint20C7Daec;
   z-index: 125;
   width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     cursor: pointer;
   }
@@ -971,12 +974,8 @@ div.padding-bottom-reset {
 .card-plus-criteria-position {
   position: absolute;
   top: 46%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  margin-top: 1px;
 }
 .card-plus-criteria-position-styles {
   z-index: 150;

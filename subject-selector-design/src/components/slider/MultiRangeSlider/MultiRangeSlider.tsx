@@ -42,22 +42,20 @@ export interface MultiRangeSliderProps {
   maxRight: number;
   variant: MultiRangeSliderVariant;
   disabled?: boolean;
-  changeValues: (value: any) => void;
+  valuesAge: any;
+  changeValuesAge: (value: any) => void;
   //parentCallback?: (values: any) => void;
 }
 
 export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
   const {
-    id,
-    title,
-    short,
-    operation,
     minLeft,
     maxLeft,
     minRight,
     maxRight,
     variant = "Active",
-    changeValues,
+    valuesAge,
+    changeValuesAge,
     disabled } = props;
 
   //const [state, dispatch] = useReducer(optionReducer, { buttonSubmit: true });
@@ -72,8 +70,8 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
   const maxValRef = useRef<HTMLInputElement | null>(null);
   const range = useRef<HTMLInputElement | null>(null);
 
-  const [valueTextLeft, setValueTextLeft] = useState(0);
-  const [valueTextRight, setValueTextRight] = useState(120);
+  const [valueTextLeft, setValueTextLeft] = useState(valuesAge.minVal);
+  const [valueTextRight, setValueTextRight] = useState(valuesAge.maxVal);
 
   const [leftCirclePos, setLefCircle] = useState(16);
   const [rightCirclePos, setRightCircle] = useState(340);
@@ -107,12 +105,12 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
 
   useEffect(() => {
     if (greaterLeft) {
-      ////console.log("GREATE LEFT")
+      console.log("GREATE LEFT")
       setMinVal(valueTextLeft);
       setMaxVal(valueTextLeft + 1);
 
     }
-  }, [greaterLeft]);
+  }, [greaterLeft, valueTextLeft]);
 
   useEffect(() => {
     if (greaterRight) {
@@ -120,7 +118,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
       setMinVal(valueTextRight - 1);
       setMaxVal(valueTextRight);
     }
-  }, [greaterRight]);
+  }, [greaterRight, valueTextRight]);
 
 
   useEffect(() => {
@@ -134,7 +132,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
         //setGreaterLeft(false);
       }
     }
-  }, [moveToRight]);
+  }, [moveToRight, greaterLeft, greaterRight, valueTextLeft, maxVal]);
 
 
   useEffect(() => {
@@ -146,7 +144,16 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
         setValueTextRight(valueTextRight - 1);
       }
     }
-  }, [moveToLeft]);
+  }, [moveToLeft, greaterLeft, greaterRight, valueTextRight, minVal]);
+
+  useEffect(() => {
+    changeValuesAge({ ...valuesAge, maxAge: valueTextRight });
+  }, [valueTextRight])
+
+  useEffect(() => {
+    changeValuesAge({ ...valuesAge, minAge: valueTextLeft });
+  }, [valueTextLeft])
+
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -192,8 +199,11 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
         //const rightCalc = maxVal! <= 120 ? (maxVal!*2.63333)+24: (120*2.63333)+24;
         setLefCircle(leftCalc);
         setValueTextLeft(minVal!);
+
       }
     }
+    //  console.log("Useer Effet minVal, getPercent");
+
   }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
@@ -245,35 +255,9 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
         }
       }
     }
+    //console.log("Useer Effet maxVal, getPercent");
+
   }, [maxVal, getPercent]);
-
-  // useEffect(() => {
-  //   // console.log("Effect Left valueTextLeft");
-  //   //parentCallback!({ title: title, short: short, operation: operation, minVal: valueTextLeft, maxVal: maxVal });
-  //   changeValues({ id: id, title: title, short: short, operation: operation, minVal: valueTextLeft, maxVal: maxVal });
-  // }, [valueTextLeft]);
-
-  // useEffect(() => {
-  //   //console.log("Effect Right valueTextRight");
-  //   //parentCallback!({ title: title, short: short, operation: operation, minVal: minVal, maxVal: valueTextRight });
-  //   changeValues({ id: id, title: title, short: short, operation: operation, minVal: minVal, maxVal: valueTextRight });
-  // }, [valueTextRight]);
-
-  // const handleTypeLeft = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     if (Number(e.currentTarget.value) >= valueTextRight) {
-  //       setGreaterLeft(true);
-  //    } else if (Math.abs(Number(e.currentTarget.value) - valueTextRight) < 1) {
-  //       setGreaterLeft(true);
-  //     } else {
-  //       setMinVal(Number(e.currentTarget.value));
-  //     }
-  //   }
-  // };
-
-  // const handleTypeRight = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   // let valueDigited = Number(e.currentTarget.value);
-  // };
 
   return (
     <div>
@@ -290,24 +274,28 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
               placeholder={"0"}
               onChange={function (event: React.ChangeEvent<HTMLInputElement>): void {
                 let valueDigited = Number(event.target.value);
-                if (valueDigited! >= 120) {
+                if (valueDigited! >= 120 && valueDigited >= valueTextRight) {
                   valueDigited = 119;
-                } else if (Number(event.target.value) < 0) {
-                  valueDigited = 0;
-                }
-                if (valueDigited >= valueTextRight) {
+                  setMaxVal(120);
+                  setValueTextRight(120);
+                } else if (valueDigited! >= 120) {
+                  valueDigited = 119;
+                } else if (valueDigited >= valueTextRight) {
                   console.log(" AQUI entra 1");
                   setGreaterLeft(true);
-
                 } else if (Math.abs(valueDigited - valueTextRight) < 1) {
                   console.log(" AQUI entra 2");
                   setGreaterLeft(true);
+                } else if (valueDigited < 0) {
+                  valueDigited = 0;
                 }
+                console.log("Change Value right valueTextLeft", valueTextLeft + " - valueDigited : " + valueDigited);
 
                 setMinVal(valueDigited);
                 setValueTextLeft(valueDigited);
 
-                changeValues({ id: id, title: title, short: short, operation: operation, minVal: valueDigited });
+                //changeValuesAge({ ...valuesAge, maxAge: valueTextRight, minAge: valueDigited });
+
               }}
               onKeyDown={(_event) => {
                 //handleTypeLeft(_event);
@@ -337,11 +325,13 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
                   setShowErrorStateRight(false);
                 } else if (valueDigited <= valueTextLeft) {
                   setGreaterRight(true);
-                } else { }
+                }
+                console.log("Change Value Left valueTextRight", valueTextRight + " - valueDigited : " + valueDigited);
+
                 setMaxVal(valueDigited);
                 setValueTextRight(valueDigited);
 
-                changeValues({ id: id, title: title, short: short, operation: operation, maxVal: valueDigited });
+                //changeValuesAge({ ...valuesAge, minAge: valueTextLeft, maxAge: valueDigited });
 
               }}
               onKeyDown={(_event) => {
@@ -365,9 +355,10 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
               const value = Math.min(+event.target.value, maxVal! - 1);
               setMinVal(value);
               event.target.value = value.toString();
+
             }}
             className={classNames("thumb thumb--zindex-3", {
-              "thumb--zindex-5": minVal! > maxRight! - 100,
+              "thumb--zindex-5": minVal! > maxRight! - 121,
             })}
           />
           <input
@@ -383,6 +374,7 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
               const value = Math.max(+event.target.value, minVal! + 1);
               setMaxVal(value);
               event.target.value = value.toString();
+
             }}
             className="thumb thumb--zindex-4"
           />

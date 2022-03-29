@@ -6,4 +6,4 @@ spec:
   podSelector:
     matchLabels: {}
   policyTypes:
-  - Egress
+    - Egress

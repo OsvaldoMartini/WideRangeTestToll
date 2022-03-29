@@ -2,18 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.nhs.bcss</groupId>
+	<groupId>uk.nhs.bcss</groupId>
 	<artifactId>subject-selector-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>BCSS-Micro-DB</name>
 	<description>Microservice-Subject-Search</description>
+	<organization>
+		<name>NHS Digital</name>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>osma1</id>
+			<name>Osvaldo Martini</name>
+			<email>osvaldo.martini1@nhs.net</email>
+			<properties>
+				<active>true</active>
+			</properties>
+		</developer>
+	</developers>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		 <version>2.2.6.RELEASE</version>
+		<version>2.2.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,9 +36,23 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>8</java.version>
 		<guava.version>20.0</guava.version>
-		<git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>
-		<db2.driver>11.1.4.4</db2.driver>
 	</properties>
+
+	<distributionManagement>
+		<!-- snapshot -->
+		<snapshotRepository>
+			<id>nexus</id>
+			<url>https://nexus.mgmt.texasplatform.uk/repository/maven-snapshots/</url>
+			<name>Texas Repository (Snapshots)</name>
+		</snapshotRepository>
+
+		<!-- release -->
+		<repository>
+			<id>nexus</id>
+			<url>https://nexus.mgmt.texasplatform.uk/repository/maven-public/</url>
+			<name>Texas Repository (Releases)</name>
+		</repository>
+	</distributionManagement>
 
 	<dependencies>
 
@@ -214,7 +242,7 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<mainClass>com.nhs.bcss.BcssSubjectCriteria</mainClass>
+							<mainClass>uk.nhs.bcss.BcssSubjectCriteria</mainClass>
 						</configuration>
 					</execution>
 				</executions>

@@ -39,7 +39,7 @@ export const CustomPagination: FC<CustomPaginationProps> = ({
             setCurrentItems(data && data.length > 0 ? data.slice(itemOffset, endOffset) : []);
             setPageCount(Math.ceil(data.length / itemsPerPage));
         }
-    }, [itemOffset, itemsPerPage]);
+    }, [itemOffset, itemsPerPage, data]);
 
     // Invoke when user click to request another page.
     const handlePageClick = (event: { selected: number; }) => {

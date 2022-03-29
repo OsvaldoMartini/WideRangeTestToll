@@ -8,13 +8,13 @@
             http://www.springframework.org/schema/context/spring-context.xsd">
 
     
-	<bean id="bcssOracleDataSource" class="com.nhs.bcss.spring.SecureDriverManagerDataSource">
+	<bean id="bcssOracleDataSource" class="uk.nhs.bcss.spring.SecureDriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="${spring.datasource.surl}" />
 		<property name="username" value="${spring.datasource.username}" />
 		<property name="password" value="${spring.datasource.password}" />
 	</bean>
-	<bean id="systemBCSSDao" class="com.nhs.bcss.dao.BcssAccesssDAO">
+	<bean id="systemBCSSDao" class="uk.nhs.bcss.dao.BcssAccesssDAO">
 		<property name="dataSource" ref="bcssOracleDataSource" />
 	</bean>
 </beans>

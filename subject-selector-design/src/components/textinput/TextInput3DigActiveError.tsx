@@ -3,18 +3,18 @@ import classNames from "classnames";
 
 type TextInput3DigActiveErrorVariant = "Default";
 
-type TextInput3DigActiveErrorState = "default" | "focus" | "error";
+// type TextInput3DigActiveErrorState = "default" | "focus" | "error";
 
-const TextInput3DigActiveErrorVariantClasses: Record<
-  TextInput3DigActiveErrorVariant,
-  Record<TextInput3DigActiveErrorState, string>
-> = {
-  "Default": {
-    default: "ElementsText-input3-DigitActive",
-    focus: "ElementsText-input3-DigitActive",
-    error: "ElementsText-input3-DigitActive",
-  },
-};
+// const TextInput3DigActiveErrorVariantClasses: Record<
+//   TextInput3DigActiveErrorVariant,
+//   Record<TextInput3DigActiveErrorState, string>
+// > = {
+//   "Default": {
+//     default: "ElementsText-input3-DigitActive",
+//     focus: "ElementsText-input3-DigitActive",
+//     error: "ElementsText-input3-DigitActive",
+//   },
+// };
 
 export interface TextInput3DigActiveErrorProps {
   id: string;

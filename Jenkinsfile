@@ -67,8 +67,9 @@ pipeline {
     DEPLOYMENT_FILE="deployment/deploy.sh ${env.ACCOUNT_SHORT_NAME}"
     SECRET_NAME_PREFIX="bcss-${env.COMMON_NAME}"
 
-    SECRET_DEPLOYMENT_KEY_ORDER='DUMMY_VALUE'
-    SECRET_DEPLOYMENT_NAME='bcss/deployment'
+    SECRET_DEPLOYMENT_KEY_ORDER='some_secret,another_secret'
+    //SECRET_DEPLOYMENT_KEY_ORDER='DUMMY_VALUE'
+    //SECRET_DEPLOYMENT_NAME='bcss/deployment'
 
     // Slack notifications (see https://confluence.digital.nhs.uk/display/TEX/Jenkins)
 //    SLACK_TEAM_DOMAIN = '<your slack space>'
@@ -122,17 +123,18 @@ pipeline {
       }
     }
 
+    /*
     stage('Retrieve Deployment Authentication Details') {
       steps {
         script {
           // Retrieve a map of all the usernames/passwords required for deployment
           // & required by the deployed applications. These will be injected in to
           // the deployment and applications in later steps.
-          secretsMap = secretManager.getSecrets(this, SECRET_DEPLOYMENT_NAME)
+//          secretsMap = secretManager.getSecrets(this, SECRET_DEPLOYMENT_NAME)
         }
       }
     }
-
+    */
     stage('Restore Database') {
       environment {
         INSTANCE_ID="${DATABASE_PREFIX}bcss-${PIPELINE_ID}"
@@ -158,6 +160,20 @@ pipeline {
 
     stage('Build') {
       parallel {
+        stage('Build Api and Create Image') {
+          environment {
+            DOCKER_IMAGE_NAME='test-subject-selector-api'
+            BUILD_DOCKER_FILE='pipeline-build-api.dockerfile'
+          }
+          steps {
+            script {
+              sh """
+                echo Build Api and Create Image
+              """
+              texasPipeline.buildBaseImage(this)
+            }
+          }
+        }
         stage('Build App and Create Image') {
           environment {
             DOCKER_IMAGE_NAME='test-subject-selector-app'
@@ -228,6 +244,37 @@ pipeline {
 
     stage('Deployment') {
       parallel {
+        stage('Api') {
+          stages {
+            stage('Build Api Runtime') {
+              environment {
+                ECR_REPO="bcss-${env.COMMON_NAME}-api"
+                RUNTIME_DOCKER_FILE='pipeline-runtime-api.dockerfile'
+              }
+              steps {
+                script {
+                  sh """
+                    echo Build Api Runtime
+                  """
+                  texasPipeline.buildRuntimeImage(this)
+                }
+              }
+            }
+            stage('Push Api Runtime Image') {
+              environment {
+                ECR_REPO="bcss-${env.COMMON_NAME}-api"
+              }
+              steps {
+                script {
+                  sh """
+                    echo Push Api Runtime Image
+                  """
+                  texasPipeline.pushImageToContainerRegistry(this)
+                }
+              }
+            }
+          }
+        }
         stage('App') {
           stages {
             stage('Build App Runtime') {
@@ -381,6 +428,7 @@ def sendTeamsNotification(steps, state) {
 
   URL_PREFIX = steps.env.NAMESPACE_PREFIX + "-" + steps.PIPELINE_ID + "-" + steps.env.POD_NAME + "-"
   URL_SUFFIX = "." + steps.K8S_NAME + ".texas" + steps.TEXAS_PLATFORM + ".uk"
+  API_URL = URL_PREFIX+"api"+URL_SUFFIX
   APP_URL = URL_PREFIX+"app"+URL_SUFFIX
   STORYBOOK_URL = URL_PREFIX+"storybook"+URL_SUFFIX
 
@@ -394,6 +442,9 @@ def sendTeamsNotification(steps, state) {
   MSG_MOD=""
   if (state == 'Success') {
     MSG_MOD=", { \
+                \"name\": \"Api URL\", \
+                \"value\": \"https://"+API_URL+"\" \
+            }, { \
                 \"name\": \"App URL\", \
                 \"value\": \"https://"+APP_URL+"\" \
             }, { \

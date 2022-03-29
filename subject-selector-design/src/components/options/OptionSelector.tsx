@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import classNames from "classnames";
 import { OvalOption } from "./OvalOption";
 import { Typography } from "../typography/Typography";
@@ -42,7 +42,7 @@ export interface OptionSelectorProps {
   addClassNames?: string;
   addTopPos?: number;
   addHeight?: number;
-  changeOption: (value: any) => void;
+  changeOptions: (value: any) => void;
   // parentCallback?: (value: any) => void;
 }
 
@@ -54,14 +54,12 @@ export const OptionSelector: FC<OptionSelectorProps> = (props) => {
     title,
     operation,
     short,
-    minVal,
-    maxVal,
     variant = "Default",
     checked,
     disabled,
     addTopPos,
     addHeight,
-    changeOption,
+    changeOptions,
   } = props;
 
 
@@ -98,7 +96,7 @@ export const OptionSelector: FC<OptionSelectorProps> = (props) => {
       key={`${id}`}
       data-uniqueid={addTopPos}
       // onClick={() => { parentCallback!({ title: title, short: short, operation: operation, id: id }) }}
-      onClick={() => changeOption({ id: id, title: title, short: short, operation: operation, minVal: minVal, maxVal: maxVal })}
+      onClick={() => changeOptions({ id: id, title: title, short: short, operation: operation })}
     >
       <div div-checked={String(checked)} className={classNames("eclipse-yellow-black", {
         [classNames(OptionSelectorVariantClassName.default)]: !disabled,

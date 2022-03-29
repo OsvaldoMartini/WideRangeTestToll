@@ -24,6 +24,7 @@ export interface HomePageBootProps {
   className?: string;
   variant: HomePageBootVariant;
   disabled?: boolean;
+  changeValues: (value: any) => void;
 }
 
 export const HomePageBoot: FC<HomePageBootProps> = ({
@@ -32,6 +33,7 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
   className,
   variant = "InitialState",
   disabled,
+  changeValues,
   ...homePageBootProps
 }) => {
 
@@ -51,9 +53,11 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
 
   // const [disableButtons, setDisableButtons] = useState(false);
   const [betweenOperation, setBetweenOperation] = useState(false);
-  const [operationSelected, setOperationSelected] = useState<any>();
-  const [minAgeValue, setMinAgeValue] = useState(0);
-  const [maxAgeValue, setMaxAgeValue] = useState(50);
+  const [optionSelected, setOptionSelected] = useState({ id: 1, title: "Specific age", short: "Specific age", operation: "equal" });
+  const [valuesAge, setValuesAge] = useState({ minAge: 1, maxAge: 120 });
+
+  //  const [minAgeValue, setMinAgeValue] = useState(0);
+  //   const [maxAgeValue, setMaxAgeValue] = useState(50);
 
   const [alterOrDelete, setAlterOrDelete] = useState(false);
 
@@ -61,22 +65,25 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
 
 
   const [filtersApplied, setFiltersApplied] = useState(false);
-  const [filtered, setFiltered] = useState<any[]>([dataJson]);
+  const [datasource, setDatasource] = useState<any[]>([dataJson]);
+  const [filtered, setFiltered] = useState<any[]>(datasource[0]);
 
   const addCriterion = (cardSelection: ICardMainData) => {
     console.log("addCriterion")
+
     if (!cardSelection.filtersSelection) {
       cardSelection.filtersSelection = [];
     }
 
+    console.log("cardSelection");
     cardSelection.filtersSelection.push(
       {
         id: cardSelection.filtersSelection.length + 1,
-        title: operationSelected.short || operationSelected.title,
-        subTitle: operationSelected.maxVal !== -9999 ? `${operationSelected.minVal}-${operationSelected.maxVal}` : `${operationSelected.minVal}`,
-        operation: operationSelected.operation,
-        minAgeValue: operationSelected.minVal,
-        maxAgeValue: operationSelected.maxVal
+        title: optionSelected.short || optionSelected.title,
+        subTitle: optionSelected.operation === "between" ? `${valuesAge.minAge}-${valuesAge.maxAge}` : `${valuesAge.minAge}`,
+        operation: optionSelected.operation,
+        minAgeValue: valuesAge.minAge,
+        maxAgeValue: valuesAge.maxAge
       });
 
     setHasFilters(true);
@@ -96,14 +103,14 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
       });
 
       if (rangeAge.length > 1) {
-        let result = filtered.filter((item) => {
+        let result = filtered.filter((item: { AGE: any; }) => {
           return Number(item.AGE) >= Number(rangeAge[0]) && Number(item.AGE) < Number(rangeAge[1]);
         });
         setFiltered(result);
       }
 
       if (rangeAge.length === 1) {
-        let result = filtered.filter((item) => {
+        let result = filtered.filter((item: { AGE: any; }) => {
           if (operation === "<=") {
             return Number(item.AGE) <= Number(rangeAge[0]);
           } else if (operation === ">=") {
@@ -124,14 +131,15 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
   };
 
   const closeSearch = () => {
+    setDatasource([dataJson]);
     setFiltersApplied(false);
   }
 
 
   const setLabelValues = () => {
-    console.log("values", minAgeValue)
+    //    console.log("values", valuesAge.minAge)
 
-    if (minAgeValue >= 0 || maxAgeValue <= 120) {
+    if (valuesAge.minAge >= 0 || valuesAge.maxAge <= 120) {
       setShowLabelValues(true);
     } else {
       setShowLabelValues(false);
@@ -263,22 +271,28 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
       });
       setGroupButtons(buttonsCriteria)
       //setCardSelection(cardSelection);
-      console.log(buttonsCriteria);
+      //     console.log(buttonsCriteria);
 
     }
   }
 
 
-  useEffect(() => { }, [stopPlaceAnimation]);
+  useEffect(() => {
+    if (optionSelected.operation !== "between") {
+      setBetweenOperation(false)
+    } else {
+      setBetweenOperation(true);
+    }
+  }, [valuesAge]);
 
   useEffect(() => {
 
   }, [modalCriteriaActive]);
 
 
-  // useEffect(() => {
-  //   setInitialCard();
-  // }, [cardSelection]);
+  useEffect(() => {
+    setInitialCard();
+  }, [cardSelection]);
 
   const deleteCriteria = () => {
     setInitialCard();
@@ -306,7 +320,7 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
     };
 
     const handleTypeTextAge = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      //console.loge.key);
+      //console.log(e.key);
       if (e.key === "Enter") {
         // if (valueTextAge! >= 121) {
         //   setValueTextAge(120);
@@ -375,16 +389,16 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
             {showLabelValues && (
               <div>
                 {/* <div className="label-age-title-position">
-                  <div className="label-age-title">{operationSelected.title}</div>
+                  <div className="label-age-title">{optionSelected.title}</div>
                 </div> */}
                 {/* {betweenOperation && (<div className="label-age-values-position"> */}
                 {betweenOperation && (<div className="label-age-title-position">
                   <div className="label-age-values">
-                    {operationSelected.title}  {minAgeValue}-{maxAgeValue}</div></div>)}
+                    {optionSelected.title}  {valuesAge.minAge}-{valuesAge.maxAge}</div></div>)}
                 {/* {!betweenOperation && (<div className="label-age-values-position"> */}
                 {!betweenOperation && (<div className="label-age-title-position">
                   <div className="label-age-values">
-                    {operationSelected.title}  {minAgeValue}</div></div>)}
+                    {optionSelected.title}  {valuesAge.minAge}</div></div>)}
               </div>
             )}
             {alterOrDelete && (
@@ -486,36 +500,9 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
     );
   };
 
-
-
-  // const valuesState = useCallback((values: any) => {
-  //   console.log("Home Page Value State", values);
-
-
-  //   // if (values.minVal > 120 || values.maxVal > 120) {
-  //   //   setDisableButtons(true);
-  //   // } else {
-  //   //   setBetweenOperation(true);
-  //   // }
-
-
-  //   if (values.maxVal > 120) {
-  //     setMinAgeValue(120);
-  //   }
-
-  //   if (values.minVal >= 0 && values.maxVal === -9999) {
-  //     setBetweenOperation(false);
-  //   } else {
-  //     setBetweenOperation(true);
-  //   }
-
-  //   setOperationSelected(values);
-  //   setMinAgeValue(values.minVal);
-  //   setMaxAgeValue(values.maxVal);
-
-  // }, []);
-
   var sum = 0;
+
+  //  console.log("Values Home Page:", valuesAge.minAge + " - " + valuesAge.maxAge)
 
   return (
 
@@ -704,7 +691,10 @@ export const HomePageBoot: FC<HomePageBootProps> = ({
           >
             <div>
               <OptionSelectorGroup
-              // parentCallback={valuesState}
+                changeValuesAge={(valuesAge: any) => setValuesAge(valuesAge)}
+                changeOptions={(optionSelected: any) => setOptionSelected(optionSelected)}
+                valueAgeInit={valuesAge}
+                optionsInit={optionSelected}
               />
             </div>
           </ModalContainer>

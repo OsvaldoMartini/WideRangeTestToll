@@ -26,18 +26,28 @@ export interface OptionSelectorGroupProps {
   disabled?: boolean;
   checked?: boolean;
   focus?: boolean;
+  valueAgeInit: any;
+  optionsInit: any;
+  changeOptions: (value: any) => void;
+  changeValuesAge: (value: any) => void;
   // parentCallback?: (values: any) => void;
 }
 
-export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
-  className,
-  variant = "Default",
-  disabled,
-  checked = false,
-  focus = false,
-  // parentCallback,
-  ...optionSelectorGroupProps
-}: OptionSelectorGroupProps) => {
+export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
+
+  const {
+    variant = "Default",
+    disabled,
+    valueAgeInit,
+    optionsInit,
+    changeOptions,
+    changeValuesAge,
+  } = props;
+
+  const [optionSelected, setOptionSelected] = useState(optionsInit);
+  const [valuesAge, setValuesAge] = useState(valueAgeInit);
+  const [typingText, setTypingText] = useState(false);
+
   const OptionSelectorGroupVariantClassName =
     OptionSelectorGroupVariantClasses[variant];
 
@@ -45,7 +55,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
   const [subHeadeError, setSubHeadeError] = useState(false);
 
 
-  const [valueTextAge, setValueTextAge] = useState(1);
+  const [valueTextAge, setValueTextAge] = useState(valuesAge.minAge);
   const [operationSelected, setOperationSelected] = useState<any>(optionSelecData[0]);
   const spacerHights = [12, 62, 70];
   const box_nested = [32, 70, 180];
@@ -70,8 +80,8 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
       operation: item.operation,
       short: item.short,
       checked: index === 0 ? true : false,
-      minVal: 0,
-      maxVal: 120,
+      minVal: valuesAge.minAge,
+      maxVal: valuesAge.maxAge,
       focus: false,
       addHeight:
         index === 0 ? spacerHights[1] + box_nested[1] : spacerHights[1],
@@ -79,7 +89,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
       textBoxPos: boxNested,
     };
   });
-  //console.log(arrayOpt);
+  console.log("arrayOpt", arrayOpt);
   const [groupOption, setGroupOptions] = useState(arrayOpt);
   // console.log("setGroupOptions : ", arrayOpt);
 
@@ -96,106 +106,63 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
     }
   };
 
-  // useEffect(() => {
-
-  //   if (operationSelected.operation !== "between") {
-  //     //parentCallback!({ title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: valueTextAge, maxVal: -9999 });
-  //     // parentCallback!({ title: optSelec.title, short: optSelec.short, operation: optSelec.operation, minVal: Number(event.target.value), maxVal: -9999 });
-
-  //   } else {
-  //     // parentCallback!({ title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: operationSelected.minVal, maxVal: operationSelected.maxVal });
-  //   }
-
-  // }, [operationSelected]);
-
-
-  // const callbackChecked = useCallback((value: any) => {
-  //   // console.log("Change Checked : ", value.operation);
-
-  //   setGroupOptions(
-  //     groupOption.map((opt, index) => {
-  //       if (opt.id === value.id) {
-  //         opt.checked = true;
-  //         setValueTextAge(1);
-  //         opt.addHeight =
-  //           index < groupOption.length - 1
-  //             ? spacerHights[1] + box_nested[1]
-  //             : box_nested[2];
-  //       } else {
-  //         opt.checked = false;
-  //         opt.addHeight = spacerHights[1];
-  //         setValueTextAge(1);
-  //       }
-
-  //       return opt;
-  //     }),
-  //   );
-
-  //   setOperationSelected(value);
-
-  // }, []);
 
   const handleTypeTextAge = (e: React.KeyboardEvent<HTMLInputElement>) => {
     //console.log(e.key);
     if (e.key === "Enter") {
-      // setTypingText(true);
-      // if (valueTextAge! >= 121) {
-      //   setValueTextAge(120);
-      // } else if (valueTextAge < 0) {
-      //   setValueTextAge(0);
-      // }
-      setOptionSelected({ id: operationSelected.id, title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: valueTextAge, maxVal: -9999 });
+      changeValuesAge({ ...valuesAge, minAge: valueTextAge });
     }
-    // parentCallback!({ title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: valueTextAge, maxVal: -9999 });
-
-    //localStorage.setItem("textAge", JSON.stringify(valueTextAge));
   };
 
-  // const valuesOptionsState = useCallback((values: any) => {
-  //   console.log("Options Value State", values);
-  //   if (values.maxVal > 120) {
-  //     setSubHeadeError(true);
-  //   } else {
-  //     setSubHeadeError(false);
-  //   }
-
-  //   setOperationSelected(values);
-
-  // }, []);
-
-  const [optionSelected, setOptionSelected] = useState({ id: 1, title: "", short: "", operation: "", minVal: 0, maxVal: 120 });
-  const [typingText, setTypingText] = useState(false);
 
   useEffect(() => {
-    if (!typingText) {
-      setGroupOptions(
-        groupOption.map((opt, index) => {
-          if (opt.id === optionSelected.id) {
-            opt.checked = true;
-            setValueTextAge(1);
-            opt.addHeight =
-              index < groupOption.length - 1
-                ? spacerHights[1] + box_nested[1]
-                : box_nested[2];
-          } else {
-            opt.checked = false;
-            opt.addHeight = spacerHights[1];
-            setValueTextAge(1);
-          }
-
-          return opt;
-        }),
-      );
+    if (valuesAge.maxAge >= 121) {
+      setSubHeadeError(true);
     } else {
-      setTypingText(false);
-      console.log("seet", typingText)
-
+      setSubHeadeError(false);
     }
+  }, [valuesAge])
+
+
+  useEffect(() => {
+    //if (!typingText) {
+    if (optionSelected.operation !== "between") {
+      if (valuesAge.minAge === 0) {
+        changeValuesAge({ ...valuesAge, minAge: 1 });
+        setValueTextAge(1);
+      } else {
+        changeValuesAge(valuesAge);
+        setValueTextAge(valuesAge.minAge);
+      }
+    }
+
+    console.log("useEffect(() OptionGroup:", valuesAge.minVal + " - " + valuesAge.maxVal)
+    setGroupOptions(
+      groupOption.map((opt, index) => {
+        if (opt.id === optionSelected.id) {
+          opt.checked = true;
+          //setValueTextAge(1);
+          opt.addHeight =
+            index < groupOption.length - 1
+              ? spacerHights[1] + box_nested[1]
+              : box_nested[2];
+        } else {
+          opt.checked = false;
+          opt.addHeight = spacerHights[1];
+          //setValueTextAge(1);
+        }
+
+        return opt;
+      }),
+    );
+    // } else {
+    //   setTypingText(false);
+    //   console.log("seet", typingText)
+    // }
   }, [optionSelected])
 
   return (
     <div
-      {...optionSelectorGroupProps}
       className={classNames("", {
         [classNames(OptionSelectorGroupVariantClassName.default)]: !disabled,
       })}
@@ -217,7 +184,10 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
                   addHeight={optSelec.addHeight}
                   variant={variant}
                   checked={optSelec.checked}
-                  changeOption={(optionSelected: any) => setOptionSelected(optionSelected)}
+                  changeOptions={(optionSelected: any) => {
+                    setOptionSelected(optionSelected)
+                    changeOptions(optionSelected);
+                  }}
                 //onClick={(optionSelected: any) => setOperationSelected(optionSelected)}
                 //
                 //onClick={selectOption => setOperationSelected(selectOption)}
@@ -246,7 +216,9 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
                         }
                         setTypingText(true);
                         setValueTextAge(valueDigited);
-                        setOptionSelected({ id: operationSelected.id, title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: valueDigited, maxVal: -9999 });
+                        //setOptionSelected({ id: operationSelected.id, title: operationSelected.title, short: operationSelected.short, operation: operationSelected.operation, minVal: valueDigited, maxVal: -9999 });
+                        changeValuesAge({ ...valuesAge, minAge: valueDigited });
+
                       }}
                       onKeyDown={(_event) => {
                         handleTypeTextAge(_event);
@@ -273,7 +245,11 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = ({
                       minRight={1}
                       maxRight={120}
                       variant={"Inactive"}
-                      changeValues={(optionSelected: any) => setOptionSelected(optionSelected)}
+                      valuesAge={valuesAge || { minAge: 0, maxAge: 120 }}
+                      changeValuesAge={(valuesAge: any) => {
+                        setValuesAge(valuesAge);
+                        changeValuesAge({ minAge: valuesAge.minAge, maxAge: valuesAge.maxAge });
+                      }}
                     // parentCallback={valuesOptionsState}
                     />
                   </div>
