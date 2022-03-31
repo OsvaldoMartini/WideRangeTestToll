@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react';
 import { getRestApiConfig, getSubjectSearch } from '../../api/ApiCalls';
 
 export interface SubjectSearchServiceProps {
     children?: string | React.ReactElement;
     operation: string;
+    category: string;
+    nhsNumber: string;
     minAge: number;
     maxAge: any;
     changeData: (value: any) => void;
@@ -12,6 +13,8 @@ export interface SubjectSearchServiceProps {
 export const SubjectSearchService = (props: SubjectSearchServiceProps) => {
     const {
         operation,
+        category,
+        nhsNumber,
         minAge,
         maxAge,
         changeData
@@ -24,8 +27,14 @@ export const SubjectSearchService = (props: SubjectSearchServiceProps) => {
 
     return new Promise(resolve => {
 
-        const filter = maxAge === null ? `${operation}/${minAge}` : `${operation}/${minAge}/${maxAge}`
+        let filter = "";
 
+        if (category === "CategoryAges") {
+            filter = maxAge === null ? `${operation}/${minAge}` : `${operation}/${minAge}/${maxAge}`
+        } else if (category === "CategoryNhsNumber") {
+            const nhsNumberClean = nhsNumber && nhsNumber.replace(/[^0-9]/g, "");
+            filter = `${nhsNumberClean}`;
+        }
         // let objReq = {
         //     baseURL: CUSTOMER_API_URL + `/subjectsearch/${filter}`
         // }

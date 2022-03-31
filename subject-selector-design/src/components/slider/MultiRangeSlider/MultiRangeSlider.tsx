@@ -36,14 +36,15 @@ export interface MultiRangeSliderProps {
   title?: string;
   short?: string;
   operation?: string;
+  category?: string;
   minLeft: number;
   maxLeft: number;
   minRight: number;
   maxRight: number;
   variant: MultiRangeSliderVariant;
   disabled?: boolean;
-  valuesAge: any;
-  changeValuesAge: (value: any) => void;
+  valuesAge?: any;
+  changeValuesAge?: (value: any) => void;
   //parentCallback?: (values: any) => void;
 }
 
@@ -70,8 +71,9 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
   const maxValRef = useRef<HTMLInputElement | null>(null);
   const range = useRef<HTMLInputElement | null>(null);
 
-  const [valueTextLeft, setValueTextLeft] = useState(valuesAge.minVal);
-  const [valueTextRight, setValueTextRight] = useState(valuesAge.maxVal);
+  const [firsLoad, setFirstLoad] = useState(true);
+  const [valueTextLeft, setValueTextLeft] = useState(valuesAge.minAge);
+  const [valueTextRight, setValueTextRight] = useState(valuesAge.maxAge);
 
   const [leftCirclePos, setLefCircle] = useState(16);
   const [rightCirclePos, setRightCircle] = useState(340);
@@ -147,11 +149,19 @@ export const MultiRangeSlider: FC<MultiRangeSliderProps> = (props) => {
   }, [moveToLeft, greaterLeft, greaterRight, valueTextRight, minVal]);
 
   useEffect(() => {
-    changeValuesAge({ ...valuesAge, maxAge: valueTextRight });
+    if (!firsLoad) {
+      changeValuesAge!({ ...valuesAge, minAge: valueTextLeft, maxAge: valueTextRight });
+    } else {
+      setFirstLoad(false);
+    }
   }, [valueTextRight])
 
   useEffect(() => {
-    changeValuesAge({ ...valuesAge, minAge: valueTextLeft });
+    if (!firsLoad) {
+      changeValuesAge!({ ...valuesAge, minAge: valueTextLeft, maxAge: valueTextRight });
+    } else {
+      setFirstLoad(false);
+    }
   }, [valueTextLeft])
 
 

@@ -4,10 +4,10 @@ var https = require("http");
 
 let instanceAxios = {};
 let axiosAgent = {};
-let requests = [];
+//let requests = [];
 
-let CUSTOMER_API_URL = process.env.REACT_APP_API_URL ?? "";
-let certificate = process.env.API_CERT ?? false;
+let CUSTOMER_API_URL = process.env.REACT_APP_API_URL || "";
+let certificate = process.env.API_CERT || false;
 
 export const getRestApiConfig = (
   uri,
@@ -86,7 +86,7 @@ export const getSubjectSearch = (requests, operation, callData) => {
       payload: null,
     };
 
-    const responses = Promise.allSettled(tasks)
+    Promise.allSettled(tasks)
       .then((result) => {
         let endRequest = performance.now();
         const checkPoint = endRequest - startPoint;

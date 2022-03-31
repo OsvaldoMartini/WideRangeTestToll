@@ -56,7 +56,6 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
 
 
   const [valueTextAge, setValueTextAge] = useState(valuesAge.minAge);
-  const [operationSelected, setOperationSelected] = useState<any>(optionSelecData[0]);
   const spacerHights = [12, 62, 70];
   const box_nested = [32, 70, 180];
   const initialPosition = [92];
@@ -78,6 +77,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
       id: item.id,
       title: item.title,
       operation: item.operation,
+      category: item.category,
       short: item.short,
       checked: index === 0 ? true : false,
       minVal: valuesAge.minAge,
@@ -89,7 +89,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
       textBoxPos: boxNested,
     };
   });
-  console.log("arrayOpt", arrayOpt);
+  //console.log("arrayOpt", arrayOpt);
   const [groupOption, setGroupOptions] = useState(arrayOpt);
   // console.log("setGroupOptions : ", arrayOpt);
 
@@ -136,7 +136,6 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
       }
     }
 
-    console.log("useEffect(() OptionGroup:", valuesAge.minVal + " - " + valuesAge.maxVal)
     setGroupOptions(
       groupOption.map((opt, index) => {
         if (opt.id === optionSelected.id) {
@@ -178,6 +177,7 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
                   title={optSelec.title}
                   short={optSelec.short}
                   operation={optSelec.operation}
+                  category={optSelec.category}
                   minVal={optSelec.minVal}
                   maxVal={optSelec.maxVal}
                   // addTopPos={optSelec.addTopPos}
@@ -240,12 +240,13 @@ export const OptionSelectorGroup: FC<OptionSelectorGroupProps> = (props) => {
                       title={optSelec.title}
                       short={optSelec.short}
                       operation={optSelec.operation}
+                      category={optSelec.category}
                       minLeft={0}
                       maxLeft={119}
                       minRight={1}
                       maxRight={120}
                       variant={"Inactive"}
-                      valuesAge={valuesAge || { minAge: 0, maxAge: 120 }}
+                      valuesAge={valuesAge || { minAge: valuesAge.minAge, maxAge: valuesAge.maxAge }}
                       changeValuesAge={(valuesAge: any) => {
                         setValuesAge(valuesAge);
                         changeValuesAge({ minAge: valuesAge.minAge, maxAge: valuesAge.maxAge });

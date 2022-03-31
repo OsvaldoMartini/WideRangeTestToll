@@ -3,7 +3,7 @@ import { ICardMainData } from "../@interfaces";
 import classNames from "classnames";
 import { ButtonComp } from "../buttons/ButtonComp";
 
-type ModalContainerVariant = "Default" | "AgeCriteriaVar";
+type ModalContainerVariant = "Default" | "CategoryAges";
 
 type ModalContainerState =
   | "position"
@@ -33,7 +33,7 @@ const ModalContainerVariantClasses: Record<
     colMdDiv1: "col-md-7",
     colMdDiv2: "col-md-5",
   },
-  AgeCriteriaVar: {
+  CategoryAges: {
     position: "modal-age-criteria-selector-position",
     default: "modal-age-criteria-selector",
     titleHeaderPosition: "modal-header-title-position",
@@ -153,21 +153,6 @@ export const ModalContainer: FC<ModalContainerProps> = ({
                 onOkay!();
               }}
             />
-
-            {/* {variant === "Default" ? (
-              <ButtonComp variant={"ButtonAddCriterion"}
-                title={"Add criterion"}
-                disabled={false} />
-            ) : (
-              <ButtonComp
-                disabled={okayDisabled}
-                onClick={() => {
-                  onOkay!();
-                }}
-
-                title={"Okay"}
-                variant={"ButtonOkayAge"} />
-            )} */}
           </div>
         </div>
       </div>

@@ -33,13 +33,13 @@ public class CustomerSearchController {
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
 
-	@GetMapping("/{operation}/{minAge}/{maxAge}")
+	@GetMapping("/byAge/{operation}/{minAge}/{maxAge}")
 	public ResponseEntity<List<CustomerSearchPO>> getAllCustomerByBetweenAges(@PathVariable String operation,
 			@PathVariable short minAge, @PathVariable short maxAge) {
 
 		List<CustomerSearchPO> retValue = new ArrayList<CustomerSearchPO>();
 		try {
-			retValue = customerSearchService.findAllCustomersBy(minAge, maxAge, operation);
+			retValue = customerSearchService.findAllCustomersByAge(minAge, maxAge, operation);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,23 +47,16 @@ public class CustomerSearchController {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 
-//		for (Map.Entry<String, String> entry : taskProcessingLines.config.getHeaders().entrySet()) {
-//			Logger.info(String.format("Header Transformed %s  =  %s", entry.getKey(), entry.getValue()));
-//			responseHeaders.set(entry.getKey(), entry.getValue());
-//		}
-
 		return ResponseEntity.ok().headers(responseHeaders).body(retValue);
 
-		// return (List<CustomerSearchPO>)
-		// customerSearchService.findAllCustomerByBetweenAges(minAge, maxAge);
 	}
 	
-	@GetMapping("/{operation}/{minAge}")
+	@RequestMapping("/byAge/{operation}/{minAge}")
 	public ResponseEntity<List<CustomerSearchPO>> getAllCustomerByBetweenAges(@PathVariable String operation, @PathVariable short minAge) {
 
 		List<CustomerSearchPO> retValue = new ArrayList<CustomerSearchPO>();
 		try {
-			retValue = customerSearchService.findAllCustomersBy(minAge, Integer.MAX_VALUE, operation);
+			retValue = customerSearchService.findAllCustomersByAge(minAge, Integer.MAX_VALUE, operation);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,6 +66,55 @@ public class CustomerSearchController {
 		return ResponseEntity.ok().headers(responseHeaders).body(retValue);
 	}
 
+	@GetMapping("/{nhsNumber}")
+	public ResponseEntity<List<CustomerSearchPO>> getAllCustomerByNhsNumber(@PathVariable String nhsNumber) {
+
+		List<CustomerSearchPO> retValue = new ArrayList<CustomerSearchPO>();
+		try {
+			retValue = customerSearchService.findAllCustomersByNHSNumber(nhsNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		return ResponseEntity.ok().headers(responseHeaders).body(retValue);
+	}
 	
+	@GetMapping("/{nhsNumber}/{operation}/{minAge}/{maxAge}")
+	public ResponseEntity<List<CustomerSearchPO>> getAllCustomerByNhsNumberAndBetweenAges(@PathVariable String nhsNumber, @PathVariable String operation,
+			@PathVariable short minAge, @PathVariable short maxAge) {
+
+		List<CustomerSearchPO> retValue = new ArrayList<CustomerSearchPO>();
+		try {
+			retValue = customerSearchService.findAllCustomersByNhsNumberAndAge(nhsNumber, minAge, maxAge, operation);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		return ResponseEntity.ok().headers(responseHeaders).body(retValue);
+
+	}
+	
+	@GetMapping("/{nhsNumber}/{operation}/{minAge}")
+	public ResponseEntity<List<CustomerSearchPO>> getAllCustomerByNhsNumberAndBetweenAges(@PathVariable String nhsNumber, @PathVariable String operation,
+			@PathVariable short minAge) {
+
+		List<CustomerSearchPO> retValue = new ArrayList<CustomerSearchPO>();
+		try {
+			retValue = customerSearchService.findAllCustomersByNhsNumberAndAge(nhsNumber, minAge, Integer.MAX_VALUE, operation);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		return ResponseEntity.ok().headers(responseHeaders).body(retValue);
+
+	}
 
 }

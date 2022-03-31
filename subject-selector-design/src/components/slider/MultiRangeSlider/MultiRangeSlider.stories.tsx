@@ -31,7 +31,11 @@ const StoryMultiRangeSliderGroup: Story<MultiRangeSliderProps> = (args) => {
         variant={"Active"}
         title={""}
         operation={""}
-      // parentCallback={() => { returnTheCall() }} 
+        category={""}
+        valuesAge={undefined}
+        changeValuesAge={function (value: any): void {
+          throw new Error("Function not implemented.");
+        }}      // parentCallback={() => { returnTheCall() }} 
       />
     </StoryLayout>
   );

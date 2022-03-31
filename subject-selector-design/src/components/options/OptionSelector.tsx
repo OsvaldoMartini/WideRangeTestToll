@@ -32,6 +32,7 @@ export interface OptionSelectorProps {
   id: number;
   title?: string;
   short?: string;
+  category?: string;
   operation?: string;
   className?: string;
   minVal?: number;
@@ -52,6 +53,7 @@ export const OptionSelector: FC<OptionSelectorProps> = (props) => {
   const {
     id,
     title,
+    category,
     operation,
     short,
     variant = "Default",
@@ -96,7 +98,7 @@ export const OptionSelector: FC<OptionSelectorProps> = (props) => {
       key={`${id}`}
       data-uniqueid={addTopPos}
       // onClick={() => { parentCallback!({ title: title, short: short, operation: operation, id: id }) }}
-      onClick={() => changeOptions({ id: id, title: title, short: short, operation: operation })}
+      onClick={() => changeOptions({ id: id, title: title, short: short, operation: operation, category: category })}
     >
       <div div-checked={String(checked)} className={classNames("eclipse-yellow-black", {
         [classNames(OptionSelectorVariantClassName.default)]: !disabled,

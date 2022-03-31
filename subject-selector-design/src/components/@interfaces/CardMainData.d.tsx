@@ -12,6 +12,7 @@ export interface IFiltersSelection {
   title: string;
   short?: string;
   subTitle: string;
+  category: string;
   operation: string;
   minAgeValue?: number;
   maxAgeValue?: number;

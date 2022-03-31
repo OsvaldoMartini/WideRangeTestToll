@@ -21,7 +21,7 @@ const TextInput3DigActiveVariantClasses: Record<
 
 export interface TextInput3DigActiveProps {
   type: "text";
-  value?: number;
+  value?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   label?: string;

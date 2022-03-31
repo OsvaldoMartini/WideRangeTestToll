@@ -43,7 +43,8 @@ export const FilterSelectionGroup: FC<FilterSelectionGroupProps> = ({
     return {
       id: item.id,
       title: item.title,
-      subTitle: item.subTitle,
+      subTitle: item.category === "CategoryNhsNumber" ? item.nhsNumber : item.subTitle,
+      category: item.category,
       description: item.operation,
       addTopPos: sum,
       addLeftPos: addLeftPos,
@@ -80,7 +81,7 @@ export const FilterSelectionGroup: FC<FilterSelectionGroupProps> = ({
         //   setFadeInFilters(false);
         // }}
         key={`fadeIn_${id}`}
-        className={`box-card delete-fade-in`} style={{ left: `${Number(addLeftPos) + 100}px`, top: `${Number(addTopPos) + 22}px` }}>
+        className={`box-card delete-fade-in`} style={{ left: `${Number(addLeftPos) + 110}px`, top: `${Number(addTopPos) + 22}px` }}>
         <svg style={{ cursor: "pointer" }} width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <path d="m24 11-1.2 15.308c-.075.954-.946 1.692-1.996 1.692h-9.608c-1.05 0-1.92-.738-1.995-1.692L8 11h16zm-5-7c.552 0 1 .47 1 1.05V7h5a1 1 0 0 1 0 2H7a1 1 0 1 1 0-2h5V5.05c0-.58.448-1.05 1-1.05h6zm-1 2h-4v1h4V6z" fill="#DA291C" fillRule="evenodd" />
         </svg>
@@ -88,7 +89,7 @@ export const FilterSelectionGroup: FC<FilterSelectionGroupProps> = ({
     );
   }
 
-
+  console.log("About to Delete this filter", arrayFilters)
   return (
     <div>
       {arrayFilters &&

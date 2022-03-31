@@ -14,8 +14,18 @@ public class CustomerSearchService {
 	@Autowired
 	private CustomerSearchRepository customerSearchRepository;
 
-	public List<CustomerSearchPO> findAllCustomersBy(int minAge, int maxAge, String operation) {
+	public List<CustomerSearchPO> findAllCustomersByAge(int minAge, int maxAge, String operation) {
 		return customerSearchRepository.findAll(minAge, maxAge, operation);
 	}
 
+	public List<CustomerSearchPO> findAllCustomersByNHSNumber(String nhsNumber) {
+		return customerSearchRepository.findAllNhsNumber(nhsNumber);
+	}
+
+	
+	public List<CustomerSearchPO> findAllCustomersByNhsNumberAndAge(String nhsNumber, int minAge, int maxAge, String operation) {
+		return customerSearchRepository.findAllNhsNumberAndAge(nhsNumber, minAge, maxAge, operation);
+	}
+
+	
 }

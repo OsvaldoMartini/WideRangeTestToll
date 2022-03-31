@@ -1970,8 +1970,11 @@ div.padding-bottom-reset {
   }
 }
 .nhs-number-input-text {
-  width: 172.8px;
-  height: 13.6px;
+  width: 137.8px;
+  height: 17.6px;
+  margin-left: -68px;
+  margin-top: -1px;
+  position: fixed;
   font-family: $FrutigerLTStdRoman;
   font-size: 18px;
   font-weight: normal;

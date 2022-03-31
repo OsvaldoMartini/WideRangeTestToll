@@ -36,7 +36,9 @@ const StoryOptionSelector: Story<OptionSelectorProps> = (args) => {
         variant={args.variant}
         checked={args.checked}
         operation={args.operation}
-      // parentCallback={() => returnTheCall()} 
+        category={args.operation} changeOptions={function (value: any): void {
+          throw new Error("Function not implemented.");
+        }}      // parentCallback={() => returnTheCall()} 
       />
     </StoryLayout>
   );
@@ -55,6 +57,7 @@ Default.args = {
   variant: "Default",
   children: "Specific Age",
   operation: "===",
+  category: "CategoryAges"
 };
 
 Default.parameters = {
@@ -75,6 +78,7 @@ DefaultChecked.args = {
   children: "Specific Age",
   operation: "===",
   checked: true,
+  category: "CategoryAges"
 };
 
 DefaultChecked.parameters = {
@@ -94,6 +98,7 @@ FocusUnchecked.args = {
   variant: "Focus",
   children: "Specific Age",
   operation: "===",
+  category: "CategoryAges"
 };
 
 FocusUnchecked.parameters = {
@@ -115,6 +120,7 @@ FocusChecked.args = {
   children: "Specific Age",
   operation: "===",
   checked: true,
+  category: "CategoryAges"
 };
 
 FocusChecked.parameters = {
