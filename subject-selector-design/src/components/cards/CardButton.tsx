@@ -267,7 +267,7 @@ export const CardButton: FC<CardButtonProps> = ({
             )}
           </div>
         )}
-
+        {/* 
         {cardFilter && (
 
           <div
@@ -280,7 +280,7 @@ export const CardButton: FC<CardButtonProps> = ({
             </div>
           </div>
 
-        )}
+        )} */}
 
         {cardFilter && (
 

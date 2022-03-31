@@ -131,6 +131,7 @@ export const ModalContainer: FC<ModalContainerProps> = ({
           </div>
 
           <div
+            div-disabled={String(okayDisabled)}
             onClick={() => {
               onHide!(false);
             }}

@@ -29,12 +29,15 @@ export const SubjectSearchService = (props: SubjectSearchServiceProps) => {
 
         let filter = "";
 
-        if (category === "CategoryAges") {
-            filter = maxAge === null ? `${operation}/${minAge}` : `${operation}/${minAge}/${maxAge}`
-        } else if (category === "CategoryNhsNumber") {
-            const nhsNumberClean = nhsNumber && nhsNumber.replace(/[^0-9]/g, "");
-            filter = `${nhsNumberClean}`;
-        }
+        if (nhsNumber && minAge) {
+            filter = maxAge === null ? `${nhsNumber}/${operation}/${minAge}` : `${nhsNumber}/${operation}/${minAge}/${maxAge}`
+        } else
+            if (category === "CategoryAges") {
+                filter = maxAge === null ? `byAge/${operation}/${minAge}` : `byAge/${operation}/${minAge}/${maxAge}`
+            } else if (category === "CategoryNhsNumber") {
+                const nhsNumberClean = nhsNumber && nhsNumber.replace(/[^0-9]/g, "");
+                filter = `${nhsNumberClean}`;
+            }
         // let objReq = {
         //     baseURL: CUSTOMER_API_URL + `/subjectsearch/${filter}`
         // }

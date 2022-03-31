@@ -51,6 +51,7 @@ export const HomePage: FC<HomePageProps> = ({
   const [stopPlaceAnimation, setStopAnimation] = useState(false);
   const [showLabelValues, setShowLabelValues] = useState(false);
   const [valueTextAge, setValueTextAge] = useState("");
+  const [activeAddCriterion, setActiveAddCriterion] = useState(false);
 
   // const [disableButtons, setDisableButtons] = useState(false);
   const [betweenOperation, setBetweenOperation] = useState(false);
@@ -141,72 +142,57 @@ export const HomePage: FC<HomePageProps> = ({
   };
 
 
-
-  // useEffect(() => {
-  //   callSearch();
-  // }, []);
+  useEffect(() => {
+    if (valueTextAge.length > 0) {
+      setActiveAddCriterion(true);
+    } else {
+      setActiveAddCriterion(false);
+      console.log("valueTextAge EMPTY ", valueTextAge)
+    }
+  }, [valueTextAge]);
 
   const callSearch = () => {
     console.log("callSearch", filtered);
 
     console.log("filtersSelection", cardSelection.filtersSelection);
-    let category = "";
-    let operation = "";
-    let nhsNumber = "";
-    let rangeAge = [0];
+    let searchAge = cardSelection.filtersSelection.filter((item: any) => {
+      return item.category === "CategoryAges";
+    })[0];
 
-    cardSelection.filtersSelection.forEach((item: any) => {
-      category = item.category;
-      operation = item.operation;
-      nhsNumber = item.nhsNumber;
-      rangeAge = item.subTitle.split("-");
+    let searchNhsNumber = cardSelection.filtersSelection.filter((item: any) => {
+      return item.category === "CategoryNhsNumber";
+    })[0];
+
+    if (searchAge) {
+      searchAge.rangeAge = searchAge.subTitle.split("-");
+
+      if (searchAge.operation === "<=") {
+        searchAge.operation = "lessorequalthan";
+      } else if (searchAge.operation === ">=") {
+        searchAge.operation = "greaterorequalthan";
+      } else if (searchAge.operation === "<") {
+        searchAge.operation = "lessthan";
+      } else if (searchAge.operation === ">") {
+        searchAge.operation = "greaterthan";
+      } else if (searchAge.operation === "equal") {
+        searchAge.operation = "equal";
+      }
+    }
+
+    const response = SubjectSearchService({
+      category: searchAge ? searchAge.category : searchNhsNumber ? searchNhsNumber.category : null,
+      nhsNumber: searchNhsNumber ? searchNhsNumber.nhsNumber.replace(/[^0-9]/g, "") : null,
+      operation: searchAge ? searchAge.operation : searchNhsNumber ? searchNhsNumber.operation : null,
+      minAge: searchAge ? searchAge.rangeAge[0] : null,
+      maxAge: searchAge && searchAge.rangeAge.length > 1 ? searchAge.rangeAge[1] : null,
+      changeData: (filtered: any) => {
+        setFiltersApplied(true);
+        setFiltered(filtered);
+      },
+    }).then(responses => {
+      console.log("responses ", responses);
     });
-    let oper = operation;
-    if (operation === "<=") {
-      oper = "lessorequalthan";
-    } else if (operation === ">=") {
-      oper = "greaterorequalthan";
-    } else if (operation === "<") {
-      oper = "lessthan";
-    } else if (operation === ">") {
-      oper = "greaterthan";
-    } else if (operation === "equal") {
-      oper = "equal";
-    }
-
-    let dataResult = { status: "loading", payload: "" };
-    if (rangeAge.length > 1) {
-      const responses = SubjectSearchService({
-        category: category,
-        nhsNumber: nhsNumber,
-        operation: oper,
-        minAge: rangeAge[0],
-        maxAge: rangeAge[1],
-        changeData: (filtered: any) => {
-          setFiltersApplied(true);
-          setFiltered(filtered);
-        },
-      }).then(response => {
-        console.log("responses ", responses);
-      });
-      //      console.log("responses ", responses);
-
-    }
-    else {
-      const responses = SubjectSearchService({
-        category: category,
-        nhsNumber: nhsNumber,
-        operation: oper,
-        minAge: rangeAge[0],
-        maxAge: null,
-        changeData: (filtered: any) => {
-          setFiltersApplied(true);
-          setFiltered(filtered);
-        },
-      }).then(response => {
-        console.log("responses ", responses);
-      });
-    }
+    console.log("responses ", response);
 
   };
 
@@ -278,8 +264,12 @@ export const HomePage: FC<HomePageProps> = ({
     if (butt.action !== undefined && butt.action === "CategoryAges") {
       setInputTextActive(false);
       setSelectAgeCriteria(true);
+      setActiveAddCriterion(false);
     } else if (butt.action !== undefined && butt.action === "CategoryNhsNumber") {
       setSelectAgeCriteria(false);
+      if (valueTextAge.length > 0) {
+        setActiveAddCriterion(true);
+      }
       setInputTextActive(true);
     } else {
       setSelectAgeCriteria(false);
@@ -741,7 +731,7 @@ export const HomePage: FC<HomePageProps> = ({
               variant={"Default"}
               disabled={false}
               children={renderButtonsCriteria()}
-              okayDisabled={!showLabelValues}
+              okayDisabled={!showLabelValues && !activeAddCriterion}
             />
           </div>
         )

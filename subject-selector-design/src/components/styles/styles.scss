@@ -596,6 +596,9 @@ div.padding-bottom-reset {
   position: absolute;
   top: 16px;
   left: 640px;
+  &[div-disabled~="true"] {
+    pointer-events: none;
+  }
 }
 .button-age-cancel-position {
   position: absolute;
@@ -828,6 +831,7 @@ div.padding-bottom-reset {
   border-radius: 4px;
   box-shadow: 0 4px 0 0 $BtnSecDisabledShadow8E9397;
   background-color: $BtnSecDisabledFill9Ba3A9;
+  pointer-events: none;
 }
 
 // .button-add-criterion {
@@ -1186,7 +1190,7 @@ div.padding-bottom-reset {
 .card-with-filter-title-position {
   position: absolute;
   left: 8px;
-  top: 10px;
+  top: 20px;
 }
 .card-with-filter-title-text {
   width: 137.008px;
@@ -1205,7 +1209,7 @@ div.padding-bottom-reset {
 .card-with-filter-subtitle-position {
   position: absolute;
   left: 8px;
-  top: 40px;
+  top: 36px;
 }
 .card-with-filter-subtitle-text {
   width: 137.008px;

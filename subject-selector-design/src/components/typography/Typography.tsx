@@ -17,9 +17,21 @@ type TypographyVariant =
   | "h1";
 
 type TypographyFontVariant = "FrutigerLTStd" | "FrutigerLTStdRoman"
-
 type TypographyWeightOption = "regular" | "medium" | "semibold" | "bold";
 
+type TypographyPointerEventVariant = "Default";
+type TypographyPointerEventSate = "unset" | "none";
+
+
+const TypographyPointerEventClasses: Record<
+  TypographyPointerEventVariant,
+  Record<TypographyPointerEventSate, string>
+> = {
+  Default: {
+    unset: "",
+    none: "",
+  },
+}
 // type TypographyWeightValue =
 //   | "font-normal"
 //   | "font-medium"
@@ -29,6 +41,7 @@ type TypographyWeightOption = "regular" | "medium" | "semibold" | "bold";
 export interface TypographyProps {
   font?: TypographyFontVariant;
   variant: TypographyVariant;
+  pointerEvent?: TypographyPointerEventVariant;
   customColor?: string;
   customWeight?: TypographyWeightOption;
   className?: string;
